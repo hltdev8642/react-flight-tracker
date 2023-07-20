@@ -41,8 +41,16 @@
     "three": "^0.154.0"
   },
   "devDependencies": {
+    "marked-gfm-heading-id": "^3.0.4",
+    "marked-mangle": "^1.1.0",
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^10.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/gitlab": "^12.0.3",
+    "@semantic-release/npm": "^10.0.4",
+    "@semantic-release/release-notes-generator": "^11.0.4",
     "@types/node": "^20.4.2",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
@@ -55,6 +63,7 @@
     "eslint-plugin-react-refresh": "^0.4.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
+    "semantic-release": "^21.0.7",
     "typescript": "^5.0.2",
     "vite": "^4.4.0"
   },
@@ -63,5 +72,122 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "license": "MIT"
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "conventionalcommits",
+          "releaseRules": [
+            {
+              "type": "build",
+              "scope": "deps",
+              "release": "patch"
+            },
+            {
+              "type": "docs",
+              "scope": "README",
+              "release": "patch"
+            },
+            {
+              "type": "refactor",
+              "release": "patch"
+            },
+            {
+              "type": "style",
+              "release": "patch"
+            },
+            {
+              "type": "test",
+              "release": "patch"
+            },
+            {
+              "type": "fix",
+              "release": "patch"
+            },
+            {
+              "type": "feat",
+              "release": "minor"
+            },
+            {
+              "type": "ci",
+              "scope": "release",
+              "release": "patch"
+            }
+          ]
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "conventionalcommits",
+          "presetConfig": {
+            "types": [
+              {
+                "type": "feat",
+                "section": "Features"
+              },
+              {
+                "type": "fix",
+                "section": "Bug Fixes"
+              },
+              {
+                "type": "build",
+                "section": "Dependencies and Other Build Updates",
+                "hidden": false,
+                "release": "patch"
+              },
+              {
+                "type": "chore",
+                "section": "Other Updates",
+                "hidden": false,
+                "release": "patch"
+              },
+              {
+                "type": "docs",
+                "section": "Documentation",
+                "hidden": false,
+                "release": "patch"
+              }
+            ]
+          }
+        }
+      ],
+      "@semantic-release/npm",
+      "@semantic-release/changelog",
+      "@semantic-release/gitlab",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "yarn.lock",
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "license": "MIT",
+  "author": "Appadoo Apoorva Srinivas",
+  "homepage": "https://gitlab.com/dev6645326/react-flight-tracker",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/dev6645326/react-flight-tracker.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/dev6645326/react-flight-tracker/-/issues"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "react-three-fiber",
+    "threejs",
+    "typescript",
+    "vite"
+  ]
 }
