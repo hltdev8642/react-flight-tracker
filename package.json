@@ -41,8 +41,6 @@
     "three": "^0.154.0"
   },
   "devDependencies": {
-    "marked-gfm-heading-id": "^3.0.4",
-    "marked-mangle": "^1.1.0",
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
     "@semantic-release/changelog": "^6.0.3",
@@ -63,7 +61,10 @@
     "eslint-plugin-react-refresh": "^0.4.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
+    "marked-gfm-heading-id": "^3.0.4",
+    "marked-mangle": "^1.1.0",
     "semantic-release": "^21.0.7",
+    "semantic-release-docker-gitlab-ci": "^1.1.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.0"
   },
@@ -169,7 +170,8 @@
           ],
           "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }
-      ]
+      ],
+      "semantic-release-docker-gitlab-ci"
     ]
   },
   "license": "MIT",
