@@ -14,7 +14,6 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -42,6 +41,8 @@
     "three": "^0.154.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7",
     "@types/node": "^20.4.2",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
