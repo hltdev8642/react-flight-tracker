@@ -27,6 +27,31 @@ build-app:
   artifacts:
     paths:
       - dist/
+variables:
+  DOCKER_DRIVER: overlay2
+  BUILDX_VERSION: "v0.6.1"
+  BUILDX_ARCH: "linux-amd64"
+
+build-image:
+  image: docker:20.10
+  stage: build
+
+  needs:
+    - job: build-app
+      artifacts: true
+  services:
+    - docker:20.10-dind
+  before_script:
+    - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - wget -O /usr/bin/docker-buildx
+      https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.${BUILDX_ARCH}
+    - chmod +x /usr/bin/docker-buildx
+  script:
+    - docker buildx create --use
+    - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --push .
+  tags:
+    - docker-dind
+
 
 release:
   stage: release
