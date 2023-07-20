@@ -1,0 +1,36 @@
+default:
+  image: node:latest
+  before_script:
+    - yarn install
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    policy: pull-push
+    paths:
+      - node_modules/
+      - .yarn/
+      - .cache/
+
+stages:
+  - lint
+  - build
+  - release
+
+lint:
+  stage: lint
+  script:
+    - yarn lint
+
+build-app:
+  stage: build
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - dist/
+
+release:
+  stage: release
+  script:
+    - npm run semantic-release
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
