@@ -46,6 +46,7 @@ build-image:
     - wget -O /usr/bin/docker-buildx
       https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.${BUILDX_ARCH}
     - chmod +x /usr/bin/docker-buildx
+    - apk add --no-cache git
   script:
     - docker buildx create --use
     - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --push .
