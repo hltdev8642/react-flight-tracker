@@ -1,3 +1,17 @@
+## [1.1.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.0.0...v1.1.0) (2023-07-20)
+
+
+### Features
+
+* add semantic release docker ([b399e15](https://gitlab.com/dev6645326/react-flight-tracker/commit/b399e15daa6c510ad8752cc6107e16658712c51c))
+* add semantic release docker ([36d937d](https://gitlab.com/dev6645326/react-flight-tracker/commit/36d937d59962703d06d6f22cc59ddb4a0fd4a15d))
+* add semantic release docker ([663fdc9](https://gitlab.com/dev6645326/react-flight-tracker/commit/663fdc94408b09410ad7babea17e8c90d24007c3))
+
+
+### Bug Fixes
+
+* rm semantic release docker ([cfcf8ab](https://gitlab.com/dev6645326/react-flight-tracker/commit/cfcf8abe39c81c2263ca2bb544ca62c7b28efbdb))
+
 ## 1.0.0 (2023-07-20)
 
 
