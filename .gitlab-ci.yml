@@ -34,3 +34,4 @@ release:
     - yarn semantic-release
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
