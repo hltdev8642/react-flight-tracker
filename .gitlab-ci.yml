@@ -11,8 +11,8 @@ default:
       - .cache/
 
 stages:
-  - lint
   - build
+  - lint
   - release
 
 lint:
@@ -50,7 +50,7 @@ build-image:
     - docker buildx create --use
     - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --push .
   tags:
-    - docker-dind
+    - docker
 
 
 release:
