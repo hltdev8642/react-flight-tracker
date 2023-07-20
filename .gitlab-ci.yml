@@ -47,9 +47,11 @@ build-image:
       https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.${BUILDX_ARCH}
     - chmod +x /usr/bin/docker-buildx
     - apk add --no-cache git
+    - apk add jq
   script:
     - docker buildx create --use
-    - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --push .
+    - export APP_VERSION=$(jq -r ".version" package.json)
+    - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -t $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH  -t $CI_REGISTRY_IMAGE:$APP_VERSION --push .
   tags:
     - docker
 
@@ -60,4 +62,3 @@ release:
     - yarn semantic-release
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-

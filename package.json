@@ -64,7 +64,6 @@
     "marked-gfm-heading-id": "^3.0.4",
     "marked-mangle": "^1.1.0",
     "semantic-release": "^21.0.7",
-    "semantic-release-docker-gitlab-ci": "^1.1.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.0"
   },
@@ -170,8 +169,7 @@
           ],
           "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }
-      ],
-      "semantic-release-docker-gitlab-ci"
+      ]
     ]
   },
   "license": "MIT",
