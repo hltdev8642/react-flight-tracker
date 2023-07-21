@@ -27,6 +27,7 @@ lint:
   stage: lint
   script:
     - yarn lint
+    - npx tsc --noEmit
 
 build-app:
   extends:
