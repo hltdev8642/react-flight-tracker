@@ -9,7 +9,7 @@ namePrefix: dev-
 
 images:
   - name: ghcr.io/apoorva64/react-flight-tracker
-    newTag: master
+    newTag: develop
 
 patches:
   - target:
