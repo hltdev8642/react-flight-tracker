@@ -73,6 +73,7 @@ sast:
   stage: test
 
 dast:
+  stage: dast
   dependencies: []
   variables:
     DAST_WEBSITE: "https://react-flight-tracker.dev.apoorva64.com/"
