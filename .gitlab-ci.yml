@@ -48,11 +48,12 @@ variables:
 build-image:
   extends: .build-on
   image: docker:20.10
-  stage: build
+  stage: release
 
   needs:
     - job: build-app
       artifacts: true
+    - job: release
   services:
     - docker:20.10-dind
   before_script:
@@ -71,12 +72,12 @@ build-image:
 
 
 release:
-  extends: .default-yarn
+  extends:
+    - .default-yarn
+    - .build-on
   stage: release
   script:
     - yarn semantic-release
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 sast:
   stage: test
