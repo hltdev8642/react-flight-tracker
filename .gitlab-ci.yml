@@ -15,6 +15,7 @@ stages:
   - build
   - test
   - release
+  - dast
 
 lint:
   extends: .default-yarn
@@ -70,5 +71,12 @@ release:
 
 sast:
   stage: test
+
+dast:
+  dependencies: []
+  variables:
+    DAST_WEBSITE: "https://react-flight-tracker.dev.apoorva64.com/"
+    DAST_BROWSER_SCAN: "true"
 include:
 - template: Security/SAST.gitlab-ci.yml
+- template: Security/DAST.gitlab-ci.yml
