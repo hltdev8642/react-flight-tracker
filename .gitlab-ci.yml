@@ -1,4 +1,4 @@
-default:
+.default-yarn:
   image: node:latest
   before_script:
     - yarn install
@@ -17,11 +17,13 @@ stages:
   - release
 
 lint:
+  extends: .default-yarn
   stage: lint
   script:
     - yarn lint
 
 build-app:
+  extends: .default-yarn
   stage: build
   script:
     - yarn build
@@ -59,6 +61,7 @@ build-image:
 
 
 release:
+  extends: .default-yarn
   stage: release
   script:
     - yarn semantic-release
