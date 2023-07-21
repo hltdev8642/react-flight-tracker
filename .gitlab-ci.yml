@@ -10,6 +10,11 @@
       - .yarn/
       - .cache/
 
+.build-on:
+  only:
+    - master
+    - develop
+
 stages:
   - lint
   - build
@@ -24,7 +29,9 @@ lint:
     - yarn lint
 
 build-app:
-  extends: .default-yarn
+  extends:
+    - .default-yarn
+    - .build-on
   stage: build
   script:
     - yarn build
@@ -38,6 +45,7 @@ variables:
   BUILDX_ARCH: "linux-amd64"
 
 build-image:
+  extends: .build-on
   image: docker:20.10
   stage: build
 
@@ -74,11 +82,12 @@ sast:
 
 dast:
   stage: dast
+  extends: .build-on
   needs:
     - release
   variables:
     DAST_WEBSITE: "https://react-flight-tracker.dev.apoorva64.com/"
     DAST_BROWSER_SCAN: "true"
 include:
-- template: Security/SAST.gitlab-ci.yml
-- template: Security/DAST.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/DAST.gitlab-ci.yml
