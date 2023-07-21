@@ -1,3 +1,10 @@
+## [1.2.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.1.0...v1.2.0) (2023-07-21)
+
+
+### Features
+
+* add kustomize config ([c9ff2fc](https://gitlab.com/dev6645326/react-flight-tracker/commit/c9ff2fcf123ebf09998e5cb238e66e6b5fd5b003))
+
 ## [1.1.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.0.0...v1.1.0) (2023-07-20)
 
 
