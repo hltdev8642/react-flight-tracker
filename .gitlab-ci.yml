@@ -74,7 +74,8 @@ sast:
 
 dast:
   stage: dast
-  dependencies: []
+  needs:
+    - release
   variables:
     DAST_WEBSITE: "https://react-flight-tracker.dev.apoorva64.com/"
     DAST_BROWSER_SCAN: "true"
