@@ -10,6 +10,11 @@
       - .yarn/
       - .cache/
 
+.build-on:
+  only:
+    - master
+    - develop
+
 stages:
   - lint
   - build
@@ -22,9 +27,12 @@ lint:
   stage: lint
   script:
     - yarn lint
+    - npx tsc --noEmit
 
 build-app:
-  extends: .default-yarn
+  extends:
+    - .default-yarn
+    - .build-on
   stage: build
   script:
     - yarn build
@@ -38,12 +46,14 @@ variables:
   BUILDX_ARCH: "linux-amd64"
 
 build-image:
+  extends: .build-on
   image: docker:20.10
-  stage: build
+  stage: release
 
   needs:
     - job: build-app
       artifacts: true
+    - job: release
   services:
     - docker:20.10-dind
   before_script:
@@ -56,18 +66,26 @@ build-image:
   script:
     - docker buildx create --use
     - export APP_VERSION=$(jq -r ".version" package.json)
-    - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -t $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH  -t $CI_REGISTRY_IMAGE:$APP_VERSION --push .
+    - echo $CI_REGISTRY_IMAGE:$APP_VERSION
+    - >
+      docker buildx build
+      --platform linux/amd64,linux/arm64,linux/arm/v7
+      --push
+      --tag $CI_REGISTRY_IMAGE:$APP_VERSION
+      --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+      --tag $CI_REGISTRY_IMAGE:latest-$CI_COMMIT_REF_SLUG
+      --file Dockerfile .
   tags:
     - docker
 
 
 release:
-  extends: .default-yarn
+  extends:
+    - .default-yarn
+    - .build-on
   stage: release
   script:
     - yarn semantic-release
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 sast:
   stage: test
@@ -80,5 +98,5 @@ dast:
     DAST_WEBSITE: "https://react-flight-tracker.dev.apoorva64.com/"
     DAST_BROWSER_SCAN: "true"
 include:
-- template: Security/SAST.gitlab-ci.yml
-- template: Security/DAST.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/DAST.gitlab-ci.yml
