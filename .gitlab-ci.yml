@@ -67,12 +67,14 @@ build-image:
     - docker buildx create --use
     - export APP_VERSION=$(jq -r ".version" package.json)
     - echo $CI_REGISTRY_IMAGE:$APP_VERSION
-    - docker buildx build \
-        --platform linux/amd64,linux/arm64,linux/arm/v7 \
-        -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA \
-        -t $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH \
-        -t $CI_REGISTRY_IMAGE:$APP_VERSION \
-        --push .
+    - >
+      docker buildx build
+      --platform linux/amd64,linux/arm64,linux/arm/v7
+      --push
+      --tag $CI_REGISTRY_IMAGE:$APP_VERSION
+      --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+      --tag $CI_REGISTRY_IMAGE:latest-$CI_COMMIT_REF_SLUG
+      --file Dockerfile .
   tags:
     - docker
 
