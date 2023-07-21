@@ -64,6 +64,9 @@ build-image:
     - apk add --no-cache git
     - apk add jq
   script:
+    # pull the latest version of the branch we are building as the version is updated in the release job
+    - git checkout $CI_COMMIT_BRANCH
+    - git pull
     - docker buildx create --use
     - export APP_VERSION=$(jq -r ".version" package.json)
     - echo $CI_REGISTRY_IMAGE:$APP_VERSION
