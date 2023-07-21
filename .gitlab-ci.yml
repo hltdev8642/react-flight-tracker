@@ -1,84 +1,84 @@
-.default-yarn:
+# You can override the included template(s) by including variable overrides
+# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
+# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
+# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
+# Note that environment variables can be set in several places
+# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+".default-yarn":
   image: node:latest
   before_script:
-    - yarn install
+  - yarn install
   cache:
-    key: ${CI_COMMIT_REF_SLUG}
+    key: "${CI_COMMIT_REF_SLUG}"
     policy: pull-push
     paths:
-      - node_modules/
-      - .yarn/
-      - .cache/
-
+    - node_modules/
+    - ".yarn/"
+    - ".cache/"
 stages:
-  - lint
-  - build
-  - test
-  - release
-  - dast
-
+- lint
+- build
+- test
+- release
+- dast
 lint:
-  extends: .default-yarn
+  extends: ".default-yarn"
   stage: lint
   script:
-    - yarn lint
-
+  - yarn lint
 build-app:
-  extends: .default-yarn
+  extends: ".default-yarn"
   stage: build
   script:
-    - yarn build
+  - yarn build
   artifacts:
     paths:
-      - dist/
-
+    - dist/
 variables:
   DOCKER_DRIVER: overlay2
-  BUILDX_VERSION: "v0.6.1"
-  BUILDX_ARCH: "linux-amd64"
-
+  BUILDX_VERSION: v0.6.1
+  BUILDX_ARCH: linux-amd64
 build-image:
   image: docker:20.10
   stage: build
-
   needs:
-    - job: build-app
-      artifacts: true
+  - job: build-app
+    artifacts: true
   services:
-    - docker:20.10-dind
+  - docker:20.10-dind
   before_script:
-    - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - wget -O /usr/bin/docker-buildx
-      https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.${BUILDX_ARCH}
-    - chmod +x /usr/bin/docker-buildx
-    - apk add --no-cache git
-    - apk add jq
+  - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin
+    $CI_REGISTRY
+  - wget -O /usr/bin/docker-buildx https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.${BUILDX_ARCH}
+  - chmod +x /usr/bin/docker-buildx
+  - apk add --no-cache git
+  - apk add jq
   script:
-    - docker buildx create --use
-    - export APP_VERSION=$(jq -r ".version" package.json)
-    - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -t $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH  -t $CI_REGISTRY_IMAGE:$APP_VERSION --push .
+  - docker buildx create --use
+  - export APP_VERSION=$(jq -r ".version" package.json)
+  - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    -t $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH  -t $CI_REGISTRY_IMAGE:$APP_VERSION --push
+    .
   tags:
-    - docker
-
-
+  - docker
 release:
-  extends: .default-yarn
+  extends: ".default-yarn"
   stage: release
   script:
-    - yarn semantic-release
+  - yarn semantic-release
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-
+  - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
 sast:
   stage: test
-
 dast:
   stage: dast
   needs:
-    - release
+  - release
   variables:
-    DAST_WEBSITE: "https://react-flight-tracker.dev.apoorva64.com/"
-    DAST_BROWSER_SCAN: "true"
+    DAST_WEBSITE: https://react-flight-tracker.dev.apoorva64.com/
+    DAST_BROWSER_SCAN: 'true'
 include:
 - template: Security/SAST.gitlab-ci.yml
 - template: Security/DAST.gitlab-ci.yml
+- template: Security/Secret-Detection.gitlab-ci.yml
