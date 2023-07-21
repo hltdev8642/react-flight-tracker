@@ -83,7 +83,6 @@ sast:
 
 dast:
   stage: dast
-  extends: .build-on
   needs:
     - release
   variables:
