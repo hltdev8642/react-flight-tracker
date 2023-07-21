@@ -11,8 +11,9 @@ default:
       - .cache/
 
 stages:
-  - build
   - lint
+  - build
+  - test
   - release
 
 lint:
@@ -27,6 +28,7 @@ build-app:
   artifacts:
     paths:
       - dist/
+
 variables:
   DOCKER_DRIVER: overlay2
   BUILDX_VERSION: "v0.6.1"
@@ -62,3 +64,8 @@ release:
     - yarn semantic-release
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+sast:
+  stage: test
+include:
+- template: Security/SAST.gitlab-ci.yml
