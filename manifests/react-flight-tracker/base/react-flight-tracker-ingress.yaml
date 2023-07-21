@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: react-flight-tracker-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+spec:
+  rules:
+    - host: react-flight-tracker.apoorva64.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: react-flight-tracker
+                port:
+                  number: 8080
+  tls:
+    - hosts:
+        - react-flight-tracker.apoorva64.com
+      secretName: react-flight-tracker-tls

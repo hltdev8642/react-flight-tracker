@@ -1,6 +1,7 @@
 version: '3.7'
 services:
-  client:
+  react-flight-tracker:
+    image: ghcr.io/apoorva64/react-flight-tracker
     build:
       context: .
       dockerfile: Dockerfile

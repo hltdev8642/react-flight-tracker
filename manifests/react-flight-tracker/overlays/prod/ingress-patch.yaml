@@ -1,0 +1,9 @@
+- op: replace
+  path: /spec/rules/0/host
+  value: react-flight-tracker.apoorva64.com
+- op: replace
+  path: /spec/tls/0/hosts/0
+  value: react-flight-tracker.apoorva64.com
+- op: replace
+  path: /spec/tls/0/secretName
+  value: react-flight-tracker-tls

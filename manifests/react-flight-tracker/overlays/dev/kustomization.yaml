@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+commonLabels:
+  env: dev
+namespace: react-flight-tracker
+namePrefix: dev-
+
+images:
+  - name: ghcr.io/apoorva64/react-flight-tracker
+    newTag: master
+
+patches:
+  - target:
+      kind: Ingress
+      name: react-flight-tracker-ingress
+    path: ingress-patch.yaml
