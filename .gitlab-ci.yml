@@ -57,6 +57,7 @@ build-app:
   artifacts:
     paths:
       - dist/
+    expire_in: 1 week
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -66,7 +67,7 @@ variables:
 build-image:
   extends: .build-on
   image: docker:20.10
-  stage: release
+  stage: build
 
   needs:
     - job: build-app
@@ -129,6 +130,8 @@ release:
       artifacts: true
     - job: get-next-version
       artifacts: true
+    - job: build-image
+      artifacts: false
   script:
     - yarn semantic-release
 
