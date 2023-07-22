@@ -16,11 +16,29 @@
     - develop
 
 stages:
+  - version
   - lint
   - build
   - test
   - release
   - dast
+
+
+
+get-next-version:
+  extends:
+    - .default-yarn
+    - .build-on
+  stage: version
+  script:
+    - npx semantic-release --dry-run --branches master,$CI_COMMIT_REF_NAME --no-ci
+    - test -e .VERSION || (echo $(git describe --abbrev=0 --tags | tr -d v) > .VERSION && touch .NORELEASE)
+    - echo "Determined Version $(cat .VERSION)"
+  artifacts:
+    paths:
+      - .VERSION
+      - .NORELEASE
+    expire_in: 1 week
 
 lint:
   extends: .default-yarn
@@ -53,7 +71,8 @@ build-image:
   needs:
     - job: build-app
       artifacts: true
-    - job: release
+    - job: get-next-version
+      artifacts: true
   services:
     - docker:20.10-dind
   before_script:
@@ -62,31 +81,54 @@ build-image:
       https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.${BUILDX_ARCH}
     - chmod +x /usr/bin/docker-buildx
     - apk add --no-cache git
-    - apk add jq
   script:
     # pull the latest version of the branch we are building as the version is updated in the release job
-    - git checkout $CI_COMMIT_BRANCH
-    - git pull
     - docker buildx create --use
-    - export APP_VERSION=$(jq -r ".version" package.json)
-    - echo $CI_REGISTRY_IMAGE:$APP_VERSION
     - >
       docker buildx build
       --platform linux/amd64,linux/arm64,linux/arm/v7
       --push
-      --tag $CI_REGISTRY_IMAGE:$APP_VERSION
       --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-      --tag $CI_REGISTRY_IMAGE:latest-$CI_COMMIT_REF_SLUG
       --file Dockerfile .
   tags:
     - docker
 
+release-docker:
+  extends: .build-on
+  image: docker:20.10
+  stage: release
+  services:
+    - docker:20.10-dind
+  needs:
+    - job: build-image
+      artifacts: false
+    - job: get-next-version
+      artifacts: true
+  before_script:
+    - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - apk add --no-cache git
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG || true
+  script:
+    - VERSION=$(cat .VERSION)
+    - VERSION_MAJOR=$(echo $VERSION | cut -d. -f1)
+    - VERSION_MINOR=$(echo $VERSION | cut -d. -f2)
+    - SHORTVERSION=$VERSION_MAJOR.$VERSION_MINOR
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG $CI_REGISTRY_IMAGE:$VERSION
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG $CI_REGISTRY_IMAGE:$SHORTVERSION
+    - docker push $CI_REGISTRY_IMAGE:$VERSION
+    - docker push $CI_REGISTRY_IMAGE:$SHORTVERSION
 
 release:
   extends:
     - .default-yarn
     - .build-on
   stage: release
+  needs:
+    - job: build-app
+      artifacts: true
+    - job: get-next-version
+      artifacts: true
   script:
     - yarn semantic-release
 
