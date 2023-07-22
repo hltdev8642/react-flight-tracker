@@ -100,11 +100,6 @@ release-docker:
   stage: release
   services:
     - docker:20.10-dind
-  needs:
-    - job: build-image
-      artifacts: false
-    - job: get-next-version
-      artifacts: true
   before_script:
     - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - apk add --no-cache git
@@ -125,13 +120,6 @@ release:
     - .default-yarn
     - .build-on
   stage: release
-  needs:
-    - job: build-app
-      artifacts: true
-    - job: get-next-version
-      artifacts: true
-    - job: build-image
-      artifacts: false
   script:
     - yarn semantic-release
 
