@@ -127,7 +127,11 @@ release:
     - yarn semantic-release
 
 sast:
+  image: node:latest
   stage: test
+  needs:
+    - build-app
+    - build-image
 
 dast:
   stage: dast
@@ -138,5 +142,5 @@ dast:
     DAST_BROWSER_SCAN: "true"
     DAST_SPIDER_SCAN: "true"
 include:
-  - template: Nodejs.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
   - template: Security/DAST.gitlab-ci.yml
