@@ -67,10 +67,9 @@ build-image:
     DOCKER_DRIVER: overlay2
     BUILDX_VERSION: "v0.6.1"
     BUILDX_ARCH: "linux-amd64"
-    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_TLS_CERTDIR: ""
     DOCKER_HOST: tcp://docker:2375
     DOCKER_TLS_VERIFY: 0
-    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
   extends: .build-on
   image: docker:20.10
   stage: build
