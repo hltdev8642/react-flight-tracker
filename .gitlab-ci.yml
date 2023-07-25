@@ -11,9 +11,6 @@
       - .cache/
 
 .build-on:
-  only:
-    - master
-    - develop
   rules:
     - if: '$CI_COMMIT_BRANCH == "master"'
     - if: '$CI_COMMIT_BRANCH == "develop"'
