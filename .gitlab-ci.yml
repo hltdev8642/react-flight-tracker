@@ -111,7 +111,7 @@ build-image:
 sonarqube-check:
   extends: .build-on
   image:
-    name: sonarsource/sonar-scanner-cli:latest
+    name: kovaszab/sonar-scanner-cli:latest
     entrypoint: [ "" ]
   stage: test
   variables:
