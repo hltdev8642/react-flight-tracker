@@ -1,3 +1,16 @@
+## [1.2.3-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.2.2...v1.2.3-develop.1) (2023-07-25)
+
+
+### Bug Fixes
+
+* merge conflicts ([2b07511](https://gitlab.com/dev6645326/react-flight-tracker/commit/2b07511980c5ad1fa09f41e2cdd012a79b444381))
+
+
+### Other Updates
+
+* **release:** 1.2.2-develop.2 [skip ci] ([27d5bbb](https://gitlab.com/dev6645326/react-flight-tracker/commit/27d5bbb94329e416d2c3fa08e5290afa2bb79838))
+* **release:** 1.2.2-develop.3 [skip ci] ([58d231d](https://gitlab.com/dev6645326/react-flight-tracker/commit/58d231d74d4a8724b7d73fd8bd9886df25adc9b9))
+
 ## [1.2.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.2.1...v1.2.2) (2023-07-22)
 
 
