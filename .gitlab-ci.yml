@@ -132,6 +132,16 @@ release-docker:
   services:
     - docker:20.10-dind
   before_script:
+    - echo "Waiting for docker cli to respond before continuing build..."
+    - |
+      for i in $(seq 1 20); do
+          if ! docker info &> /dev/null; then
+              echo "Docker not responding yet. Sleeping for 2s..." && sleep 2s
+          else
+              echo "Docker ready. Continuing build..."
+              break
+          fi
+      done
     - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - apk add --no-cache git
     - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG || true
