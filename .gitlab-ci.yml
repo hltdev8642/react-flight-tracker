@@ -60,15 +60,14 @@ build-app:
     expire_in: 1 week
 
 
-
+variables:
+  DOCKER_DRIVER: overlay2
+  BUILDX_VERSION: "v0.5.1"
+  BUILDX_ARCH: "linux-amd64"
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: tcp://docker:2375/
 
 build-image:
-  variables:
-    DOCKER_DRIVER: overlay2
-    BUILDX_VERSION: "v0.5.1"
-    BUILDX_ARCH: "linux-amd64"
-    DOCKER_TLS_CERTDIR: ""
-    DOCKER_HOST: tcp://docker:2375/
   extends: .build-on
   image: docker:20.10
   stage: build
@@ -111,7 +110,7 @@ build-image:
 sonarqube-check:
   extends: .build-on
   image:
-    name: kovaszab/sonar-scanner-cli:latest
+    name: noenv/sonar-scanner
     entrypoint: [ "" ]
   stage: test
   variables:
