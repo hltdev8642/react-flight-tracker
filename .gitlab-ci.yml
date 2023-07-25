@@ -16,11 +16,29 @@
     - develop
 
 stages:
+  - version
   - lint
   - build
   - test
   - release
   - dast
+
+
+
+get-next-version:
+  extends:
+    - .default-yarn
+    - .build-on
+  stage: version
+  script:
+    - npx semantic-release --dry-run --branches master,$CI_COMMIT_REF_NAME --no-ci
+    - test -e .VERSION || (echo $(git describe --abbrev=0 --tags | tr -d v) > .VERSION && touch .NORELEASE)
+    - echo "Determined Version $(cat .VERSION)"
+  artifacts:
+    paths:
+      - .VERSION
+      - .NORELEASE
+    expire_in: 1 week
 
 lint:
   extends: .default-yarn
@@ -39,48 +57,104 @@ build-app:
   artifacts:
     paths:
       - dist/
+    expire_in: 1 week
+
 
 variables:
   DOCKER_DRIVER: overlay2
-  BUILDX_VERSION: "v0.6.1"
+  BUILDX_VERSION: "v0.5.1"
   BUILDX_ARCH: "linux-amd64"
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: tcp://docker:2375/
 
 build-image:
   extends: .build-on
   image: docker:20.10
-  stage: release
+  stage: build
 
   needs:
     - job: build-app
       artifacts: true
-    - job: release
+    - job: get-next-version
+      artifacts: true
   services:
     - docker:20.10-dind
   before_script:
+    - echo "Waiting for docker cli to respond before continuing build..."
+    - |
+      for i in $(seq 1 20); do
+          if ! docker info &> /dev/null; then
+              echo "Docker not responding yet. Sleeping for 2s..." && sleep 2s
+          else
+              echo "Docker ready. Continuing build..."
+              break
+          fi
+      done
     - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - wget -O /usr/bin/docker-buildx
       https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.${BUILDX_ARCH}
     - chmod +x /usr/bin/docker-buildx
     - apk add --no-cache git
-    - apk add jq
   script:
     # pull the latest version of the branch we are building as the version is updated in the release job
-    - git checkout $CI_COMMIT_BRANCH
-    - git pull
-    - docker buildx create --use
-    - export APP_VERSION=$(jq -r ".version" package.json)
-    - echo $CI_REGISTRY_IMAGE:$APP_VERSION
+    - docker buildx create --use --name buildcontext
     - >
       docker buildx build
       --platform linux/amd64,linux/arm64,linux/arm/v7
       --push
-      --tag $CI_REGISTRY_IMAGE:$APP_VERSION
       --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-      --tag $CI_REGISTRY_IMAGE:latest-$CI_COMMIT_REF_SLUG
       --file Dockerfile .
   tags:
     - docker
 
+sonarqube-check:
+  extends: .build-on
+  image:
+    name: noenv/sonar-scanner
+    entrypoint: [ "" ]
+  stage: test
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
+  allow_failure: true
+
+
+release-docker:
+  extends: .build-on
+  image: docker:20.10
+  stage: release
+  services:
+    - docker:20.10-dind
+  before_script:
+    - echo "Waiting for docker cli to respond before continuing build..."
+    - |
+      for i in $(seq 1 20); do
+          if ! docker info &> /dev/null; then
+              echo "Docker not responding yet. Sleeping for 2s..." && sleep 2s
+          else
+              echo "Docker ready. Continuing build..."
+              break
+          fi
+      done
+    - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - apk add --no-cache git
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG || true
+  script:
+    - VERSION=$(cat .VERSION)
+    - VERSION_MAJOR=$(echo $VERSION | cut -d. -f1)
+    - VERSION_MINOR=$(echo $VERSION | cut -d. -f2)
+    - SHORTVERSION=$VERSION_MAJOR.$VERSION_MINOR
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG $CI_REGISTRY_IMAGE:$VERSION
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG $CI_REGISTRY_IMAGE:$SHORTVERSION
+    - docker push $CI_REGISTRY_IMAGE:$VERSION
+    - docker push $CI_REGISTRY_IMAGE:$SHORTVERSION
 
 release:
   extends:
@@ -90,8 +164,12 @@ release:
   script:
     - yarn semantic-release
 
-sast:
-  stage: test
+# sast:
+#   image: node:latest
+#   stage: test
+#   needs:
+#     - build-app
+#     - build-image
 
 dast:
   stage: dast
@@ -100,6 +178,7 @@ dast:
   variables:
     DAST_WEBSITE: "https://react-flight-tracker.dev.apoorva64.com/"
     DAST_BROWSER_SCAN: "true"
+    DAST_SPIDER_SCAN: "true"
 include:
-  - template: Security/SAST.gitlab-ci.yml
+  # - template: Security/SAST.gitlab-ci.yml
   - template: Security/DAST.gitlab-ci.yml
