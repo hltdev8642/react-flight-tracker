@@ -1,3 +1,10 @@
+## [1.3.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.2.3-develop.1...v1.3.0-develop.1) (2023-07-25)
+
+
+### Features
+
+* test feature ci ([cc3a521](https://gitlab.com/dev6645326/react-flight-tracker/commit/cc3a52109db247623cd51fe4f184b9dc2ce42bc4))
+
 ## [1.2.3-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.2.2...v1.2.3-develop.1) (2023-07-25)
 
 
