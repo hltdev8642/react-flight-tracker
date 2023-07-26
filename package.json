@@ -27,6 +27,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.0",
     "@mui/material": "^5.14.0",
+    "@nodetoy/react-nodetoy": "^0.1.24",
     "@react-three/drei": "^9.78.2",
     "@react-three/fiber": "^8.13.5",
     "@react-three/postprocessing": "^2.14.13",

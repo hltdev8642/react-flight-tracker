@@ -81,6 +81,9 @@ export function App() {
                 style={{
                     height: "100vh",
                 }}
+                camera={{
+                    castShadow: true,
+                }}
             >
                 <Scene/>
             </Canvas>

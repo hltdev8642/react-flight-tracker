@@ -678,6 +678,33 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@nodetoy/react-nodetoy@^0.1.24":
+  version "0.1.24"
+  resolved "https://registry.yarnpkg.com/@nodetoy/react-nodetoy/-/react-nodetoy-0.1.24.tgz#01a8a3045ce902dabc344152050373153be7aa00"
+  integrity sha512-zs+BspfPNJCU2K3mn1ruc4kN0bcN+WGB04BMmQBIU6hN8/d/AHXawm/1tdAm+qZEQLUFtFqiyhOHPVdAa7y5mQ==
+  dependencies:
+    "@nodetoy/shared-nodetoy" ">=0.2.21"
+    "@nodetoy/three-nodetoy" ">=0.1.36"
+    "@react-three/fiber" "^8.9.1"
+    react ">=18.2.0"
+    react-dom ">=18.2.0"
+    three ">=0.143.0"
+
+"@nodetoy/shared-nodetoy@>=0.2.21", "@nodetoy/shared-nodetoy@^0.2.21":
+  version "0.2.21"
+  resolved "https://registry.yarnpkg.com/@nodetoy/shared-nodetoy/-/shared-nodetoy-0.2.21.tgz#ea66973464e9b66da0e247ff9708d25689dae845"
+  integrity sha512-itFQATEfWmbuYSBCHdVw6qY1mPME4JQ4jFEtbspgI+Dk7if4f7WXuNit2wFgLFUXPQ7c1UPUXZsJTBxVFDs6SA==
+  dependencies:
+    eventemitter3 "^4.0.7"
+
+"@nodetoy/three-nodetoy@>=0.1.36":
+  version "0.1.36"
+  resolved "https://registry.yarnpkg.com/@nodetoy/three-nodetoy/-/three-nodetoy-0.1.36.tgz#445fc01ea1350ce9cf49f30a13c9f284f6026303"
+  integrity sha512-qxsZucryVes7LeB/ezW/dFeESicEk2DrrjwHPwzbXXXKaaCS7/8OBCay8ZzoilVYYoZpeoNNu13KSwx8M6sPmQ==
+  dependencies:
+    "@nodetoy/shared-nodetoy" "^0.2.21"
+    three ">=0.143.0"
+
 "@npmcli/arborist@^6.3.0":
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/@npmcli/arborist/-/arborist-6.3.0.tgz#df37c79f7b82a2de8986fb9061b40efb4d188a38"
@@ -1031,7 +1058,7 @@
     utility-types "^3.10.0"
     zustand "^3.5.13"
 
-"@react-three/fiber@^8.13.5":
+"@react-three/fiber@^8.13.5", "@react-three/fiber@^8.9.1":
   version "8.13.5"
   resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-8.13.5.tgz#6075a18364381a03551068e28cb9b82a8ed7ae0d"
   integrity sha512-x9QdsaB/Wm/6NGvRXQahPPWfn2dQce7Fg3C2r00NNzyDdqRKw32YavL+WEqjZOOd0nvFpzv7FtaKc+VCOTR59w==
@@ -2769,6 +2796,11 @@ event-target-shim@^5.0.0:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
   integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
+
+eventemitter3@^4.0.7:
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
+  integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
 
 events@^3.3.0:
   version "3.3.0"
@@ -5309,7 +5341,7 @@ react-composer@^5.0.3:
   dependencies:
     prop-types "^15.6.0"
 
-react-dom@^18.2.0:
+react-dom@>=18.2.0, react-dom@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
@@ -5357,7 +5389,7 @@ react-use-measure@^2.1.1:
   dependencies:
     debounce "^1.2.1"
 
-react@^18.2.0:
+react@>=18.2.0, react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
@@ -6107,7 +6139,7 @@ three-stdlib@^2.23.4, three-stdlib@^2.23.9:
     potpack "^1.0.1"
     zstddec "^0.0.2"
 
-three@^0.154.0:
+three@>=0.143.0, three@^0.154.0:
   version "0.154.0"
   resolved "https://registry.yarnpkg.com/three/-/three-0.154.0.tgz#dbef21e10fe6015ec283acc60d0eb58733991e27"
   integrity sha512-Uzz8C/5GesJzv8i+Y2prEMYUwodwZySPcNhuJUdsVMH2Yn4Nm8qlbQe6qRN5fOhg55XB0WiLfTPBxVHxpE60ug==

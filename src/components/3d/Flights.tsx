@@ -75,7 +75,7 @@ export default function Flights() {
 
             >
                 <planeGeometry args={[1, 1, 1, 1]}/>
-                <meshStandardMaterial
+                <meshPhysicalMaterial
                     map={planeTexture}
                     transparent={true}
                     opacity={0.8}
