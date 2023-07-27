@@ -24,8 +24,6 @@ stages:
   - release
   - dast
 
-
-
 get-next-version:
   extends:
     - .default-yarn
