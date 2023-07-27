@@ -1,4 +1,4 @@
-## [1.4.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.3.0...v1.4.0-develop.1) (2023-07-27)
+## [1.4.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.3.0...v1.4.0) (2023-07-27)
 
 
 ### Features
