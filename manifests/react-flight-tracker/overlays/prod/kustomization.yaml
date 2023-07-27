@@ -10,7 +10,7 @@ namePrefix: prod-
 
 images:
   - name: ghcr.io/apoorva64/react-flight-tracker
-    newTag: master
+    newTag: master # {"$imagepolicy": "flux-system:react-flight-tracker-dev-policy:tag"}
 
 patches:
   - target:

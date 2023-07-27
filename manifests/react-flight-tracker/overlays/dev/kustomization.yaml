@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../../base
   - ../../image-repository.yaml
+  - image-policy.yaml
 commonLabels:
   env: dev
 namespace: react-flight-tracker
@@ -10,7 +11,7 @@ namePrefix: dev-
 
 images:
   - name: ghcr.io/apoorva64/react-flight-tracker
-    newTag: develop
+    newTag: develop # {"$imagepolicy": "flux-system:react-flight-tracker-dev-policy:tag"}
 
 patches:
   - target:

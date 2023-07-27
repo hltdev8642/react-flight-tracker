@@ -1,0 +1,11 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: react-flight-tracker-dev-policy
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: react-flight-tracker-image
+  policy:
+    semver:
+      range: x.x.x-develop.x
