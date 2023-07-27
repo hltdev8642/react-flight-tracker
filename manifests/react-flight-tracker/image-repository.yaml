@@ -4,5 +4,5 @@ metadata:
   name: react-flight-tracker-image
   namespace: flux-system
 spec:
-  image: ghcr.io/apoorva64/react-flight-tracker:1.0.0
+  image: ghcr.io/apoorva64/react-flight-tracker
   interval: 5m
