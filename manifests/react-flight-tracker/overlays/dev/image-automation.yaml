@@ -28,11 +28,11 @@ spec:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
+      push:
+        branch: develop
     sourceRef:
       kind: GitRepository
       name: react-flight-tracker-dev
-    push:
-      branch: develop
     update:
       path: .manifests/react-flight-tracker/overlays/dev
       strategy: Setters
