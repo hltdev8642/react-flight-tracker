@@ -33,7 +33,7 @@ get-next-version:
   stage: version
   script:
     - npx semantic-release --dry-run --no-ci
-    - test -e .VERSION || (echo $(git describe --abbrev=0 --tags | tr -d v) > .VERSION && touch .NORELEASE)
+    - test -e .VERSION || echo $(git describe --abbrev=0 --tags | cut -c2-) > .VERSION && touch .NORELEASE)
     - echo "Determined Version $(cat .VERSION)"
   artifacts:
     paths:
