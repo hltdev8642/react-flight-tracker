@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../../base
-  - ../../image-repository.yaml
+  - image-policy.yaml
 commonLabels:
   env: prod
 namespace: react-flight-tracker
@@ -10,7 +10,7 @@ namePrefix: prod-
 
 images:
   - name: ghcr.io/apoorva64/react-flight-tracker
-    newTag: master # {"$imagepolicy": "flux-system:react-flight-tracker-dev-policy:tag"}
+    newTag: master # {"$imagepolicy": "flux-system:react-flight-tracker-prod-policy:tag"}
 
 patches:
   - target:
