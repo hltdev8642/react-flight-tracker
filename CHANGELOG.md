@@ -1,3 +1,15 @@
+## [1.4.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.3.0...v1.4.0) (2023-07-27)
+
+
+### Features
+
+* ci test feature ([f0f9d8c](https://gitlab.com/dev6645326/react-flight-tracker/commit/f0f9d8c2d7dcedb2b98fc621d1b9e5df386cce43))
+
+
+### Other Updates
+
+* **release:** 1.3.0-develop.2 [skip ci] ([6678e8f](https://gitlab.com/dev6645326/react-flight-tracker/commit/6678e8feca1a1e8261865c419ecfe6a786dc2b0d))
+
 ## [1.3.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.2.2...v1.3.0) (2023-07-25)
 
 
