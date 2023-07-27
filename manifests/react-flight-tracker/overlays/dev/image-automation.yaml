@@ -34,6 +34,6 @@ spec:
     kind: GitRepository
     name: react-flight-tracker-dev
   update:
-    path: .manifests/react-flight-tracker/overlays/dev
+    path: manifests/react-flight-tracker/overlays/dev
     strategy: Setters
   interval: 5m
