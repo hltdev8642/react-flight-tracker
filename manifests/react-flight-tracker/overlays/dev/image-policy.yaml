@@ -7,4 +7,5 @@ spec:
     name: dev-react-flight-tracker-image
   policy:
     semver:
-      range: x.x.x-develop.x
+      # fetch latest develop image (format is <major>.<minor>.<patch>-develop.<build>)
+      range: ">=0.0.0-develop.0 <100.0.0"
