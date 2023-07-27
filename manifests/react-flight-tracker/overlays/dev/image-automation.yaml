@@ -19,20 +19,20 @@ spec:
         {{ range $resource, $_ := .Updated.Objects -}}
         - {{ $resource.Kind }} {{ $resource.Name }}
         {{ end -}}
-
+        [skip ci]
+        
         Images:
         {{ range .Updated.Images -}}
         - {{.}}
         {{ end -}}  
-        [skip ci]
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
-      push:
-        branch: develop
-    sourceRef:
-      kind: GitRepository
-      name: react-flight-tracker-dev
-    update:
-      path: .manifests/react-flight-tracker/overlays/dev
-      strategy: Setters
+    push:
+      branch: develop
+  sourceRef:
+    kind: GitRepository
+    name: react-flight-tracker-dev
+  update:
+    path: .manifests/react-flight-tracker/overlays/dev
+    strategy: Setters
