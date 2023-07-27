@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../../base
   - image-policy.yaml
+  - image-automation.yaml
 commonLabels:
   env: dev
 namespace: react-flight-tracker
