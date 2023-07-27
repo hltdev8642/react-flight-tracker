@@ -32,7 +32,7 @@ get-next-version:
     - .build-on
   stage: version
   script:
-    - npx semantic-release --dry-run --branches master,$CI_COMMIT_REF_NAME --no-ci
+    - npx semantic-release --dry-run --no-ci
     - test -e .VERSION || (echo $(git describe --abbrev=0 --tags | tr -d v) > .VERSION && touch .NORELEASE)
     - echo "Determined Version $(cat .VERSION)"
   artifacts:
