@@ -8,4 +8,4 @@ spec:
   policy:
     semver:
       # fetch latest develop image (format is <major>.<minor>.<patch>-develop.<build>)
-      range: ">=0.0.0-develop.0 <100.0.0"
+      range: ">=1.0.0-develop.0 <10.0.1"
