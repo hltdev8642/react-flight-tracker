@@ -1,5 +1,5 @@
 .default-yarn:
-  image: node:latest
+  image: node:20.5
   before_script:
     - yarn install
   cache:
@@ -24,16 +24,14 @@ stages:
   - release
   - dast
 
-
-
 get-next-version:
   extends:
     - .default-yarn
     - .build-on
   stage: version
   script:
-    - npx semantic-release --dry-run --branches master,$CI_COMMIT_REF_NAME --no-ci
-    - test -e .VERSION || (echo $(git describe --abbrev=0 --tags | tr -d v) > .VERSION && touch .NORELEASE)
+    - npx semantic-release --dry-run --no-ci
+    - test -e .VERSION || (echo $(git describe --abbrev=0 --tags | cut -c2- ) > .VERSION && touch .NORELEASE)
     - echo "Determined Version $(cat .VERSION)"
   artifacts:
     paths:
@@ -147,6 +145,7 @@ release-docker:
     - apk add --no-cache git
     - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG || true
   script:
+    - cat .VERSION
     - VERSION=$(cat .VERSION)
     - VERSION_MAJOR=$(echo $VERSION | cut -d. -f1)
     - VERSION_MINOR=$(echo $VERSION | cut -d. -f2)
