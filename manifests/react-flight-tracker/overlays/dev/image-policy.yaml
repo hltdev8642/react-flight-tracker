@@ -5,7 +5,6 @@ metadata:
 spec:
   imageRepositoryRef:
     name: dev-react-flight-tracker-image
-    namespace: flux-system
   policy:
     semver:
       # fetch latest develop image (format is <major>.<minor>.<patch>-develop.<build>)
