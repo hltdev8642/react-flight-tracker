@@ -1,6 +1,6 @@
 - op: replace
   path: /spec/policy/semver/range
-  value: ">=1.0.0-develop.0 <10.0.1"
+  value: ">1.0.0-develop.0"
 - op: replace
   path: /spec/imageRepositoryRef/name
   value: dev-react-flight-tracker-image
