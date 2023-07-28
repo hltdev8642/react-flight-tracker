@@ -164,13 +164,6 @@ release:
   script:
     - yarn semantic-release
 
-# sast:
-#   image: node:latest
-#   stage: test
-#   needs:
-#     - build-app
-#     - build-image
-
 dast:
   stage: dast
   needs:
