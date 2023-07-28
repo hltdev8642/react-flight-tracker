@@ -34,4 +34,6 @@ spec:
     kind: GitRepository
     name: react-flight-tracker-dev
     namespace: flux-system
+  update:
+    path: ./manifests/react-flight-tracker/overlays/dev
   interval: 5m
