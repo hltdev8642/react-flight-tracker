@@ -35,6 +35,5 @@ spec:
     name: react-flight-tracker-dev
     namespace: flux-system
   update:
-    path: .
-    strategy: Setters
+    path: ./manifests
   interval: 5m
