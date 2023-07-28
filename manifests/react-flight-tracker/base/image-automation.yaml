@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: react-flight-tracker-dev-automation
+  name: react-flight-tracker-automation
   namespace: react-flight-tracker
 spec:
   git:
@@ -33,7 +33,7 @@ spec:
       branch: develop
   sourceRef:
     kind: GitRepository
-    name: react-flight-tracker-dev
+    name: react-flight-tracker
     namespace: flux-system
   update:
     path: ./manifests/react-flight-tracker/overlays/dev

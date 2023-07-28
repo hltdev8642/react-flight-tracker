@@ -1,0 +1,6 @@
+- op: replace
+  path: /spec/policy/semver/range
+  value: ">1.0.0"
+- op: replace
+  path: /spec/imageRepositoryRef/name
+  value: prod-react-flight-tracker-image

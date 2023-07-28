@@ -1,10 +1,10 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: react-flight-tracker-dev-policy
+  name: react-flight-tracker-policy
 spec:
   imageRepositoryRef:
-    name: dev-react-flight-tracker-image
+    name: react-flight-tracker-image
   policy:
     semver:
       # fetch latest develop image (format is <major>.<minor>.<patch>-develop.<build>)

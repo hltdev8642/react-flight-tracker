@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../../base
-  - image-policy.yaml
 commonLabels:
   env: prod
 namespace: react-flight-tracker
@@ -17,3 +16,11 @@ patches:
       kind: Ingress
       name: react-flight-tracker-ingress
     path: ingress-patch.yaml
+  - target:
+      kind: ImagePolicy
+      name: react-flight-tracker-policy
+    path: image-policy-patch.yaml
+  - target:
+      kind: ImageUpdateAutomation
+      name: react-flight-tracker-automation
+    path: image-automation-patch.yaml
