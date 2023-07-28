@@ -9,7 +9,7 @@ namePrefix: dev-
 
 images:
   - name: ghcr.io/apoorva64/react-flight-tracker
-    newTag: 1.0.0 # {"$imagepolicy": "react-flight-tracker:dev-react-flight-tracker-policy:tag"}
+    newTag: 1.4.0 # {"$imagepolicy": "react-flight-tracker:dev-react-flight-tracker-policy:tag"}
     newName: ghcr.io/apoorva64/react-flight-tracker # {"$imagepolicy": "react-flight-tracker:dev-react-flight-tracker-policy:name"}
 
 patches:

@@ -9,7 +9,8 @@ namePrefix: prod-
 
 images:
   - name: ghcr.io/apoorva64/react-flight-tracker
-    newTag: 1.0.0 # {"$imagepolicy": "flux-system:react-flight-tracker-prod-policy:tag"}
+    newTag: 1.1.0 # {"$imagepolicy": "react-flight-tracker:prod-react-flight-tracker-policy:tag"}
+    newName: ghcr.io/apoorva64/react-flight-tracker # {"$imagepolicy": "react-flight-tracker:prod-react-flight-tracker-policy:name"}
 
 patches:
   - target:
