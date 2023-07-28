@@ -1,0 +1,40 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: react-flight-tracker-automation
+  namespace: react-flight-tracker
+spec:
+  git:
+    commit:
+      messageTemplate: |
+        Automated image update
+
+        Automation name: {{ .AutomationObject }}
+
+        Files:
+        {{ range $filename, $_ := .Updated.Files -}}
+        - {{ $filename }}
+        {{ end -}}
+
+        Objects:
+        {{ range $resource, $_ := .Updated.Objects -}}
+        - {{ $resource.Kind }} {{ $resource.Name }}
+        {{ end -}}
+        [skip ci]
+        
+        Images:
+        {{ range .Updated.Images -}}
+        - {{.}}
+        {{ end -}}  
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+    push:
+      branch: develop
+  sourceRef:
+    kind: GitRepository
+    name: react-flight-tracker
+    namespace: flux-system
+  update:
+    path: ./manifests/react-flight-tracker/overlays/dev
+  interval: 5m

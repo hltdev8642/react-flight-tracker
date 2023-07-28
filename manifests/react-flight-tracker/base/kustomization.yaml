@@ -3,6 +3,9 @@ kind: Kustomization
 namespace: react-flight-tracker
 resources:
   - namespace.yaml
+  - image-automation.yaml
+  - image-policy.yaml
+  - image-repository.yaml
   - react-flight-tracker-deployment.yaml
   - react-flight-tracker-service.yaml
   - react-flight-tracker-ingress.yaml
