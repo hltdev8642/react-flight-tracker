@@ -33,3 +33,15 @@ export const graphicOptionsState = atom<GraphicOptions>({
         }
     }
 )
+
+interface MiscellaneousOptions {
+    altitudeFactor: number,
+}
+
+export const miscellaneousOptionsState = atom<MiscellaneousOptions>({
+        key: 'miscellaneousOptions',
+        default: {
+            altitudeFactor: 1,
+        }
+    }
+)
