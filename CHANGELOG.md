@@ -1,3 +1,11 @@
+## [1.5.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.5.0-develop.1...v1.5.0-develop.2) (2023-07-29)
+
+
+### Features
+
+* add altitude factor ([13da4a6](https://gitlab.com/dev6645326/react-flight-tracker/commit/13da4a6d20071fcb503b88554bc7cc00dbec2e28)), closes [#4](https://gitlab.com/dev6645326/react-flight-tracker/issues/4)
+* add vignette, bloom, SMAA in GraphicOptions Drawer ([3d67c31](https://gitlab.com/dev6645326/react-flight-tracker/commit/3d67c3192849edff506b8f32c80259fb09c380a5)), closes [#4](https://gitlab.com/dev6645326/react-flight-tracker/issues/4)
+
 ## [1.5.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.4.0...v1.5.0-develop.1) (2023-07-28)
 
 
