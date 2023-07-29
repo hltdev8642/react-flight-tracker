@@ -5,10 +5,13 @@ import FlightTrail from "./FlightTrail.tsx";
 import {Suspense} from "react";
 import {EARTH_RADIUS} from "../../constants.ts";
 import {Earth} from "./Earth.tsx";
-import {Bloom,EffectComposer, Vignette} from "@react-three/postprocessing";
+import {Bloom, EffectComposer, SMAA, Vignette} from "@react-three/postprocessing";
+import {useRecoilValue} from "recoil";
+import {graphicOptionsState} from "../../atoms.ts";
 
 
 function Scene() {
+    const graphicOptions = useRecoilValue(graphicOptionsState)
 
     return (
         <Suspense fallback={
@@ -35,10 +38,27 @@ function Scene() {
             />
             <Flights/>
             <FlightTrail/>
-            <EffectComposer>
-                <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
-                <Vignette eskil={false} offset={0.1} darkness={0.9} />
-            </EffectComposer>
+            {
+                graphicOptions.bloom || graphicOptions.vignette || graphicOptions.SMAA ?
+                    <EffectComposer>
+                        {
+                            graphicOptions.bloom ?
+                                <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300}
+                                /> : <></>
+                        }
+                        {
+                            graphicOptions.vignette ?
+                                <Vignette eskil={false} offset={0.1} darkness={0.9}
+                                /> : <></>
+                        }
+                        {
+                            graphicOptions.SMAA ?
+                                <SMAA/> : <></>
+                        }
+
+                    </EffectComposer>
+                    : <></>
+            }
         </Suspense>
     )
 }

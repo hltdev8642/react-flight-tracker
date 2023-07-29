@@ -16,3 +16,32 @@ export const liveFlightsOptionsState = atom<RadarOptions>({
         },
     }
 )
+
+
+interface GraphicOptions {
+    bloom: boolean,
+    vignette: boolean,
+    SMAA: boolean,
+}
+
+export const graphicOptionsState = atom<GraphicOptions>({
+        key: 'graphicOptions',
+        default: {
+            bloom: true,
+            vignette: true,
+            SMAA: true,
+        }
+    }
+)
+
+interface MiscellaneousOptions {
+    altitudeFactor: number,
+}
+
+export const miscellaneousOptionsState = atom<MiscellaneousOptions>({
+        key: 'miscellaneousOptions',
+        default: {
+            altitudeFactor: 1,
+        }
+    }
+)

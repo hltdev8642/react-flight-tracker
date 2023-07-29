@@ -5,7 +5,7 @@ import {Checkbox, Collapse, List, ListItem, ListItemButton, ListItemIcon, ListIt
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 
-export function Options() {
+export function RadarOptions() {
     const [liveFlightsOptions, setLiveFlightsOptions] = useRecoilState(liveFlightsOptionsState);
     const [open, setOpen] = useState(false);
     const handleClick = () => {
@@ -17,7 +17,7 @@ export function Options() {
                 <ListItemIcon>
                     <InboxIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Options"/>
+                <ListItemText primary="Radar Options"/>
                 {open ? <ExpandLess/> : <ExpandMore/>}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
@@ -83,8 +83,6 @@ export function Options() {
                             inputProps={{'aria-label': 'controlled'}}
                         />
                     </ListItem>
-
-
                 </List>
             </Collapse>
         </>
