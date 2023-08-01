@@ -1,7 +1,7 @@
 {
   "name": "react-flight-tracker",
   "private": true,
-  "version": "1.3.0-develop.1",
+  "version": "1.5.0-develop.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -45,6 +45,7 @@
     "@commitlint/config-conventional": "^17.6.7",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^10.0.1",
+    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/gitlab": "^12.0.3",
     "@semantic-release/npm": "^10.0.4",
@@ -81,6 +82,12 @@
       }
     ],
     "plugins": [
+      [
+        "@semantic-release/exec",
+        {
+          "verifyReleaseCmd": "echo ${nextRelease.version} > .VERSION"
+        }
+      ],
       [
         "@semantic-release/commit-analyzer",
         {

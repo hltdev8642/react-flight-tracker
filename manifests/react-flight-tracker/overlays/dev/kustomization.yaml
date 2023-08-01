@@ -6,13 +6,20 @@ commonLabels:
   env: dev
 namespace: react-flight-tracker
 namePrefix: dev-
-
 images:
   - name: ghcr.io/apoorva64/react-flight-tracker
-    newTag: develop
-
+    newTag: 1.5.0-develop.2 # {"$imagepolicy": "react-flight-tracker:dev-react-flight-tracker-policy:tag"}
+    newName: ghcr.io/apoorva64/react-flight-tracker # {"$imagepolicy": "react-flight-tracker:dev-react-flight-tracker-policy:name"}
 patches:
   - target:
       kind: Ingress
       name: react-flight-tracker-ingress
     path: ingress-patch.yaml
+  - target:
+      kind: ImagePolicy
+      name: react-flight-tracker-policy
+    path: image-policy-patch.yaml
+  - target:
+      kind: ImageUpdateAutomation
+      name: react-flight-tracker-automation
+    path: image-automation-patch.yaml

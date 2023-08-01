@@ -1,3 +1,55 @@
+## [1.5.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.5.0-develop.1...v1.5.0-develop.2) (2023-07-29)
+
+
+### Features
+
+* add altitude factor ([13da4a6](https://gitlab.com/dev6645326/react-flight-tracker/commit/13da4a6d20071fcb503b88554bc7cc00dbec2e28)), closes [#4](https://gitlab.com/dev6645326/react-flight-tracker/issues/4)
+* add vignette, bloom, SMAA in GraphicOptions Drawer ([3d67c31](https://gitlab.com/dev6645326/react-flight-tracker/commit/3d67c3192849edff506b8f32c80259fb09c380a5)), closes [#4](https://gitlab.com/dev6645326/react-flight-tracker/issues/4)
+
+## [1.5.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.4.0...v1.5.0-develop.1) (2023-07-28)
+
+
+### Features
+
+* test feature bump ([7270de0](https://gitlab.com/dev6645326/react-flight-tracker/commit/7270de07e47bcd0240bcddbcca9a406a81bd4a6f))
+
+
+### Other Updates
+
+* **release:** 1.4.0-develop.1 [skip ci] ([80ed666](https://gitlab.com/dev6645326/react-flight-tracker/commit/80ed66619a36af91f7808ecf9b632c852c5291f7))
+
+## [1.4.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.3.0...v1.4.0) (2023-07-27)
+
+
+### Features
+
+* ci test feature ([f0f9d8c](https://gitlab.com/dev6645326/react-flight-tracker/commit/f0f9d8c2d7dcedb2b98fc621d1b9e5df386cce43))
+
+
+### Other Updates
+
+* **release:** 1.3.0-develop.2 [skip ci] ([6678e8f](https://gitlab.com/dev6645326/react-flight-tracker/commit/6678e8feca1a1e8261865c419ecfe6a786dc2b0d))
+
+## [1.3.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.2.2...v1.3.0) (2023-07-25)
+
+
+### Features
+
+* test feature ci ([cc3a521](https://gitlab.com/dev6645326/react-flight-tracker/commit/cc3a52109db247623cd51fe4f184b9dc2ce42bc4))
+
+
+### Bug Fixes
+
+* merge conflicts ([2b07511](https://gitlab.com/dev6645326/react-flight-tracker/commit/2b07511980c5ad1fa09f41e2cdd012a79b444381))
+
+
+### Other Updates
+
+* **release:** 1.2.2-develop.2 [skip ci] ([27d5bbb](https://gitlab.com/dev6645326/react-flight-tracker/commit/27d5bbb94329e416d2c3fa08e5290afa2bb79838))
+* **release:** 1.2.2-develop.3 [skip ci] ([58d231d](https://gitlab.com/dev6645326/react-flight-tracker/commit/58d231d74d4a8724b7d73fd8bd9886df25adc9b9))
+* **release:** 1.2.3-develop.1 [skip ci] ([9b1e6a5](https://gitlab.com/dev6645326/react-flight-tracker/commit/9b1e6a5527897e2b192d6fc28c9b6402e6eb679e))
+* **release:** 1.3.0-develop.1 [skip ci] ([a948fd1](https://gitlab.com/dev6645326/react-flight-tracker/commit/a948fd18107a189ea0df64ade43a59ec0bcde629))
+
 ## [1.3.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.2.3-develop.1...v1.3.0-develop.1) (2023-07-25)
 
 

@@ -1,0 +1,7 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: react-flight-tracker-image
+spec:
+  image: ghcr.io/apoorva64/react-flight-tracker
+  interval: 5m
