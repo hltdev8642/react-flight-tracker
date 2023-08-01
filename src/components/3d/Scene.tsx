@@ -4,8 +4,8 @@ import Flights from "./Flights.tsx";
 import FlightTrail from "./FlightTrail.tsx";
 import {Suspense} from "react";
 import {EARTH_RADIUS} from "../../constants.ts";
-import {Earth} from "./Earth.tsx";
-import {Bloom,EffectComposer, Vignette} from "@react-three/postprocessing";
+import {Bloom, EffectComposer, Vignette} from "@react-three/postprocessing";
+import {MobileEarth} from "./MobileEarth.tsx";
 
 
 function Scene() {
@@ -29,15 +29,15 @@ function Scene() {
 
             />
             <CameraControls/>
-            <Earth/>
+            <MobileEarth/>
             <pointLight position={[EARTH_RADIUS + 102, 0, 0]}
                         castShadow={true}
             />
             <Flights/>
             <FlightTrail/>
             <EffectComposer>
-                <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
-                <Vignette eskil={false} offset={0.1} darkness={0.9} />
+                <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300}/>
+                <Vignette eskil={false} offset={0.1} darkness={0.9}/>
             </EffectComposer>
         </Suspense>
     )
