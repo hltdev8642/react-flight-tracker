@@ -1,6 +1,5 @@
 import {EARTH_RADIUS} from "../../constants.ts";
 import {Sphere} from "@react-three/drei";
-import {CountryBorders} from "./countryBorders.tsx";
 
 export function MobileEarth() {
 
@@ -12,7 +11,6 @@ export function MobileEarth() {
                     color={'#000000'}
                 />
             </Sphere>
-            <CountryBorders/>
         </>
     )
 }
