@@ -1,4 +1,4 @@
-import bounderies from "../../assets/bounderies.json?raw";
+import boundaries from "../../assets/bounderies.json?raw";
 import {Geojson} from "geojson-parser-js";
 import {FeatureCollection, GeometryType, MultiPolygon, Polygon} from "geojson-parser-js/models/geojson";
 import {EARTH_RADIUS} from "../../constants.ts";
@@ -33,8 +33,7 @@ function mapPolygon(polygon: Polygon, index: number) {
 }
 
 export function CountryBorders() {
-    const geojson: FeatureCollection = Geojson.parse(bounderies) as FeatureCollection
-    console.log('render')
+    const geojson: FeatureCollection = Geojson.parse(boundaries)
     return (
         <>
             {
@@ -52,6 +51,13 @@ export function CountryBorders() {
                                 return mapPolygon(polygon, index)
                             }
                         )
+                    }
+                )
+            }
+            {
+                geojson.geometries.filter((geometry) => geometry.type === GeometryType.PolygonWithHole).map(
+                    (polygon, index) => {
+                        return mapPolygon(polygon as Polygon, index)
                     }
                 )
             }
