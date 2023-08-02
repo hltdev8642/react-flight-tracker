@@ -3,8 +3,8 @@ import {useEffect, useRef} from "react";
 import {InstancedMesh, Matrix4, Object3D, Texture, TextureLoader, Vector3} from "three";
 import {convertToCartesian, flightRadarApi} from "../../utils.ts";
 import {useRecoilState, useRecoilValue} from "recoil";
-import {liveFlightsOptionsState, selectedFlightState} from "../../atoms.ts";
-import {ALTITUDE_FACTOR, EARTH_RADIUS, reductionFactor} from "../../constants.ts";
+import {liveFlightsOptionsState, miscellaneousOptionsState, selectedFlightState} from "../../atoms.ts";
+import {EARTH_RADIUS, reductionFactor} from "../../constants.ts";
 import PlaneTexture from "../../assets/planeTexture.png";
 import {useLoader} from "@react-three/fiber";
 
@@ -39,10 +39,11 @@ export default function Flights() {
 
     const instancedMeshRef = useRef<InstancedMesh>(null!)
     const scale = 140000 * reductionFactor
+    const altitudeFactor = useRecoilValue(miscellaneousOptionsState).altitudeFactor
     useEffect(() => {
         if (data) { // Set positions
             data.forEach((flight, i) => {
-                    const cartesian = convertToCartesian(flight.trailEntity.lat, flight.trailEntity.lng, EARTH_RADIUS + flight.trailEntity.alt * ALTITUDE_FACTOR)
+                    const cartesian = convertToCartesian(flight.trailEntity.lat, flight.trailEntity.lng, EARTH_RADIUS + flight.trailEntity.alt * reductionFactor * altitudeFactor)
                     temp.position.set(cartesian.x, cartesian.y, cartesian.z)
                     temp.scale.set(scale, scale, scale / 5)
                     const target_vec = new Vector3(0, 0, 0);
@@ -61,7 +62,7 @@ export default function Flights() {
             // Update the instance
             instancedMeshRef.current.instanceMatrix.needsUpdate = true
         }
-    }, [data, scale, liveFlightsOptions])
+    }, [data, scale, liveFlightsOptions, altitudeFactor])
 
     return (
         <>

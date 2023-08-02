@@ -1,8 +1,8 @@
-import {selectedFlightState} from "../../atoms.ts";
+import {miscellaneousOptionsState, selectedFlightState} from "../../atoms.ts";
 import {useRecoilValue} from "recoil";
 import {useQuery} from "@tanstack/react-query";
 import {convertToCartesian, flightRadarApi} from "../../utils.ts";
-import {ALTITUDE_FACTOR, EARTH_RADIUS, reductionFactor} from "../../constants.ts";
+import {EARTH_RADIUS, reductionFactor} from "../../constants.ts";
 import {Vector3} from "three";
 import {Line} from "@react-three/drei";
 import {useEffect} from "react";
@@ -21,10 +21,10 @@ export default function FlightTrail() {
         }
         , [refetch, selectedFlight])
 
-
+    const altitudeFactor = useRecoilValue(miscellaneousOptionsState).altitudeFactor
     const lineWidth = 20000000 * reductionFactor
     let points = data?.trail && data?.trail?.length > 6 && data?.trail?.map((trailPoint) => {
-            const cartesian = convertToCartesian(trailPoint.lat, trailPoint.lng, EARTH_RADIUS + trailPoint.alt * ALTITUDE_FACTOR)
+            const cartesian = convertToCartesian(trailPoint.lat, trailPoint.lng, EARTH_RADIUS + trailPoint.alt * reductionFactor * altitudeFactor)
             return new Vector3(cartesian.x, cartesian.y, cartesian.z)
         }
     )

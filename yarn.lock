@@ -2509,6 +2509,13 @@ detect-gpu@^5.0.28:
   dependencies:
     webgl-constants "^1.1.1"
 
+detect-gpu@^5.0.35:
+  version "5.0.35"
+  resolved "https://registry.yarnpkg.com/detect-gpu/-/detect-gpu-5.0.35.tgz#11affae9b570e95dd630143488967ed337ab5147"
+  integrity sha512-iPHtHRGTOP7fkmh7eeZ+EWLkhFBOXV+q1suXhibtCDe5g/Pw0J65P6vsC0Mkhljj73bQP0t6aJz0SA1rWRW4lw==
+  dependencies:
+    webgl-constants "^1.1.1"
+
 detect-indent@6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-6.1.0.tgz#592485ebbbf6b3b1ab2be175c8393d04ca0d57e6"
@@ -3110,6 +3117,11 @@ gauge@^5.0.0:
     string-width "^4.2.3"
     strip-ansi "^6.0.1"
     wide-align "^1.1.5"
+
+geojson-parser-js@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/geojson-parser-js/-/geojson-parser-js-1.0.13.tgz#06e79fb40984d29af64da3ca94d6698065bdf89b"
+  integrity sha512-XXlz2sy1e2ust4rXBBTSywdT3njZtV/2IfKYqwfLWrMk7EXBeE1pgMUJkgSfXA8Buh0rt1fYutq/cKT/XCOJsA==
 
 get-caller-file@^2.0.5:
   version "2.0.5"
