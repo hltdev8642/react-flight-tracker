@@ -37,7 +37,9 @@ function Scene() {
                     />
                     : <></>
             }
-            <CameraControls/>
+            <CameraControls
+                minDistance={EARTH_RADIUS + 0.2}
+            />
             {
                 graphicOptions.highResolutionEarth ?
                     <Earth/>

@@ -91,3 +91,4 @@ thumb
 sketch
 
 commitlint.config.cjs
+vite.config.ts
