@@ -58,8 +58,43 @@ export function GraphicOptions() {
                             inputProps={{'aria-label': 'controlled'}}
                         />
                     </ListItem>
+                    <ListItem sx={{pl: 4}}>
+                        <ListItemText primary="Stars"/>
+                        <Checkbox
+                            checked={graphicOptions.stars}
+                            onChange={(e) => setGraphicOptions({
+                                    ...graphicOptions,
+                                    stars: e?.target?.checked
 
-
+                                }
+                            )}
+                            inputProps={{'aria-label': 'controlled'}}
+                        />
+                    </ListItem>
+                    <ListItem sx={{pl: 4}}>
+                        <ListItemText primary="Country Borders"/>
+                        <Checkbox
+                            checked={graphicOptions.countryBorders}
+                            onChange={(e) => setGraphicOptions({
+                                    ...graphicOptions,
+                                    countryBorders: e?.target?.checked
+                                }
+                            )}
+                            inputProps={{'aria-label': 'controlled'}}
+                        />
+                    </ListItem>
+                    <ListItem sx={{pl: 4}}>
+                        <ListItemText primary="High Resolution Earth"/>
+                        <Checkbox
+                            checked={graphicOptions.highResolutionEarth}
+                            onChange={(e) => setGraphicOptions({
+                                    ...graphicOptions,
+                                    highResolutionEarth: e?.target?.checked
+                                }
+                            )}
+                            inputProps={{'aria-label': 'controlled'}}
+                        />
+                    </ListItem>
                 </List>
             </Collapse>
         </>

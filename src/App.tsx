@@ -24,69 +24,70 @@ export function App() {
     };
 
     return (
-        <Grid>
+        <>
+            <Grid>
 
-            <Drawer
-                sx={{
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
+                <Drawer
+                    sx={{
                         width: drawerWidth,
-                        boxSizing: 'border-box',
-                    },
-                }}
-                anchor="left"
-                open={open}
-                variant={"persistent"}
-            >
+                        flexShrink: 0,
+                        '& .MuiDrawer-paper': {
+                            width: drawerWidth,
+                            boxSizing: 'border-box',
+                        },
+                    }}
+                    anchor="left"
+                    open={open}
+                    variant={"persistent"}
+                >
+                    <IconButton
+                        style={{
+                            borderRadius: 0,
+                        }}
+
+                        onClick={handleDrawerClose}>
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
+                    </IconButton>
+                    <Divider/>
+                    <DrawerItems/>
+                </Drawer>
+
                 <IconButton
-                    style={{
-                        borderRadius: 0,
+                    color="primary"
+                    aria-label="open drawer"
+                    onClick={handleDrawerOpen}
+                    edge="start"
+                    size={
+                        "large"
+                    }
+
+                    sx={{
+                        ...(open && {display: 'none'}),
+                        position: "absolute",
+                        zIndex: 1000,
+                        top: 0,
+                        left: 0,
+                        margin: theme.spacing(1),
+
                     }}
 
-                    onClick={handleDrawerClose}>
-                    {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
+
+                >
+                    <Menu
+                        fontSize={"large"}
+
+                    />
                 </IconButton>
-                <Divider/>
-                <DrawerItems/>
-            </Drawer>
-
-            <IconButton
-                color="primary"
-                aria-label="open drawer"
-                onClick={handleDrawerOpen}
-                edge="start"
-                size={
-                    "large"
-                }
-
-                sx={{
-                    ...(open && {display: 'none'}),
-                    position: "absolute",
-                    zIndex: 1000,
-                    top: 0,
-                    left: 0,
-                    margin: theme.spacing(1),
-
-                }}
+                <Canvas
+                    style={{
+                        height: "100vh",
+                    }}
+                >
+                    <Scene/>
+                </Canvas>
 
 
-            >
-                <Menu
-                    fontSize={"large"}
-
-                />
-            </IconButton>
-            <Canvas
-                style={{
-                    height: "100vh",
-                }}
-            >
-                <Scene/>
-            </Canvas>
-
-
-        </Grid>
+            </Grid></>
 
 
     );
