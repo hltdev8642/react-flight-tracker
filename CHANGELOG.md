@@ -1,3 +1,18 @@
+## [1.5.0-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.5.0-develop.2...v1.5.0-develop.3) (2023-08-02)
+
+
+### Features
+
+* add country border ([36df8b8](https://gitlab.com/dev6645326/react-flight-tracker/commit/36df8b8a2d997d9fb165759564ab2eae5c84f0b5)), closes [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3)
+* add mobile detectiong ([6179b9a](https://gitlab.com/dev6645326/react-flight-tracker/commit/6179b9a8c751bdd5ad269e88a1fc68b31796a4cc)), closes [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3)
+* add mobile version ([65c1525](https://gitlab.com/dev6645326/react-flight-tracker/commit/65c15255d6e85a7c061a2ea77157494b633d5998)), closes [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3)
+* limit zoom ([af53f18](https://gitlab.com/dev6645326/react-flight-tracker/commit/af53f187e539d90495f5fc491da7f1dc2554004b)), closes [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3)
+
+
+### Bug Fixes
+
+* merge develop ([eb720c4](https://gitlab.com/dev6645326/react-flight-tracker/commit/eb720c4474900bde54c6170a0efa6d0d55bf6257)), closes [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3)
+
 ## [1.5.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.5.0-develop.1...v1.5.0-develop.2) (2023-07-29)
 
 
