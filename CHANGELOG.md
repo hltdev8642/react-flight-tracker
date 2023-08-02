@@ -1,3 +1,29 @@
+## [1.5.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.4.0...v1.5.0) (2023-08-02)
+
+
+### Features
+
+* add altitude factor ([13da4a6](https://gitlab.com/dev6645326/react-flight-tracker/commit/13da4a6d20071fcb503b88554bc7cc00dbec2e28)), closes [#4](https://gitlab.com/dev6645326/react-flight-tracker/issues/4)
+* add country border ([36df8b8](https://gitlab.com/dev6645326/react-flight-tracker/commit/36df8b8a2d997d9fb165759564ab2eae5c84f0b5)), closes [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3)
+* add mobile detectiong ([6179b9a](https://gitlab.com/dev6645326/react-flight-tracker/commit/6179b9a8c751bdd5ad269e88a1fc68b31796a4cc)), closes [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3)
+* add mobile version ([65c1525](https://gitlab.com/dev6645326/react-flight-tracker/commit/65c15255d6e85a7c061a2ea77157494b633d5998)), closes [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3)
+* add vignette, bloom, SMAA in GraphicOptions Drawer ([3d67c31](https://gitlab.com/dev6645326/react-flight-tracker/commit/3d67c3192849edff506b8f32c80259fb09c380a5)), closes [#4](https://gitlab.com/dev6645326/react-flight-tracker/issues/4)
+* limit zoom ([af53f18](https://gitlab.com/dev6645326/react-flight-tracker/commit/af53f187e539d90495f5fc491da7f1dc2554004b)), closes [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3)
+* test feature bump ([7270de0](https://gitlab.com/dev6645326/react-flight-tracker/commit/7270de07e47bcd0240bcddbcca9a406a81bd4a6f))
+
+
+### Bug Fixes
+
+* merge develop ([eb720c4](https://gitlab.com/dev6645326/react-flight-tracker/commit/eb720c4474900bde54c6170a0efa6d0d55bf6257)), closes [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3)
+
+
+### Other Updates
+
+* **release:** 1.4.0-develop.1 [skip ci] ([80ed666](https://gitlab.com/dev6645326/react-flight-tracker/commit/80ed66619a36af91f7808ecf9b632c852c5291f7))
+* **release:** 1.5.0-develop.1 [skip ci] ([7af7989](https://gitlab.com/dev6645326/react-flight-tracker/commit/7af7989a8381ca0dd6e4472a658f15b7418b1467))
+* **release:** 1.5.0-develop.2 [skip ci] ([b06ab86](https://gitlab.com/dev6645326/react-flight-tracker/commit/b06ab8654364e54edfcb5e5705f1edeeac90ab7a)), closes [#4](https://gitlab.com/dev6645326/react-flight-tracker/issues/4) [#4](https://gitlab.com/dev6645326/react-flight-tracker/issues/4)
+* **release:** 1.5.0-develop.3 [skip ci] ([9eab8be](https://gitlab.com/dev6645326/react-flight-tracker/commit/9eab8bed1bfc0c5435f6a6899b93c0b1bb72d1c8)), closes [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3) [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3) [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3) [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3) [#3](https://gitlab.com/dev6645326/react-flight-tracker/issues/3)
+
 ## [1.5.0-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.5.0-develop.2...v1.5.0-develop.3) (2023-08-02)
 
 
