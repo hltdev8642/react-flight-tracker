@@ -8,6 +8,8 @@ import {DrawerItems} from "./components/drawer/DrawerItems.tsx";
 import {Menu} from "@mui/icons-material";
 import {Canvas} from "@react-three/fiber";
 import {LoadingScreen} from "./LoadingScreen.tsx";
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const drawerWidth = "max(20vw, 200px)"
 
@@ -92,7 +94,9 @@ export function App() {
                 </Canvas>
 
 
-            </Grid></>
+            </Grid>
+            <ToastContainer/>
+        </>
 
 
     );
