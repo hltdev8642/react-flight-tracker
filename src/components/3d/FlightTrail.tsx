@@ -23,11 +23,16 @@ export default function FlightTrail() {
 
     const altitudeFactor = useRecoilValue(miscellaneousOptionsState).altitudeFactor
     const lineWidth = 20000000 * reductionFactor
-    let points = data?.trail && data?.trail?.length > 6 && data?.trail?.map((trailPoint) => {
+    let points = data?.trail && data?.trail?.length > 3 && data?.trail?.map((trailPoint) => {
             const cartesian = convertToCartesian(trailPoint.lat, trailPoint.lng, EARTH_RADIUS + trailPoint.alt * reductionFactor * altitudeFactor)
             return new Vector3(cartesian.x, cartesian.y, cartesian.z)
         }
     )
+    if (points) {
+        const cartesian = convertToCartesian(selectedFlight?.trailEntity.lat || 0, selectedFlight?.trailEntity.lng || 0, EARTH_RADIUS + (selectedFlight?.trailEntity?.alt || 0) * reductionFactor * altitudeFactor)
+        points.unshift(new Vector3(cartesian.x, cartesian.y, cartesian.z))
+    }
+
     if (!points || points.length < 2) {
         points = undefined
     }
