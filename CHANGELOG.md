@@ -1,3 +1,20 @@
+## [1.6.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0-develop.1...v1.6.0-develop.2) (2023-08-07)
+
+
+### Features
+
+* add toast notifications for trail loading ([e04018f](https://gitlab.com/dev6645326/react-flight-tracker/commit/e04018f211696ac4838497d2c24b74a47fe84be8)), closes [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6)
+
+
+### Bug Fixes
+
+* typography timing ([8712384](https://gitlab.com/dev6645326/react-flight-tracker/commit/8712384173ce1057059120b35dd90c0e275a6e04))
+
+
+### Other Updates
+
+* remove unnecessary dep ([ee7db9a](https://gitlab.com/dev6645326/react-flight-tracker/commit/ee7db9ab00210d350fce656e8468041cdcf4b652)), closes [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6)
+
 ## [1.6.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.5.0...v1.6.0-develop.1) (2023-08-07)
 
 
