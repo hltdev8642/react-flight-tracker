@@ -6,16 +6,29 @@ import {EARTH_RADIUS, reductionFactor} from "../../constants.ts";
 import {Vector3} from "three";
 import {Line} from "@react-three/drei";
 import {useEffect} from "react";
+import {toast} from "react-toastify";
 
 export default function FlightTrail() {
     const selectedFlight = useRecoilValue(selectedFlightState);
-    const {data, refetch} = useQuery({
+    const {data, refetch, isLoading} = useQuery({
         queryKey: ['flight', selectedFlight?.id],
         queryFn: () => flightRadarApi.fetchFlight(selectedFlight?.id || ''),
         refetchInterval: 10000,
         enabled: !!selectedFlight,
         refetchOnWindowFocus: true,
+
     })
+    if (isLoading && !toast.isActive('flightTrail') && selectedFlight) {
+        toast.loading(`Loading flight trail for ${selectedFlight.callsign}...`
+            , {
+                toastId: 'flightTrail',
+            })
+    }
+    if (!isLoading && toast.isActive('flightTrail')) {
+        toast.dismiss('flightTrail')
+    }
+
+
     useEffect(() => {
             refetch().catch((e) => console.error(e))
         }
