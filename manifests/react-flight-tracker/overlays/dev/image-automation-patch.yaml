@@ -6,4 +6,4 @@
   value: ./manifests/react-flight-tracker/overlays/dev
 - op: replace
   path: /spec/sourceRef/name
-  value: react-flight-tracker-dev
+  value: dev-react-flight-tracker
