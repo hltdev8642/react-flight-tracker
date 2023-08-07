@@ -1,29 +1,32 @@
-import {CameraControls, Stars, Text} from "@react-three/drei";
+import {CameraControls, Stars} from "@react-three/drei";
 
-import Flights from "./Flights.tsx";
-import FlightTrail from "./FlightTrail.tsx";
-import {Suspense} from "react";
 import {EARTH_RADIUS} from "../../constants.ts";
 import {Bloom, EffectComposer, SMAA, Vignette} from "@react-three/postprocessing";
 import {useRecoilValue} from "recoil";
 import {graphicOptionsState} from "../../atoms.ts";
-import {MobileEarth} from "./MobileEarth.tsx";
 import {CountryBorders} from "./countryBorders.tsx";
-import {Earth} from "./Earth.tsx";
+import {lazy, useEffect, useRef} from "react";
 
+const FlightTrail = lazy(() => import('./FlightTrail.tsx'))
+const Flights = lazy(() => import('./Flights.tsx'))
+const Earth = lazy(() => import('./Earth.tsx'))
+const MobileEarth = lazy(() => import('./MobileEarth.tsx'))
 
 function Scene() {
     const graphicOptions = useRecoilValue(graphicOptionsState)
+    const cameraControlsRef = useRef<CameraControls>(null!)
+    useEffect(() => {
+            if (cameraControlsRef.current) {
 
+                void cameraControlsRef.current.dolly(500 - (EARTH_RADIUS * 2), true).then(() => {
+                        console.log('done')
+                    }
+                )
+            }
+        }
+        , [cameraControlsRef])
     return (
-        <Suspense fallback={
-            <>
-                <Text color="white" anchorX="center" anchorY="middle">
-                    Loading...
-                </Text>
-            </>
-
-        }>
+        <>
             {
                 graphicOptions.stars ?
                     <Stars
@@ -39,6 +42,8 @@ function Scene() {
             }
             <CameraControls
                 minDistance={EARTH_RADIUS + 0.2}
+                ref={cameraControlsRef}
+                distance={500}
             />
             {
                 graphicOptions.highResolutionEarth ?
@@ -64,6 +69,7 @@ function Scene() {
                         {
                             graphicOptions.bloom ?
                                 <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300}
+                                       intensity={0.7}
                                 /> : <></>
                         }
                         {
@@ -79,7 +85,7 @@ function Scene() {
                     </EffectComposer>
                     : <></>
             }
-        </Suspense>
+        </>
     )
 }
 
