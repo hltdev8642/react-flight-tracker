@@ -1,6 +1,7 @@
 import {Html, useProgress} from "@react-three/drei";
 import {Grid, LinearProgress, Typography} from "@mui/material";
 import {TypeAnimation} from "react-type-animation";
+
 export function LoadingScreen() {
     const {active, progress} = useProgress()
 
@@ -32,10 +33,20 @@ export function LoadingScreen() {
                         {
                             active ?
                                 <TypeAnimation
+                                    repeat={Infinity}
                                     sequence={[
                                         "loading...",
+                                        500,
                                         "Probably loading...",
+                                        500,
                                         "Definitely loading...",
+                                        500,
+                                        "Still loading...",
+                                        500,
+                                        "Almost done...",
+                                        500,
+                                        "Just a little more...",
+                                        500,
                                     ]}
                                 />
                                 :
