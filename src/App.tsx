@@ -1,12 +1,13 @@
 import {Divider, Drawer, Grid, IconButton,} from "@mui/material";
-import {useState} from "react";
+import {Suspense, useState} from "react";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {useTheme} from '@mui/material/styles';
-import {Canvas} from "@react-three/fiber";
 import Scene from "./components/3d/Scene.tsx";
 import {DrawerItems} from "./components/drawer/DrawerItems.tsx";
 import {Menu} from "@mui/icons-material";
+import {Canvas} from "@react-three/fiber";
+import {LoadingScreen} from "./LoadingScreen.tsx";
 
 const drawerWidth = "max(20vw, 200px)"
 
@@ -83,7 +84,11 @@ export function App() {
                         height: "100vh",
                     }}
                 >
-                    <Scene/>
+                    <Suspense
+                        fallback={<LoadingScreen/>}
+                    >
+                        <Scene/>
+                    </Suspense>
                 </Canvas>
 
 
