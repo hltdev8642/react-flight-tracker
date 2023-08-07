@@ -90,15 +90,15 @@ The JSON data is displayed in the menu on the left.
 
 #### Filter flights by datasource
 
-![filterByDatasource](readme-assets/filterByDatasource.png)
+<img src="readme-assets/filterByDatasource.png" alt="filterByDatasource" height="250"/>
 
 #### Filter flights by airport, airline
 
-![filterByAirport](readme-assets/filterByAirportAirline.png)
+<img src="readme-assets/filterByAirportAirline.png" alt="filterByAirportAirline" width="250"/>
 
 #### Graphics Settings
 
-![graphicSettings](readme-assets/graphicSettings.png)
+<img src="readme-assets/graphicSettings.png" alt="graphicSettings" height="250"/>
 
 ## Contributing
 
