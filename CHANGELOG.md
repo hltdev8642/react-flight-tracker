@@ -1,3 +1,16 @@
+## [1.6.0-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0-develop.2...v1.6.0-develop.3) (2023-08-08)
+
+
+### Features
+
+* add javascript loading screen ([102a8db](https://gitlab.com/dev6645326/react-flight-tracker/commit/102a8db318da54597d276ad3529e6c22ec2d01d3))
+
+
+### Bug Fixes
+
+* lock panning ([62598e4](https://gitlab.com/dev6645326/react-flight-tracker/commit/62598e4b474eeb635b86002237253b9c812043bd))
+* scrollbar ([e79c19b](https://gitlab.com/dev6645326/react-flight-tracker/commit/e79c19b0c04f08ee880e3afab5ce81fc24b0ea68))
+
 ## [1.6.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0-develop.1...v1.6.0-develop.2) (2023-08-07)
 
 
