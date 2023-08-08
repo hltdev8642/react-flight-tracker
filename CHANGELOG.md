@@ -1,3 +1,10 @@
+## [1.6.0-develop.4](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0-develop.3...v1.6.0-develop.4) (2023-08-08)
+
+
+### Features
+
+* update vite ([cd75bb5](https://gitlab.com/dev6645326/react-flight-tracker/commit/cd75bb52ea1b180c4fec85b1c4cb13654a875625))
+
 ## [1.6.0-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0-develop.2...v1.6.0-develop.3) (2023-08-08)
 
 
