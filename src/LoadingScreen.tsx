@@ -14,7 +14,7 @@ export function LoadingScreen() {
                         variant="determinate" value={progress}
                         color={"inherit"}
                         sx={{
-                            width: "max(20vw, 200px)",
+                            width: "max(30vw, 300px)",
                             color: "white",
                         }
                         }
@@ -26,31 +26,30 @@ export function LoadingScreen() {
                         sx={{
                             color: "white",
                             // add effect
-                            textShadow: "0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #0ff, 0 0 70px #0ff, 0 0 80px #0ff, 0 0 100px #0ff, 0 0 150px #0ff",
 
                         }}
                     >
                         {
-                            active ?
+                            (active || progress !== 100) ?
                                 <TypeAnimation
                                     repeat={Infinity}
                                     sequence={[
                                         "loading...",
-                                        500,
+                                        5000,
                                         "Probably loading...",
-                                        500,
+                                        5000,
                                         "Definitely loading...",
-                                        500,
+                                        5000,
                                         "Still loading...",
-                                        500,
+                                        5000,
                                         "Almost done...",
-                                        500,
+                                        5000,
                                         "Just a little more...",
-                                        500,
+                                        5000,
                                     ]}
                                 />
                                 :
-                                "Doing javascript stuff..."
+                                "Building the world..."
                         }
                     </Typography>
 
