@@ -44,6 +44,7 @@ function Scene() {
                 minDistance={EARTH_RADIUS + 0.2}
                 ref={cameraControlsRef}
                 distance={500}
+                truckSpeed={0}
             />
             {
                 graphicOptions.highResolutionEarth ?
