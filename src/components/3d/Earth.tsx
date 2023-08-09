@@ -7,7 +7,7 @@ import EarthNightMap from "../../assets/earthmap/5_night_16k.jpg";
 import {Sphere} from "@react-three/drei";
 import {EARTH_RADIUS} from "../../constants.ts";
 
-export function Earth() {
+export default function Earth() {
     // load texture
     const [colorMap, specularMap, bumpMap, nightMap] = useLoader(TextureLoader, [
             EarthColorMap,
@@ -17,7 +17,7 @@ export function Earth() {
         ]
     ) as Texture[]
     return (
-        <Sphere args={[EARTH_RADIUS, 50, 50]}>
+        <><Sphere args={[EARTH_RADIUS, 50, 50]}>
             <meshPhongMaterial specularMap={specularMap}/>
             <meshStandardMaterial
                 map={colorMap}
@@ -29,8 +29,7 @@ export function Earth() {
                 emissiveMap={nightMap}
                 emissiveIntensity={5}
                 emissive={0xaaaaaa}
-
             />
-        </Sphere>
+        </Sphere></>
     )
 }

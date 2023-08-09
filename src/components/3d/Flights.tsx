@@ -28,7 +28,7 @@ export default function Flights() {
         }
     )
 
-    const [, setSelectedFlight] = useRecoilState(selectedFlightState);
+    const [selectedFlight, setSelectedFlight] = useRecoilState(selectedFlightState);
 
     useEffect(() => {
         if (zones) {
@@ -63,6 +63,20 @@ export default function Flights() {
             instancedMeshRef.current.instanceMatrix.needsUpdate = true
         }
     }, [data, scale, liveFlightsOptions, altitudeFactor])
+
+
+    useEffect(() => {
+
+            // update selected flight
+            if (selectedFlight && data) {
+                const index = data.findIndex((flight) => flight.id === selectedFlight.id)
+                if (index !== -1) {
+                    setSelectedFlight(data[index])
+                }
+            }
+        }
+        , [data, selectedFlight, setSelectedFlight])
+
 
     return (
         <>
