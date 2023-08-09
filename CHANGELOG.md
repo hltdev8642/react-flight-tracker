@@ -1,3 +1,10 @@
+## [1.6.0-develop.5](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0-develop.4...v1.6.0-develop.5) (2023-08-08)
+
+
+### Features
+
+* add gitlab corner ([d6970d8](https://gitlab.com/dev6645326/react-flight-tracker/commit/d6970d8eeb816ee4c49fc6fd9fbc1f849ad7baab))
+
 ## [1.6.0-develop.4](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0-develop.3...v1.6.0-develop.4) (2023-08-08)
 
 
