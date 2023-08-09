@@ -1,7 +1,7 @@
 import {EARTH_RADIUS} from "../../constants.ts";
 import {Sphere} from "@react-three/drei";
 
-export function MobileEarth() {
+export default function MobileEarth() {
 
 
     return (
