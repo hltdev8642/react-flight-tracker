@@ -1,3 +1,44 @@
+## [1.6.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.5.0...v1.6.0) (2023-08-09)
+
+
+### Features
+
+* add fade in anim ([e54b377](https://gitlab.com/dev6645326/react-flight-tracker/commit/e54b3773f82056d8b6f5c5706e793e40446265ee))
+* add gitlab corner ([d6970d8](https://gitlab.com/dev6645326/react-flight-tracker/commit/d6970d8eeb816ee4c49fc6fd9fbc1f849ad7baab))
+* add javascript loading screen ([102a8db](https://gitlab.com/dev6645326/react-flight-tracker/commit/102a8db318da54597d276ad3529e6c22ec2d01d3))
+* add loading screen ([5283aea](https://gitlab.com/dev6645326/react-flight-tracker/commit/5283aea40b60d7ea88516ab0571e51636b8b8aae)), closes [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6)
+* add toast notifications for trail loading ([e04018f](https://gitlab.com/dev6645326/react-flight-tracker/commit/e04018f211696ac4838497d2c24b74a47fe84be8)), closes [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6)
+* optimize using lazy imports ([8b199ed](https://gitlab.com/dev6645326/react-flight-tracker/commit/8b199ed7e78960b700da40e537001d1e6a9b35c2)), closes [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6)
+* update vite ([cd75bb5](https://gitlab.com/dev6645326/react-flight-tracker/commit/cd75bb52ea1b180c4fec85b1c4cb13654a875625))
+
+
+### Bug Fixes
+
+* flight path by adding last point ([84fa089](https://gitlab.com/dev6645326/react-flight-tracker/commit/84fa089d0fc174984a979c8cffacbdcb9dc1a844)), closes [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6)
+* image in contact ([888a477](https://gitlab.com/dev6645326/react-flight-tracker/commit/888a477a148a7d183f4171266240a8177837cfe3)), closes [#5](https://gitlab.com/dev6645326/react-flight-tracker/issues/5)
+* lock panning ([62598e4](https://gitlab.com/dev6645326/react-flight-tracker/commit/62598e4b474eeb635b86002237253b9c812043bd))
+* merge ([c8b7eca](https://gitlab.com/dev6645326/react-flight-tracker/commit/c8b7ecac3ac9c763534ce1dd19da53249758b613))
+* scrollbar ([e79c19b](https://gitlab.com/dev6645326/react-flight-tracker/commit/e79c19b0c04f08ee880e3afab5ce81fc24b0ea68))
+* typography timing ([8712384](https://gitlab.com/dev6645326/react-flight-tracker/commit/8712384173ce1057059120b35dd90c0e275a6e04))
+
+
+### Documentation
+
+* **README.md:** add README.md ([d61030c](https://gitlab.com/dev6645326/react-flight-tracker/commit/d61030c4d65ceb690f9862a52fbb87d61f02264c)), closes [#5](https://gitlab.com/dev6645326/react-flight-tracker/issues/5)
+* **README.md:** resizing images ([0a72fc8](https://gitlab.com/dev6645326/react-flight-tracker/commit/0a72fc85588ad20c57fc7b5ab8b9d7f513f963ec)), closes [#5](https://gitlab.com/dev6645326/react-flight-tracker/issues/5)
+
+
+### Other Updates
+
+* **release:** 1.5.0-develop.4 [skip ci] ([84513a4](https://gitlab.com/dev6645326/react-flight-tracker/commit/84513a419d91a800d7bd447b612289f4c9ccce75)), closes [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6) [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6) [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6)
+* **release:** 1.6.0-develop.1 [skip ci] ([654c841](https://gitlab.com/dev6645326/react-flight-tracker/commit/654c841385984d6680c247c0d178ae0e13af34df)), closes [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6) [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6) [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6) [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6) [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6) [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6)
+* **release:** 1.6.0-develop.2 [skip ci] ([e19b47f](https://gitlab.com/dev6645326/react-flight-tracker/commit/e19b47f98dd275f0f3814ec06ec45a85fe4b4ef4)), closes [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6) [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6)
+* **release:** 1.6.0-develop.3 [skip ci] ([5016af7](https://gitlab.com/dev6645326/react-flight-tracker/commit/5016af7787850db35c094fced1836e12c7643f10))
+* **release:** 1.6.0-develop.4 [skip ci] ([9e22aa7](https://gitlab.com/dev6645326/react-flight-tracker/commit/9e22aa74010bb49f9eed1c017fcaa4a714940590))
+* **release:** 1.6.0-develop.5 [skip ci] ([88a0599](https://gitlab.com/dev6645326/react-flight-tracker/commit/88a0599bb1445ebff10dcb63a11e9f50cd1f8847))
+* **release:** 1.6.0-develop.6 [skip ci] ([12a3497](https://gitlab.com/dev6645326/react-flight-tracker/commit/12a3497fc4d059d87cbc2b8035dc463f8ed11d84))
+* remove unnecessary dep ([ee7db9a](https://gitlab.com/dev6645326/react-flight-tracker/commit/ee7db9ab00210d350fce656e8468041cdcf4b652)), closes [#6](https://gitlab.com/dev6645326/react-flight-tracker/issues/6)
+
 ## [1.6.0-develop.6](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0-develop.5...v1.6.0-develop.6) (2023-08-09)
 
 
