@@ -1,3 +1,10 @@
+## [1.6.0-develop.6](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0-develop.5...v1.6.0-develop.6) (2023-08-09)
+
+
+### Features
+
+* add fade in anim ([e54b377](https://gitlab.com/dev6645326/react-flight-tracker/commit/e54b3773f82056d8b6f5c5706e793e40446265ee))
+
 ## [1.6.0-develop.5](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0-develop.4...v1.6.0-develop.5) (2023-08-08)
 
 
