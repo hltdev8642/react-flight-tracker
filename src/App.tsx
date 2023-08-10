@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export function App() {
-    let drawerWidth = "max(20vw, 300px)";
+    let drawerWidth = "max(20vw, 350px)";
     if (window.innerWidth < 500) {
         drawerWidth = "100vw";
     }
