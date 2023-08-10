@@ -6,6 +6,7 @@ import {useRecoilValue} from "recoil";
 import {graphicOptionsState} from "../../atoms.ts";
 import {CountryBorders} from "./countryBorders.tsx";
 import {lazy, useEffect, useRef} from "react";
+import Sun from "./Sun.tsx";
 
 const FlightTrail = lazy(() => import('./FlightTrail.tsx'))
 const Flights = lazy(() => import('./Flights.tsx'))
@@ -18,10 +19,7 @@ function Scene() {
     useEffect(() => {
             if (cameraControlsRef.current) {
 
-                void cameraControlsRef.current.dolly(500 - (EARTH_RADIUS * 2), true).then(() => {
-                        console.log('done')
-                    }
-                )
+                void cameraControlsRef.current.dolly(500 - (EARTH_RADIUS * 2), true).then()
             }
         }
         , [cameraControlsRef])
@@ -51,9 +49,7 @@ function Scene() {
                     <Earth/>
                     : <MobileEarth/>
             }
-            <pointLight position={[EARTH_RADIUS + 102, 0, 0]}
-                        castShadow={true}
-            />
+            <Sun/>
             <Flights/>
             <FlightTrail/>
 
