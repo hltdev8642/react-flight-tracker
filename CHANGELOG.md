@@ -1,3 +1,10 @@
+## [1.7.0-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.2...v1.7.0-develop.3) (2023-08-10)
+
+
+### Bug Fixes
+
+* interval infinite loop ([358e462](https://gitlab.com/dev6645326/react-flight-tracker/commit/358e462c092f85bbf26b625ad6a6dba74713311f))
+
 ## [1.7.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.1...v1.7.0-develop.2) (2023-08-10)
 
 
