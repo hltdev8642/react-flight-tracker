@@ -111,7 +111,7 @@ interface CalculatedPrimaryOrbitalElements {
 
 
 function getDateNumber(date: Date) {
-    return calculateJulianDate(date) - 2451543.5
+    return calculateJulianDate(date) - 2451544.0
 }
 
 
