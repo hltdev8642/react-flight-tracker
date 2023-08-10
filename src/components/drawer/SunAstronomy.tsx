@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import {
     Collapse,
@@ -20,9 +20,14 @@ export function SunAstronomy() {
 
     const [sunPosition, setSunPosition] = useState(calculateSunPosition(new Date(Date.now())));
     // update every 10 seconds
-    setInterval(() => {
-        setSunPosition(calculateSunPosition(new Date(Date.now())))
-    }, 10000)
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setSunPosition(calculateSunPosition(new Date(Date.now())))
+        }, 10000)
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
 
     const geoCoordinates = rightAscensionAndDeclinationToGeoCoordinates(sunPosition.ra, sunPosition.dec,
         new Date(Date.now())
