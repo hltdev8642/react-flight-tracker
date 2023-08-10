@@ -238,10 +238,10 @@ export function calculateRightAscensionAndDeclination(xeq: number, yeq: number, 
  */
 export function calculateSunPosition(date: Date) {
     const sunOrbitalElements = {
-        N: (_: number) => 0.0,
-        i: (_: number) => 0.0,
+        N: () => 0.0,
+        i: () => 0.0,
         w: (d: number) => 282.9404 + 4.70935E-5 * d,
-        a: (_: number) => 1.000000,
+        a: () => 1.000000,
         e: (d: number) => 0.016709 - 1.151E-9 * d,
         M: (d: number) => 356.0470 + 0.9856002585 * d
     }
