@@ -1,3 +1,20 @@
+## [1.7.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0...v1.7.0-develop.1) (2023-08-10)
+
+
+### Features
+
+* add astronomy drawer ([a507f67](https://gitlab.com/dev6645326/react-flight-tracker/commit/a507f67a685670e0c1c9e02e86294a616e144dc2)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+* make sun rotate accurately ([9e6a1df](https://gitlab.com/dev6645326/react-flight-tracker/commit/9e6a1df23de79b76c7d594ce4521af0ef5517fc3)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+* toFixed on numbers ([aae3deb](https://gitlab.com/dev6645326/react-flight-tracker/commit/aae3debc8e54edb31520be63337cc657770a1daf)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+
+
+### Bug Fixes
+
+* dateNumber ([223707d](https://gitlab.com/dev6645326/react-flight-tracker/commit/223707d36564be675a0ee0e4c7ca9a11399035ff)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+* lint issue ([3ef1426](https://gitlab.com/dev6645326/react-flight-tracker/commit/3ef14262649f27932b2b62ddcf661c2c4a56349e)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+* menu responsiveness ([755386e](https://gitlab.com/dev6645326/react-flight-tracker/commit/755386e8b98131d90e8f49acecad59ccf5cf18e8)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+* sun disappear on menu open ([a1ec8c1](https://gitlab.com/dev6645326/react-flight-tracker/commit/a1ec8c197235b9c201ca5a9b728e655b99926945)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+
 ## [1.6.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.5.0...v1.6.0) (2023-08-09)
 
 
