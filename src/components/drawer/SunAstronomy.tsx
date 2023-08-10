@@ -40,38 +40,38 @@ export function SunAstronomy() {
                         <TableBody>
                             <TableRow>
                                 <TableCell>Distance</TableCell>
-                                <TableCell>{sunPosition.r} AU</TableCell>
+                                <TableCell>{sunPosition.r.toFixed(5)} AU</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Elliptical Longitude</TableCell>
-                                <TableCell>{toDegrees(sunPosition.lon)} °</TableCell>
+                                <TableCell>{toDegrees(sunPosition.lon).toFixed(5)} °</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Elliptical Latitude</TableCell>
-                                <TableCell>{toDegrees(sunPosition.lat)} °</TableCell>
+                                <TableCell>{toDegrees(sunPosition.lat).toFixed(5)} °</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Equatorial Coordinates</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>xeq</TableCell>
-                                <TableCell>{sunPosition.xeq}</TableCell>
+                                <TableCell>{sunPosition.xeq.toFixed(5)}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>yeq</TableCell>
-                                <TableCell>{sunPosition.yeq}</TableCell>
+                                <TableCell>{sunPosition.yeq.toFixed(5)}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>zeq</TableCell>
-                                <TableCell>{sunPosition.zeq}</TableCell>
+                                <TableCell>{sunPosition.zeq.toFixed(5)}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Right Ascension</TableCell>
-                                <TableCell>{toDegrees(sunPosition.ra)} °</TableCell>
+                                <TableCell>{toDegrees(sunPosition.ra).toFixed(5)} °</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Declination</TableCell>
-                                <TableCell>{toDegrees(sunPosition.dec)} °</TableCell>
+                                <TableCell>{toDegrees(sunPosition.dec).toFixed(5)} °</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
