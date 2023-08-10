@@ -11,10 +11,13 @@ import {LoadingScreen} from "./LoadingScreen.tsx";
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const drawerWidth = "max(20vw, 200px)"
-
 
 export function App() {
+    let drawerWidth = "max(20vw, 300px)";
+    if (window.innerWidth < 500) {
+        drawerWidth = "100vw";
+    }
+
     const theme = useTheme();
     const [open, setOpen] = useState(false);
 
