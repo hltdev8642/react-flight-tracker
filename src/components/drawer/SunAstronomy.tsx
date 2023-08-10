@@ -9,7 +9,7 @@ import {
     TableRow,
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import {calculateSunPosition, toDegrees} from "../../astronomy-utils.tsx";
+import {calculateSunPosition, rightAscensionAndDeclinationToGeoCoordinates, toDegrees} from "../../astronomy-utils.tsx";
 
 export function SunAstronomy() {
     const [open, setOpen] = useState(false);
@@ -23,6 +23,10 @@ export function SunAstronomy() {
     setInterval(() => {
         setSunPosition(calculateSunPosition(new Date(Date.now())))
     }, 10000)
+
+    const geoCoordinates = rightAscensionAndDeclinationToGeoCoordinates(sunPosition.ra, sunPosition.dec,
+        new Date(Date.now())
+    );
 
 
     return (
@@ -72,6 +76,17 @@ export function SunAstronomy() {
                             <TableRow>
                                 <TableCell>Declination</TableCell>
                                 <TableCell>{toDegrees(sunPosition.dec).toFixed(5)} °</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>Geo Coordinates</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>Longitude</TableCell>
+                                <TableCell>{toDegrees(geoCoordinates.lon).toFixed(5)} °</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>Latitude</TableCell>
+                                <TableCell>{toDegrees(geoCoordinates.lat).toFixed(5)} °</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
