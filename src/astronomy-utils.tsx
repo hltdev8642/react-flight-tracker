@@ -250,7 +250,7 @@ export function calculateSunPosition(date: Date) {
     const {lon, lat} = calculateEllipticLongitudeAndLatitude(xh, yh, zh)
     const {xeq, yeq, zeq} = calculateEquatorialCoordinates(xh, yh, zh)
     const {ra, dec} = calculateRightAscensionAndDeclination(xeq, yeq, zeq)
-    return {lon, lat, ra, dec, v, E, r}
+    return {lon, lat, ra, dec, v, E, r, xh, yh, zh, xeq, yeq, zeq}
 }
 
 /**
