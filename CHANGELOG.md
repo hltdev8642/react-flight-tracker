@@ -1,3 +1,10 @@
+## [1.7.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.1...v1.7.0-develop.2) (2023-08-10)
+
+
+### Bug Fixes
+
+* menu size ([712139c](https://gitlab.com/dev6645326/react-flight-tracker/commit/712139c1bbb20dd21fbec3e379f742a0723002b5))
+
 ## [1.7.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0...v1.7.0-develop.1) (2023-08-10)
 
 
