@@ -1,3 +1,11 @@
+## [1.7.0-develop.4](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.3...v1.7.0-develop.4) (2023-08-11)
+
+
+### Features
+
+* add moon and camera controls ([5cff2e4](https://gitlab.com/dev6645326/react-flight-tracker/commit/5cff2e4e7796d3828ce788662f6c71faab1a6fa3))
+* optimize sun calculations ([f74e283](https://gitlab.com/dev6645326/react-flight-tracker/commit/f74e2839f9cc09e066c6ab5b8d353836c8d21f36))
+
 ## [1.7.0-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.2...v1.7.0-develop.3) (2023-08-10)
 
 
