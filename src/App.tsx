@@ -88,6 +88,12 @@ export function App() {
                     style={{
                         height: "100vh",
                     }}
+                    camera={{
+                        near: 0.1,
+                        far: 100000000,
+                    }
+                    }
+                    // shadows={true}
                 >
                     <Suspense
                         fallback={<LoadingScreen/>}

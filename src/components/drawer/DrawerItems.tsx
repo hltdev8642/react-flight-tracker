@@ -6,6 +6,7 @@ import {SelectedFlightData} from "./SelectedFlightData.tsx";
 import {GraphicOptions} from "./GraphicOptions.tsx";
 import {Miscellaneous} from "./Miscellaneous.tsx";
 import {SunAstronomy} from "./SunAstronomy.tsx";
+import {MoonAstronomy} from "./MoonAstronomy.tsx";
 
 export function DrawerItems() {
     return (
@@ -17,6 +18,7 @@ export function DrawerItems() {
             <SelectedFlightData/>
             <Miscellaneous/>
             <SunAstronomy/>
+            <MoonAstronomy/>
         </List>
     )
 }

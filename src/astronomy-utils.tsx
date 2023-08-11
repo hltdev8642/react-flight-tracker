@@ -236,7 +236,7 @@ export function calculateRightAscensionAndDeclination(xeq: number, yeq: number, 
  * @param date The date to calculate the position for
  * @returns Elliptic longitude and latitude, equatorial coordinates(right ascension and declination) in radians
  */
-export function calculateSunPosition(date: Date) {
+export function calculateSunPosition(date: Date): { dec: number; yeq: number; E: number; xeq: number; zeq: number; lon: number; zh: number; ra: number; yh: number; xh: number; r: number; v: number; lat: number } {
     const sunOrbitalElements = {
         N: () => 0.0,
         i: () => 0.0,
@@ -271,4 +271,28 @@ export function rightAscensionAndDeclinationToGeoCoordinates(ra: number, dec: nu
         lon,
         lat
     }
+}
+
+
+/**
+ * Calculate the moon position
+ * @param date The date to calculate the position for
+ */
+export function calculateMoonPosition(date: Date) {
+    const moonOrbitalElements = {
+        N: (d: number) => 125.1228 - 0.0529538083 * d,
+        i: () => 5.1454,
+        w: (d: number) => 318.0634 + 0.1643573223 * d,
+        a: () => 60.2666,
+        e: () => 0.054900,
+        M: (d: number) => 115.3654 + 13.0649929509 * d
+    }
+
+    const {xh, yh, zh, v, E, r} = calculatePosition(moonOrbitalElements, date)
+    const {lon, lat} = calculateEllipticLongitudeAndLatitude(xh, yh, zh)
+    const {xeq, yeq, zeq} = calculateEquatorialCoordinates(xh, yh, zh)
+    const {ra, dec} = calculateRightAscensionAndDeclination(xeq, yeq, zeq)
+    return {lon, lat, ra, dec, v, E, r, xh, yh, zh, xeq, yeq, zeq}
+
+
 }

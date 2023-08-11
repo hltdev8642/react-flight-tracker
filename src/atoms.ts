@@ -2,6 +2,7 @@ import {atom} from "recoil";
 import {AircraftData} from "flightradar24-client-ts/lib/types";
 import {defaultRadarOptions, RadarOptions} from "flightradar24-client-ts/lib/config";
 import {getGPUTier} from 'detect-gpu';
+import {calculateMoonPosition, calculateSunPosition} from "./astronomy-utils.tsx";
 
 
 export const selectedFlightState = atom<AircraftData | undefined>({
@@ -63,5 +64,33 @@ export const miscellaneousOptionsState = atom<MiscellaneousOptions>({
         default: {
             altitudeFactor: 1,
         }
+    }
+)
+
+
+export const sunPositionState = atom<{ dec: number; yeq: number; E: number; xeq: number; zeq: number; lon: number; zh: number; ra: number; yh: number; xh: number; r: number; v: number; lat: number }>({
+    key: 'sunPosition',
+    default: calculateSunPosition(new Date(
+        Date.now()
+    )),
+})
+
+export const moonPositionState = atom<{ dec: number; yeq: number; E: number; xeq: number; zeq: number; lon: number; zh: number; ra: number; yh: number; xh: number; r: number; v: number; lat: number }>({
+        key: 'moonPosition',
+        default: calculateMoonPosition(new Date(
+            Date.now()
+        )),
+    }
+)
+
+export type CAMERA_TARGETS = 'sun' | 'moon' | 'earth';
+export const cameraTargetState = atom<CAMERA_TARGETS>({
+        key: 'cameraTarget',
+        default: 'earth',
+    }
+)
+export const isAnimationRunningState = atom<boolean>({
+        key: 'isAnimationRunning',
+        default: false,
     }
 )

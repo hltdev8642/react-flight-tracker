@@ -1,7 +1,16 @@
 import {useRecoilState} from "recoil";
-import {miscellaneousOptionsState,} from "../../atoms.ts";
+import {CAMERA_TARGETS, cameraTargetState, isAnimationRunningState, miscellaneousOptionsState,} from "../../atoms.ts";
 import {useState} from "react";
-import {Collapse, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
+import {
+    Collapse,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    ToggleButton,
+    ToggleButtonGroup
+} from "@mui/material";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import Slider from '@mui/material/Slider';
@@ -9,6 +18,8 @@ import Slider from '@mui/material/Slider';
 export function Miscellaneous() {
     const [miscellaneousOption, setMiscellaneousOption] = useRecoilState(miscellaneousOptionsState);
     const [open, setOpen] = useState(false);
+    const [cameraTarget, setCameraTarget] = useRecoilState(cameraTargetState);
+    const [isAnimationRunning,] = useRecoilState(isAnimationRunningState)
     const handleClick = () => {
         setOpen(!open);
     };
@@ -42,6 +53,37 @@ export function Miscellaneous() {
                             }
                             valueLabelDisplay="auto"
                         />
+                    </ListItem>
+
+                    <ListItem sx={{pl: 4}}>
+                        <ListItemText primary="Camera Target"/>
+                        <ToggleButtonGroup
+                            value={cameraTarget}
+                            exclusive
+                            disabled={isAnimationRunning}
+                            onChange={
+                                (_, value: CAMERA_TARGETS) => {
+                                    if (value != cameraTarget) {
+                                        setCameraTarget(value)
+                                    }
+                                }
+                            }
+                            aria-label="text alignment"
+                        >
+                            {
+                                [
+                                    {value: 'sun', label: 'Sun'},
+                                    {value: 'earth', label: 'Earth'},
+                                    {value: 'moon', label: 'Moon'},
+                                ]
+                                    .map(({value, label}) => (
+                                        <ToggleButton value={value} aria-label={label}>
+                                            {label}
+                                        </ToggleButton>
+                                    ))
+
+                            }
+                        </ToggleButtonGroup>
                     </ListItem>
 
                 </List>

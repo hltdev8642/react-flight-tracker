@@ -1,39 +1,45 @@
-import {ASTRONOMICAL_UNIT, reductionFactor} from "../../constants.ts";
-import {PointLight, Vector3} from "three";
+import {ASTRONOMICAL_UNIT, reductionFactor, SUN_RADIUS} from "../../constants.ts";
+import { Vector3} from "three";
 import {convertToCartesian} from "../../utils.ts";
 import {
     calculateSunPosition,
     rightAscensionAndDeclinationToGeoCoordinates, toDegrees
 } from "../../astronomy-utils.tsx";
-import {useRef} from "react";
-import {useFrame} from "@react-three/fiber";
+import {useEffect} from "react";
+import {useRecoilState} from "recoil";
+import {sunPositionState} from "../../atoms.ts";
 
 
 export default function Sun() {
-    const lightRef = useRef<PointLight>(null!)
     const date = new Date(Date.now())
-    const pos = calculateSunPosition(date)
+    const [pos, setPos] = useRecoilState(sunPositionState)
     const posOnEarth = rightAscensionAndDeclinationToGeoCoordinates(pos.ra, pos.dec, date)
     const cartesian = convertToCartesian(toDegrees(posOnEarth.lat), toDegrees(posOnEarth.lon), pos.r * ASTRONOMICAL_UNIT * reductionFactor)
-    useFrame(({clock}) => {
-            // update the light position every 10 seconds
-            if (clock.getElapsedTime() % 10 < 0.01) {
-                const date = new Date(Date.now())
-                const pos = calculateSunPosition(date)
-                const posOnEarth = rightAscensionAndDeclinationToGeoCoordinates(pos.ra, pos.dec, date)
-                const cartesian = convertToCartesian(toDegrees(posOnEarth.lat), toDegrees(posOnEarth.lon), pos.r * ASTRONOMICAL_UNIT * reductionFactor)
-                lightRef.current.position.set(cartesian.x, cartesian.y, cartesian.z)
-            }
+    // update every 10 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setPos(calculateSunPosition(new Date(Date.now())))
+        }, 10000)
+        return () => {
+            clearInterval(interval);
+        };
+    }, [setPos]);
 
+    return <pointLight
+        visible={true}
+        position={
+            new Vector3(cartesian.x, cartesian.y, cartesian.z)
         }
-    )
-    return <pointLight position={
-        new Vector3(cartesian.x, cartesian.y, cartesian.z)
-    }
-                       castShadow={true}
-                       intensity={1}
-                       ref={lightRef}
-
-    />
+        castShadow={true}
+        intensity={1}
+    >
+        <mesh>
+            <sphereGeometry args={[SUN_RADIUS, 10, 10]}/>
+            <meshStandardMaterial color={"yellow"}
+                                  emissive={"yellow"}
+                                  emissiveIntensity={10}
+            />
+        </mesh>
+    </pointLight>
 
 }
