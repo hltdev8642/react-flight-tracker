@@ -2,8 +2,7 @@ import {ASTRONOMICAL_UNIT, reductionFactor, SUN_RADIUS} from "../../constants.ts
 import { Vector3} from "three";
 import {convertToCartesian} from "../../utils.ts";
 import {
-    calculateSunPosition,
-    rightAscensionAndDeclinationToGeoCoordinates, toDegrees
+    calculateSunPosition, toDegrees
 } from "../../astronomy-utils.tsx";
 import {useEffect} from "react";
 import {useRecoilState} from "recoil";
@@ -11,10 +10,8 @@ import {sunPositionState} from "../../atoms.ts";
 
 
 export default function Sun() {
-    const date = new Date(Date.now())
     const [pos, setPos] = useRecoilState(sunPositionState)
-    const posOnEarth = rightAscensionAndDeclinationToGeoCoordinates(pos.ra, pos.dec, date)
-    const cartesian = convertToCartesian(toDegrees(posOnEarth.lat), toDegrees(posOnEarth.lon), pos.r * ASTRONOMICAL_UNIT * reductionFactor)
+    const cartesian = convertToCartesian(toDegrees(pos.geoLatitude), toDegrees(pos.geoLongitude), pos.r * ASTRONOMICAL_UNIT * reductionFactor)
     // update every 10 seconds
     useEffect(() => {
         const interval = setInterval(() => {

@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import {useState} from 'react';
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import {
     Collapse,
@@ -9,7 +9,7 @@ import {
     TableRow,
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import { rightAscensionAndDeclinationToGeoCoordinates, toDegrees} from "../../astronomy-utils.tsx";
+import {toDegrees} from "../../astronomy-utils.tsx";
 import {useRecoilValue} from "recoil";
 import {sunPositionState} from "../../atoms.ts";
 
@@ -21,10 +21,6 @@ export function SunAstronomy() {
 
 
     const sunPosition = useRecoilValue(sunPositionState)
-    const geoCoordinates = rightAscensionAndDeclinationToGeoCoordinates(sunPosition.ra, sunPosition.dec,
-        new Date(Date.now())
-    );
-
 
     return (
         <>
@@ -45,11 +41,11 @@ export function SunAstronomy() {
                             </TableRow>
                             <TableRow>
                                 <TableCell>Elliptical Longitude</TableCell>
-                                <TableCell>{toDegrees(sunPosition.lon).toFixed(5)} °</TableCell>
+                                <TableCell>{toDegrees(sunPosition.ellipticLongitude).toFixed(5)} °</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Elliptical Latitude</TableCell>
-                                <TableCell>{toDegrees(sunPosition.lat).toFixed(5)} °</TableCell>
+                                <TableCell>{toDegrees(sunPosition.ellipticLatitude).toFixed(5)} °</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Equatorial Coordinates</TableCell>
@@ -79,11 +75,11 @@ export function SunAstronomy() {
                             </TableRow>
                             <TableRow>
                                 <TableCell>Longitude</TableCell>
-                                <TableCell>{toDegrees(geoCoordinates.lon).toFixed(5)} °</TableCell>
+                                <TableCell>{toDegrees(sunPosition.geoLongitude).toFixed(5)} °</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Latitude</TableCell>
-                                <TableCell>{toDegrees(geoCoordinates.lat).toFixed(5)} °</TableCell>
+                                <TableCell>{toDegrees(sunPosition.geoLatitude).toFixed(5)} °</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>

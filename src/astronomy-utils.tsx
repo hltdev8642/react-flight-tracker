@@ -198,9 +198,9 @@ export function calculatePosition(primaryOrbitalElements: PrimaryOrbitalElements
  * @param zh The z coordinate in space
  */
 export function calculateEllipticLongitudeAndLatitude(xh: number, yh: number, zh: number) {
-    const lon = Math.atan2(yh, xh)
-    const lat = Math.atan2(zh, Math.sqrt(xh * xh + yh * yh))
-    return {lon, lat}
+    const ellipticLongitude = Math.atan2(yh, xh)
+    const ellipticLatitude = Math.atan2(zh, Math.sqrt(xh * xh + yh * yh))
+    return {ellipticLongitude, ellipticLatitude}
 }
 
 /**
@@ -236,7 +236,7 @@ export function calculateRightAscensionAndDeclination(xeq: number, yeq: number, 
  * @param date The date to calculate the position for
  * @returns Elliptic longitude and latitude, equatorial coordinates(right ascension and declination) in radians
  */
-export function calculateSunPosition(date: Date): { dec: number; yeq: number; E: number; xeq: number; zeq: number; lon: number; zh: number; ra: number; yh: number; xh: number; r: number; v: number; lat: number } {
+export function calculateSunPosition(date: Date) {
     const sunOrbitalElements = {
         N: () => 0.0,
         i: () => 0.0,
@@ -247,10 +247,11 @@ export function calculateSunPosition(date: Date): { dec: number; yeq: number; E:
     }
 
     const {xh, yh, zh, v, E, r} = calculatePosition(sunOrbitalElements, date)
-    const {lon, lat} = calculateEllipticLongitudeAndLatitude(xh, yh, zh)
+    const {ellipticLongitude, ellipticLatitude} = calculateEllipticLongitudeAndLatitude(xh, yh, zh)
     const {xeq, yeq, zeq} = calculateEquatorialCoordinates(xh, yh, zh)
     const {ra, dec} = calculateRightAscensionAndDeclination(xeq, yeq, zeq)
-    return {lon, lat, ra, dec, v, E, r, xh, yh, zh, xeq, yeq, zeq}
+    const {geoLatitude, geoLongitude} = rightAscensionAndDeclinationToGeoCoordinates(ra, dec, date)
+    return {ellipticLongitude, ellipticLatitude, ra, dec, v, E, r, xh, yh, zh, xeq, yeq, zeq, geoLatitude, geoLongitude}
 }
 
 /**
@@ -261,15 +262,14 @@ export function calculateSunPosition(date: Date): { dec: number; yeq: number; E:
  * @returns {{lon: number; lat: number}} in radians
  */
 export function rightAscensionAndDeclinationToGeoCoordinates(ra: number, dec: number, date: Date): {
-    lon: number;
-    lat: number
+    geoLongitude: number;
+    geoLatitude: number
 } {
     const siderealTime = calculateGreenwichMeanSiderealTime(date)
     const lon = toRadians(360) - (toRadians(siderealTime) - ra)
-    const lat = dec
     return {
-        lon,
-        lat
+        geoLongitude: lon,
+        geoLatitude: dec
     }
 }
 
@@ -278,7 +278,23 @@ export function rightAscensionAndDeclinationToGeoCoordinates(ra: number, dec: nu
  * Calculate the moon position
  * @param date The date to calculate the position for
  */
-export function calculateMoonPosition(date: Date) {
+export function calculateMoonPosition(date: Date): {
+    dec: number;
+    yeq: number;
+    E: number;
+    xeq: number;
+    zeq: number;
+    zh: number;
+    ellipticLatitude: number;
+    ra: number;
+    yh: number;
+    xh: number;
+    geoLongitude: number;
+    r: number;
+    geoLatitude: number;
+    ellipticLongitude: number;
+    v: number
+} {
     const moonOrbitalElements = {
         N: (d: number) => 125.1228 - 0.0529538083 * d,
         i: () => 5.1454,
@@ -289,10 +305,11 @@ export function calculateMoonPosition(date: Date) {
     }
 
     const {xh, yh, zh, v, E, r} = calculatePosition(moonOrbitalElements, date)
-    const {lon, lat} = calculateEllipticLongitudeAndLatitude(xh, yh, zh)
+    const {ellipticLongitude, ellipticLatitude} = calculateEllipticLongitudeAndLatitude(xh, yh, zh)
     const {xeq, yeq, zeq} = calculateEquatorialCoordinates(xh, yh, zh)
     const {ra, dec} = calculateRightAscensionAndDeclination(xeq, yeq, zeq)
-    return {lon, lat, ra, dec, v, E, r, xh, yh, zh, xeq, yeq, zeq}
+    const {geoLatitude, geoLongitude} = rightAscensionAndDeclinationToGeoCoordinates(ra, dec, date)
+    return {ellipticLongitude, ellipticLatitude, ra, dec, v, E, r, xh, yh, zh, xeq, yeq, zeq, geoLatitude, geoLongitude}
 
 
 }

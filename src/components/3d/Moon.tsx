@@ -1,9 +1,7 @@
 import {EARTH_RADIUS, MOON_RADIUS} from "../../constants.ts";
 import {convertToCartesian} from "../../utils.ts";
 import {
-    calculateMoonPosition,
-
-    rightAscensionAndDeclinationToGeoCoordinates, toDegrees
+    calculateMoonPosition, toDegrees
 } from "../../astronomy-utils.tsx";
 import {useEffect} from "react";
 import {Sphere} from "@react-three/drei"
@@ -13,10 +11,8 @@ import {moonPositionState} from "../../atoms.ts";
 
 
 export default function Moon() {
-    const date = new Date(Date.now())
     const [pos, setPos] = useRecoilState(moonPositionState)
-    const posOnEarth = rightAscensionAndDeclinationToGeoCoordinates(pos.ra, pos.dec, date)
-    const cartesian = convertToCartesian(toDegrees(posOnEarth.lat), toDegrees(posOnEarth.lon), pos.r * EARTH_RADIUS)
+    const cartesian = convertToCartesian(toDegrees(pos.geoLatitude), toDegrees(pos.geoLongitude), pos.r * EARTH_RADIUS)
     // update every 10 seconds
     useEffect(() => {
         const interval = setInterval(() => {

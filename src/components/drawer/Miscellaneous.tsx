@@ -77,7 +77,9 @@ export function Miscellaneous() {
                                     {value: 'moon', label: 'Moon'},
                                 ]
                                     .map(({value, label}) => (
-                                        <ToggleButton value={value} aria-label={label}>
+                                        <ToggleButton value={value} aria-label={label}
+                                                      key={value}
+                                        >
                                             {label}
                                         </ToggleButton>
                                     ))

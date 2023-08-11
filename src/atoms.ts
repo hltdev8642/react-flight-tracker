@@ -68,14 +68,46 @@ export const miscellaneousOptionsState = atom<MiscellaneousOptions>({
 )
 
 
-export const sunPositionState = atom<{ dec: number; yeq: number; E: number; xeq: number; zeq: number; lon: number; zh: number; ra: number; yh: number; xh: number; r: number; v: number; lat: number }>({
+export const sunPositionState = atom<{
+    dec: number;
+    yeq: number;
+    E: number;
+    xeq: number;
+    zeq: number;
+    zh: number;
+    ellipticLatitude: number;
+    ra: number;
+    yh: number;
+    xh: number;
+    geoLongitude: number;
+    r: number;
+    geoLatitude: number;
+    ellipticLongitude: number;
+    v: number
+}>({
     key: 'sunPosition',
     default: calculateSunPosition(new Date(
         Date.now()
     )),
 })
 
-export const moonPositionState = atom<{ dec: number; yeq: number; E: number; xeq: number; zeq: number; lon: number; zh: number; ra: number; yh: number; xh: number; r: number; v: number; lat: number }>({
+export const moonPositionState = atom<{
+    dec: number;
+    yeq: number;
+    E: number;
+    xeq: number;
+    zeq: number;
+    zh: number;
+    ellipticLatitude: number;
+    ra: number;
+    yh: number;
+    xh: number;
+    geoLongitude: number;
+    r: number;
+    geoLatitude: number;
+    ellipticLongitude: number;
+    v: number
+}>({
         key: 'moonPosition',
         default: calculateMoonPosition(new Date(
             Date.now()

@@ -3,7 +3,7 @@ import {CameraControls} from "@react-three/drei";
 import {ASTRONOMICAL_UNIT, EARTH_RADIUS, MOON_RADIUS, reductionFactor, SUN_RADIUS} from "../../constants.ts";
 import {useRecoilState, useRecoilValue} from "recoil";
 import {cameraTargetState, isAnimationRunningState, moonPositionState, sunPositionState} from "../../atoms.ts";
-import {rightAscensionAndDeclinationToGeoCoordinates, toDegrees} from "../../astronomy-utils.tsx";
+import {toDegrees} from "../../astronomy-utils.tsx";
 import {convertToCartesian} from "../../utils.ts";
 
 export default function Camera() {
@@ -24,8 +24,7 @@ export default function Camera() {
             if (cameraControlsRef.current) {
                 switch (cameraTarget) {
                     case "moon": {
-                        const posOnEarth = rightAscensionAndDeclinationToGeoCoordinates(moonPosition.ra, moonPosition.dec, new Date(Date.now()))
-                        const cartesian = convertToCartesian(toDegrees(posOnEarth.lat), toDegrees(posOnEarth.lon), moonPosition.r * EARTH_RADIUS)
+                        const cartesian = convertToCartesian(toDegrees(moonPosition.geoLatitude), toDegrees(moonPosition.geoLongitude), moonPosition.r * EARTH_RADIUS)
                         void cameraControlsRef.current.setTarget(cartesian.x, cartesian.y, cartesian.z, true).then(
                             () => {
                                 void cameraControlsRef.current.dolly(cameraControlsRef.current.distance - MOON_RADIUS * 2, true).then(
@@ -53,8 +52,7 @@ export default function Camera() {
                         break;
                     }
                     case "sun": {
-                        const posOnEarth = rightAscensionAndDeclinationToGeoCoordinates(sunPosition.ra, sunPosition.dec, new Date(Date.now()))
-                        const cartesian = convertToCartesian(toDegrees(posOnEarth.lat), toDegrees(posOnEarth.lon), sunPosition.r * ASTRONOMICAL_UNIT * reductionFactor)
+                        const cartesian = convertToCartesian(toDegrees(sunPosition.geoLatitude), toDegrees(sunPosition.geoLongitude), sunPosition.r * ASTRONOMICAL_UNIT * reductionFactor)
                         void cameraControlsRef.current.setTarget(cartesian.x, cartesian.y, cartesian.z, true).then(
                             () => {
                                 void cameraControlsRef.current.dolly(cameraControlsRef.current.distance - SUN_RADIUS * 3, true).then(
@@ -78,8 +76,7 @@ export default function Camera() {
             if (cameraControlsRef.current) {
                 switch (cameraTarget) {
                     case "moon": {
-                        const posOnEarth = rightAscensionAndDeclinationToGeoCoordinates(moonPosition.ra, moonPosition.dec, new Date(Date.now()))
-                        const cartesian = convertToCartesian(toDegrees(posOnEarth.lat), toDegrees(posOnEarth.lon), moonPosition.r * EARTH_RADIUS)
+                        const cartesian = convertToCartesian(toDegrees(moonPosition.geoLatitude), toDegrees(moonPosition.geoLongitude), moonPosition.r * EARTH_RADIUS)
                         void cameraControlsRef.current.setTarget(cartesian.x, cartesian.y, cartesian.z, true)
                         break;
                     }
@@ -89,8 +86,7 @@ export default function Camera() {
                         break;
                     }
                     case "sun": {
-                        const posOnEarth = rightAscensionAndDeclinationToGeoCoordinates(sunPosition.ra, sunPosition.dec, new Date(Date.now()))
-                        const cartesian = convertToCartesian(toDegrees(posOnEarth.lat), toDegrees(posOnEarth.lon), sunPosition.r * ASTRONOMICAL_UNIT * reductionFactor)
+                        const cartesian = convertToCartesian(toDegrees(sunPosition.geoLatitude), toDegrees(sunPosition.geoLongitude), sunPosition.r * ASTRONOMICAL_UNIT * reductionFactor)
                         void cameraControlsRef.current.setTarget(cartesian.x, cartesian.y, cartesian.z, true)
 
                         break;
