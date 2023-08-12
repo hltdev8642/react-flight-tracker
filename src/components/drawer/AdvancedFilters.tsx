@@ -11,7 +11,7 @@ import {
     ListItemText,
     TextField
 } from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import {useQuery} from "@tanstack/react-query";
 import {flightRadarApi} from "../../utils.ts";
@@ -40,7 +40,7 @@ export function AdvancedFilters() {
         <>
             <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                    <InboxIcon/>
+                    <FilterAltIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Advanced Filters"/>
                 {open ? <ExpandLess/> : <ExpandMore/>}

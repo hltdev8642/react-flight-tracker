@@ -4,7 +4,7 @@ import {flightRadarApi} from "../../utils.ts";
 import {selectedFlightState} from "../../atoms.ts";
 import {useRecoilValue} from "recoil";
 import {Collapse, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+import DataObjectIcon from '@mui/icons-material/DataObject';
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 
 export function SelectedFlightData() {
@@ -23,7 +23,7 @@ export function SelectedFlightData() {
         <>
             <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                    <InboxIcon/>
+                    <DataObjectIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Selected Flight JSON data"/>
                 {open ? <ExpandLess/> : <ExpandMore/>}

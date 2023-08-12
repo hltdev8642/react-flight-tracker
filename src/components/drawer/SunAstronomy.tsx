@@ -8,7 +8,7 @@ import {
     ListItemText, Table, TableBody, TableCell,
     TableRow,
 } from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import {toDegrees} from "../../astronomy-utils.tsx";
 import {useRecoilValue} from "recoil";
 import {sunPositionState} from "../../atoms.ts";
@@ -26,7 +26,7 @@ export function SunAstronomy() {
         <>
             <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                    <InboxIcon/>
+                    <WbSunnyIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Sun Astronomy"/>
                 {open ? <ExpandLess/> : <ExpandMore/>}

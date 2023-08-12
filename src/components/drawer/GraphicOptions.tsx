@@ -2,8 +2,8 @@ import {useRecoilState} from "recoil";
 import {graphicOptionsState,} from "../../atoms.ts";
 import {useState} from "react";
 import {Checkbox, Collapse, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
+import SettingsIcon from '@mui/icons-material/Settings';
 
 export function GraphicOptions() {
     const [graphicOptions, setGraphicOptions] = useRecoilState(graphicOptionsState);
@@ -15,7 +15,7 @@ export function GraphicOptions() {
         <>
             <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                    <InboxIcon/>
+                    <SettingsIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Graphic Options"/>
                 {open ? <ExpandLess/> : <ExpandMore/>}

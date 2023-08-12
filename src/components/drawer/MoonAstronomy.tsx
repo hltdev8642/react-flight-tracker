@@ -8,7 +8,7 @@ import {
     ListItemText, Table, TableBody, TableCell,
     TableRow,
 } from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+import NightlightIcon from '@mui/icons-material/Nightlight';
 import { toDegrees} from "../../astronomy-utils.tsx";
 import {useRecoilValue} from "recoil";
 import {moonPositionState} from "../../atoms.ts";
@@ -26,7 +26,7 @@ export function MoonAstronomy() {
         <>
             <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                    <InboxIcon/>
+                    <NightlightIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Moon Astronomy"/>
                 {open ? <ExpandLess/> : <ExpandMore/>}

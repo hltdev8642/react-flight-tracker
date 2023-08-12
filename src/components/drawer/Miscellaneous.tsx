@@ -11,7 +11,7 @@ import {
     ToggleButton,
     ToggleButtonGroup
 } from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import Slider from '@mui/material/Slider';
 
@@ -27,7 +27,7 @@ export function Miscellaneous() {
         <>
             <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                    <InboxIcon/>
+                    <MiscellaneousServicesIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Miscellaneous"/>
                 {open ? <ExpandLess/> : <ExpandMore/>}
