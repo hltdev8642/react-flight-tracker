@@ -1,3 +1,10 @@
+## [1.7.0-develop.5](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.4...v1.7.0-develop.5) (2023-08-12)
+
+
+### Features
+
+* update icons ([985f5af](https://gitlab.com/dev6645326/react-flight-tracker/commit/985f5af0c3f94d52ab05247bbc6388a06e835a31))
+
 ## [1.7.0-develop.4](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.3...v1.7.0-develop.4) (2023-08-11)
 
 
