@@ -1,7 +1,11 @@
 import {miscellaneousOptionsState, selectedFlightState} from "../../atoms.ts";
 import {useRecoilValue} from "recoil";
 import {useQuery} from "@tanstack/react-query";
-import {convertToCartesian, flightRadarApi} from "../../utils.ts";
+import {
+    convertToCartesian,
+    flightRadarApi,
+    listInterpolatedGeoCoordinates
+} from "../../utils.ts";
 import {EARTH_RADIUS, reductionFactor} from "../../constants.ts";
 import {Vector3} from "three";
 import {Line} from "@react-three/drei";
@@ -51,12 +55,39 @@ export default function FlightTrail() {
     }
 
     return (
-        <Line
-            points={points || [new Vector3(0, 0, 0), new Vector3(0.1, 0.1, 0.11)]}
-            color={'green'}
-            lineWidth={lineWidth}
-        />
-
+        <>
+            <Line
+                points={points || [new Vector3(0, 0, 0), new Vector3(0.1, 0.1, 0.11)]}
+                color={'green'}
+                lineWidth={lineWidth}/>
+            {
+                points && points.length > 1 && (
+                    <Line
+                        color={'white'}
+                        dashed={true}
+                        gapSize={0.01}
+                        dashSize={0.01}
+                        points={
+                            listInterpolatedGeoCoordinates({
+                                    latitude: selectedFlight?.trailEntity.lat || 0,
+                                    longitude: selectedFlight?.trailEntity.lng || 0,
+                                    altitude: selectedFlight?.trailEntity.alt || 0
+                                }
+                                , {
+                                    latitude: data?.airport.destination?.position.latitude || 0,
+                                    longitude: data?.airport.destination?.position.longitude || 0,
+                                    altitude: data?.airport.destination?.position.altitude || 0
+                                },
+                                100,
+                            ).map(
+                                (point) => {
+                                    const cartesian = convertToCartesian(point.latitude, point.longitude, EARTH_RADIUS + point.altitude * reductionFactor * altitudeFactor)
+                                    return new Vector3(cartesian.x, cartesian.y, cartesian.z)
+                                }
+                            )
+                        }/>
+                )
+            }
+        </>
     )
 }
-
