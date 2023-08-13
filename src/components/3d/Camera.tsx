@@ -102,5 +102,6 @@ export default function Camera() {
         ref={cameraControlsRef}
         distance={500}
         truckSpeed={0}
+        makeDefault={true}
     />
 }
