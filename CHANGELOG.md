@@ -1,3 +1,11 @@
+## [1.7.0-develop.6](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.5...v1.7.0-develop.6) (2023-08-13)
+
+
+### Features
+
+* add annotation for airports ([d54b243](https://gitlab.com/dev6645326/react-flight-tracker/commit/d54b2435df34695a7b468225a650b6ff5ba2bb02)), closes [#8](https://gitlab.com/dev6645326/react-flight-tracker/issues/8)
+* add destination line ([aa39d2b](https://gitlab.com/dev6645326/react-flight-tracker/commit/aa39d2babc5500f74437149a104f83f02992fa58))
+
 ## [1.7.0-develop.5](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.4...v1.7.0-develop.5) (2023-08-12)
 
 
