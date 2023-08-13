@@ -1,11 +1,12 @@
-import {CameraControls, Stars} from "@react-three/drei";
-
-import {EARTH_RADIUS} from "../../constants.ts";
+import {Stars} from "@react-three/drei";
 import {Bloom, EffectComposer, SMAA, Vignette} from "@react-three/postprocessing";
 import {useRecoilValue} from "recoil";
 import {graphicOptionsState} from "../../atoms.ts";
 import {CountryBorders} from "./countryBorders.tsx";
-import {lazy, useEffect, useRef} from "react";
+import {lazy} from "react";
+import Sun from "./Sun.tsx";
+import Moon from "./Moon.tsx";
+import Camera from "./Camera.tsx";
 
 const FlightTrail = lazy(() => import('./FlightTrail.tsx'))
 const Flights = lazy(() => import('./Flights.tsx'))
@@ -14,24 +15,13 @@ const MobileEarth = lazy(() => import('./MobileEarth.tsx'))
 
 function Scene() {
     const graphicOptions = useRecoilValue(graphicOptionsState)
-    const cameraControlsRef = useRef<CameraControls>(null!)
-    useEffect(() => {
-            if (cameraControlsRef.current) {
-
-                void cameraControlsRef.current.dolly(500 - (EARTH_RADIUS * 2), true).then(() => {
-                        console.log('done')
-                    }
-                )
-            }
-        }
-        , [cameraControlsRef])
     return (
         <>
             {
                 graphicOptions.stars ?
                     <Stars
                         radius={100}
-                        depth={50}
+                        depth={50000}
                         count={1000}
                         factor={4}
                         saturation={0}
@@ -40,20 +30,14 @@ function Scene() {
                     />
                     : <></>
             }
-            <CameraControls
-                minDistance={EARTH_RADIUS + 0.2}
-                ref={cameraControlsRef}
-                distance={500}
-                truckSpeed={0}
-            />
+            <Camera/>
             {
                 graphicOptions.highResolutionEarth ?
                     <Earth/>
                     : <MobileEarth/>
             }
-            <pointLight position={[EARTH_RADIUS + 102, 0, 0]}
-                        castShadow={true}
-            />
+            <Sun/>
+            <Moon/>
             <Flights/>
             <FlightTrail/>
 

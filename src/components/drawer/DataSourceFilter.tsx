@@ -2,7 +2,7 @@ import {useRecoilState} from "recoil";
 import {liveFlightsOptionsState,} from "../../atoms.ts";
 import {useState} from "react";
 import {Avatar, Checkbox, Collapse, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+import SourceIcon from '@mui/icons-material/Source';
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import FAA from "../../assets/FAA_LOGO.png"
 import ADSB from "../../assets/ADSB.png"
@@ -17,7 +17,7 @@ export function DataSourceFilter() {
         <>
             <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                    <InboxIcon/>
+                    <SourceIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Data Sources"/>
                 {open ? <ExpandLess/> : <ExpandMore/>}

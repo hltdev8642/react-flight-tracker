@@ -1,3 +1,64 @@
+## [1.7.0-develop.7](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.6...v1.7.0-develop.7) (2023-08-13)
+
+
+### Features
+
+* add annotation a setting to disable annotations ([4b8f728](https://gitlab.com/dev6645326/react-flight-tracker/commit/4b8f728d4f7c9538004f0f33f91ea6519c20aaa1)), closes [#8](https://gitlab.com/dev6645326/react-flight-tracker/issues/8)
+
+## [1.7.0-develop.6](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.5...v1.7.0-develop.6) (2023-08-13)
+
+
+### Features
+
+* add annotation for airports ([d54b243](https://gitlab.com/dev6645326/react-flight-tracker/commit/d54b2435df34695a7b468225a650b6ff5ba2bb02)), closes [#8](https://gitlab.com/dev6645326/react-flight-tracker/issues/8)
+* add destination line ([aa39d2b](https://gitlab.com/dev6645326/react-flight-tracker/commit/aa39d2babc5500f74437149a104f83f02992fa58))
+
+## [1.7.0-develop.5](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.4...v1.7.0-develop.5) (2023-08-12)
+
+
+### Features
+
+* update icons ([985f5af](https://gitlab.com/dev6645326/react-flight-tracker/commit/985f5af0c3f94d52ab05247bbc6388a06e835a31))
+
+## [1.7.0-develop.4](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.3...v1.7.0-develop.4) (2023-08-11)
+
+
+### Features
+
+* add moon and camera controls ([5cff2e4](https://gitlab.com/dev6645326/react-flight-tracker/commit/5cff2e4e7796d3828ce788662f6c71faab1a6fa3))
+* optimize sun calculations ([f74e283](https://gitlab.com/dev6645326/react-flight-tracker/commit/f74e2839f9cc09e066c6ab5b8d353836c8d21f36))
+
+## [1.7.0-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.2...v1.7.0-develop.3) (2023-08-10)
+
+
+### Bug Fixes
+
+* interval infinite loop ([358e462](https://gitlab.com/dev6645326/react-flight-tracker/commit/358e462c092f85bbf26b625ad6a6dba74713311f))
+
+## [1.7.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.1...v1.7.0-develop.2) (2023-08-10)
+
+
+### Bug Fixes
+
+* menu size ([712139c](https://gitlab.com/dev6645326/react-flight-tracker/commit/712139c1bbb20dd21fbec3e379f742a0723002b5))
+
+## [1.7.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0...v1.7.0-develop.1) (2023-08-10)
+
+
+### Features
+
+* add astronomy drawer ([a507f67](https://gitlab.com/dev6645326/react-flight-tracker/commit/a507f67a685670e0c1c9e02e86294a616e144dc2)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+* make sun rotate accurately ([9e6a1df](https://gitlab.com/dev6645326/react-flight-tracker/commit/9e6a1df23de79b76c7d594ce4521af0ef5517fc3)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+* toFixed on numbers ([aae3deb](https://gitlab.com/dev6645326/react-flight-tracker/commit/aae3debc8e54edb31520be63337cc657770a1daf)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+
+
+### Bug Fixes
+
+* dateNumber ([223707d](https://gitlab.com/dev6645326/react-flight-tracker/commit/223707d36564be675a0ee0e4c7ca9a11399035ff)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+* lint issue ([3ef1426](https://gitlab.com/dev6645326/react-flight-tracker/commit/3ef14262649f27932b2b62ddcf661c2c4a56349e)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+* menu responsiveness ([755386e](https://gitlab.com/dev6645326/react-flight-tracker/commit/755386e8b98131d90e8f49acecad59ccf5cf18e8)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+* sun disappear on menu open ([a1ec8c1](https://gitlab.com/dev6645326/react-flight-tracker/commit/a1ec8c197235b9c201ca5a9b728e655b99926945)), closes [#7](https://gitlab.com/dev6645326/react-flight-tracker/issues/7)
+
 ## [1.6.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.5.0...v1.6.0) (2023-08-09)
 
 

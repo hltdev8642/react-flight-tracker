@@ -2,7 +2,7 @@ import {useRecoilState} from "recoil";
 import {liveFlightsOptionsState,} from "../../atoms.ts";
 import {useState} from "react";
 import {Checkbox, Collapse, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+import RadarIcon from '@mui/icons-material/Radar';
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 
 export function RadarOptions() {
@@ -15,7 +15,7 @@ export function RadarOptions() {
         <>
             <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                    <InboxIcon/>
+                    <RadarIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Radar Options"/>
                 {open ? <ExpandLess/> : <ExpandMore/>}

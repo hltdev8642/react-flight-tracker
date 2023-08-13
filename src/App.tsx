@@ -11,10 +11,13 @@ import {LoadingScreen} from "./LoadingScreen.tsx";
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const drawerWidth = "max(20vw, 200px)"
-
 
 export function App() {
+    let drawerWidth = "max(20vw, 350px)";
+    if (window.innerWidth < 500) {
+        drawerWidth = "100vw";
+    }
+
     const theme = useTheme();
     const [open, setOpen] = useState(false);
 
@@ -85,6 +88,12 @@ export function App() {
                     style={{
                         height: "100vh",
                     }}
+                    camera={{
+                        near: 0.1,
+                        far: 100000000,
+                    }
+                    }
+                    // shadows={true}
                 >
                     <Suspense
                         fallback={<LoadingScreen/>}
