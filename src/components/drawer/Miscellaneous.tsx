@@ -2,6 +2,7 @@ import {useRecoilState} from "recoil";
 import {CAMERA_TARGETS, cameraTargetState, isAnimationRunningState, miscellaneousOptionsState,} from "../../atoms.ts";
 import {useState} from "react";
 import {
+    Checkbox,
     Collapse,
     List,
     ListItem,
@@ -53,6 +54,18 @@ export function Miscellaneous() {
                             }
                             valueLabelDisplay="auto"
                         />
+                    </ListItem>
+                    <ListItem sx={{pl: 4}}>
+                        <ListItemText primary="Annotations"/>
+                        <Checkbox checked={miscellaneousOption.enableAnnotations}
+                                  onChange={(_, checked) => setMiscellaneousOption({
+                                          ...miscellaneousOption,
+                                          enableAnnotations: checked
+                                      }
+                                  )}
+                                  disabled={isAnimationRunning}
+                        />
+
                     </ListItem>
 
                     <ListItem sx={{pl: 4}}>

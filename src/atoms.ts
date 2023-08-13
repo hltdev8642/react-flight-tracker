@@ -57,12 +57,14 @@ export const graphicOptionsState = atom<GraphicOptions>({
 
 interface MiscellaneousOptions {
     altitudeFactor: number,
+    enableAnnotations: boolean,
 }
 
 export const miscellaneousOptionsState = atom<MiscellaneousOptions>({
         key: 'miscellaneousOptions',
         default: {
             altitudeFactor: 1,
+            enableAnnotations: true,
         }
     }
 )
