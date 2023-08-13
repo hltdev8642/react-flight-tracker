@@ -8,9 +8,10 @@ import {
 } from "../../utils.ts";
 import {EARTH_RADIUS, reductionFactor} from "../../constants.ts";
 import {Vector3} from "three";
-import {Line} from "@react-three/drei";
+import {Line, Sphere} from "@react-three/drei";
 import {useEffect} from "react";
 import {toast} from "react-toastify";
+import Callout from "./Callout.tsx";
 
 export default function FlightTrail() {
     const selectedFlight = useRecoilValue(selectedFlightState);
@@ -54,6 +55,10 @@ export default function FlightTrail() {
         points = undefined
     }
 
+    const destination = convertToCartesian(data?.airport?.destination?.position.latitude || 0, data?.airport?.destination?.position.longitude || 0, EARTH_RADIUS + (data?.airport?.destination?.position.altitude || 0) * reductionFactor * altitudeFactor + 0.001)
+    const origin = convertToCartesian(data?.airport?.origin?.position?.latitude || 0, data?.airport?.origin?.position?.longitude || 0, EARTH_RADIUS + (data?.airport?.origin?.position?.altitude || 0) * reductionFactor * altitudeFactor + 0.001)
+
+
     return (
         <>
             <Line
@@ -87,6 +92,47 @@ export default function FlightTrail() {
                             )
                         }/>
                 )
+            }
+            {
+                data &&
+                data.airport?.destination &&
+                data.airport?.origin &&
+                <>
+                    <Callout position={
+                        new Vector3(destination.x, destination.y, destination.z)
+
+                    } text={`Destination: ${data?.airport?.destination?.name || ''}`}/>
+                    <Callout position={
+                        new Vector3(origin.x, origin.y, origin.z)
+                    } text={`Origin: ${data?.airport?.origin?.name || ''}`}/>
+
+                    <Sphere args={[EARTH_RADIUS / 100, 10, 10]}
+                            position={
+                                new Vector3(destination.x, destination.y, destination.z)
+                            }>
+                        <meshStandardMaterial
+                            color={'white'}
+                            emissive={'white'}
+                            emissiveIntensity={0.5}
+                            flatShading={false}
+
+                        />
+                    </Sphere>
+                    <Sphere args={[EARTH_RADIUS / 100, 10, 10]}
+                            position={
+                                new Vector3(origin.x, origin.y, origin.z)
+                            }>
+                        <meshStandardMaterial
+                            color={'white'}
+                            emissive={'white'}
+                            emissiveIntensity={0.5}
+                            flatShading={false}
+
+                        />
+                    </Sphere>
+
+
+                </>
             }
         </>
     )
