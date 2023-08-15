@@ -1,3 +1,10 @@
+## [1.7.0-develop.8](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.7...v1.7.0-develop.8) (2023-08-15)
+
+
+### Features
+
+* add analytics ([86ced64](https://gitlab.com/dev6645326/react-flight-tracker/commit/86ced641845f3eb993d710b012568d373fd80ef8))
+
 ## [1.7.0-develop.7](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.6...v1.7.0-develop.7) (2023-08-13)
 
 
