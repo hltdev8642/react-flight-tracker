@@ -1,3 +1,20 @@
+## [1.8.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0...v1.8.0-develop.1) (2023-08-15)
+
+
+### Features
+
+* add analytics ([86ced64](https://gitlab.com/dev6645326/react-flight-tracker/commit/86ced641845f3eb993d710b012568d373fd80ef8))
+
+
+### Bug Fixes
+
+* merge ([d8c9b68](https://gitlab.com/dev6645326/react-flight-tracker/commit/d8c9b68d8b9a2bfcb7a05196b59c7e54b1b0c2c1))
+
+
+### Other Updates
+
+* **release:** 1.7.0-develop.8 [skip ci] ([8d9a6ae](https://gitlab.com/dev6645326/react-flight-tracker/commit/8d9a6aee5055a06f1dc655304fbe62eda2c14dee))
+
 ## [1.7.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.6.0...v1.7.0) (2023-08-13)
 
 
