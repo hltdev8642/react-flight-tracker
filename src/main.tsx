@@ -6,9 +6,7 @@ import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 import {RecoilRoot} from "recoil";
 import {App} from "./App.tsx";
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
-import ReactGA from "react-ga4";
 
-ReactGA.initialize("G-M2J511G1JZ");
 const queryClient = new QueryClient()
 const theme = createTheme({
     palette: {
