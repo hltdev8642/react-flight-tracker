@@ -1,3 +1,10 @@
+## [1.7.0-develop.7](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.6...v1.7.0-develop.7) (2023-08-13)
+
+
+### Features
+
+* add annotation a setting to disable annotations ([4b8f728](https://gitlab.com/dev6645326/react-flight-tracker/commit/4b8f728d4f7c9538004f0f33f91ea6519c20aaa1)), closes [#8](https://gitlab.com/dev6645326/react-flight-tracker/issues/8)
+
 ## [1.7.0-develop.6](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0-develop.5...v1.7.0-develop.6) (2023-08-13)
 
 
