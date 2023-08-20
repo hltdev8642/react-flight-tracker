@@ -89,7 +89,7 @@ export default function FlightTrail() {
                                             longitude: data?.airport.destination?.position.longitude || 0,
                                             altitude: data?.airport.destination?.position.altitude || 0
                                         },
-                                        100,
+                                        10,
                                     ).map(
                                         (point) => {
                                             const cartesian = convertToCartesian(point.latitude, point.longitude, EARTH_RADIUS + point.altitude * reductionFactor * altitudeFactor)
