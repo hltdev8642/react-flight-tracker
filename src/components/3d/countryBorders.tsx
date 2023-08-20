@@ -7,7 +7,7 @@ import {convertToCartesian} from "../../utils.ts";
 
 function mapPolygon(polygon: Polygon, index: number) {
     const vertices = new Float32Array(polygon.coordinates.map((coordinate) => {
-                const cartesian = convertToCartesian(coordinate.lat, coordinate.lng, EARTH_RADIUS + 0.001)
+                const cartesian = convertToCartesian(coordinate.lat, coordinate.lng, EARTH_RADIUS + 0.00001)
                 return [cartesian.x, cartesian.y, cartesian.z]
             }
         ).reverse().flat()
