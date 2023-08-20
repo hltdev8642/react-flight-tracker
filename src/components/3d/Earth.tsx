@@ -37,19 +37,18 @@ export default function Earth() {
 
 
     return (
-        <><Sphere args={[EARTH_RADIUS, 50, 50]}>
-            <meshPhongMaterial specularMap={specularMap}/>
-            <meshStandardMaterial
-                map={colorMap}
-                bumpMap={bumpMap}
-                bumpScale={0.01}
-                displacementMap={bumpMap}
-                displacementScale={0.01}
-                displacementBias={0.0001}
-                emissiveMap={nightMap}
-                emissiveIntensity={5}
-                emissive={0xaaaaaa}
-            />
-        </Sphere></>
+        <>
+            <Sphere args={[EARTH_RADIUS, 30, 30]}>
+                <meshPhongMaterial specularMap={specularMap}/>
+                <meshStandardMaterial
+                    map={colorMap}
+                    bumpMap={bumpMap}
+                    bumpScale={0.01}
+                    emissiveMap={nightMap}
+                    emissiveIntensity={5}
+                    emissive={0xaaaaaa}
+                />
+            </Sphere>
+        </>
     )
 }
