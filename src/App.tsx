@@ -33,7 +33,9 @@ export function App() {
 
 
             </Grid>
-            <ToastContainer/>
+            <ToastContainer
+                position="bottom-center"
+            />
         </>
 
 
