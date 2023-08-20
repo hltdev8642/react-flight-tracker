@@ -1,3 +1,10 @@
+## [1.8.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0-develop.1...v1.8.0-develop.2) (2023-08-15)
+
+
+### Bug Fixes
+
+* google analytics ([718d5ee](https://gitlab.com/dev6645326/react-flight-tracker/commit/718d5ee4c0573c241550d707f7d83a3cc3a7e593))
+
 ## [1.8.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0...v1.8.0-develop.1) (2023-08-15)
 
 
