@@ -1,3 +1,19 @@
+## [1.8.0-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0-develop.2...v1.8.0-develop.3) (2023-08-20)
+
+
+### Features
+
+* add description meta tag ([7b8795c](https://gitlab.com/dev6645326/react-flight-tracker/commit/7b8795cd959bdbcc8a3df105e495034a62d8c2ea))
+* make origin and destination points visible when annotations are disabled ([2d23f5d](https://gitlab.com/dev6645326/react-flight-tracker/commit/2d23f5d613b51b9d619bfd4c1193d70e655d0412))
+* move toast to bottom-center ([4964aec](https://gitlab.com/dev6645326/react-flight-tracker/commit/4964aec251dd6ffbb3aa8e95b1cf75dffdf127ce))
+* use low-res textures for MobileEarth instead of no textures at all ([8c3ed9c](https://gitlab.com/dev6645326/react-flight-tracker/commit/8c3ed9c9bb98c5434f7a20b2c51f105c94f489d5))
+* use MobileEarth as suspense for Earth ([af26de6](https://gitlab.com/dev6645326/react-flight-tracker/commit/af26de67fd3c8771897465a9e4099d89de189442))
+
+
+### Bug Fixes
+
+* reduce overlap offset ([0ad053a](https://gitlab.com/dev6645326/react-flight-tracker/commit/0ad053aae6c2b0af892e0bd7b8eff527e387cc7a))
+
 ## [1.8.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0-develop.1...v1.8.0-develop.2) (2023-08-15)
 
 
