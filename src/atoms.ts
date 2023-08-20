@@ -33,7 +33,7 @@ interface GraphicOptions {
 export const defaultGraphicOptions: GraphicOptions = {
     bloom: true,
     vignette: true,
-    SMAA: true,
+    SMAA: false,
     stars: true,
     highResolutionEarth: true,
     countryBorders: true,
@@ -51,7 +51,7 @@ const gpuTier = await getGPUTier();
 
 export const graphicOptionsState = atom<GraphicOptions>({
         key: 'graphicOptions',
-        default: gpuTier.isMobile ? mobileGraphicOptions : defaultGraphicOptions,
+        default: gpuTier.tier >= 3 || !gpuTier.isMobile ? defaultGraphicOptions : mobileGraphicOptions,
     }
 )
 
