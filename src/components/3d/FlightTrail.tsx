@@ -99,6 +99,30 @@ export default function FlightTrail() {
                                 }/>
                         )
                     }
+                    <Sphere args={[EARTH_RADIUS / 100, 10, 10]}
+                            position={
+                                new Vector3(destination.x, destination.y, destination.z)
+                            }>
+                        <meshStandardMaterial
+                            color={'white'}
+                            emissive={'white'}
+                            emissiveIntensity={0.5}
+                            flatShading={false}
+
+                        />
+                    </Sphere>
+                    <Sphere args={[EARTH_RADIUS / 100, 10, 10]}
+                            position={
+                                new Vector3(origin.x, origin.y, origin.z)
+                            }>
+                        <meshStandardMaterial
+                            color={'white'}
+                            emissive={'white'}
+                            emissiveIntensity={0.5}
+                            flatShading={false}
+
+                        />
+                    </Sphere>
                     {
                         annotationsEnabled &&
                         <>
@@ -110,30 +134,7 @@ export default function FlightTrail() {
                                 new Vector3(origin.x, origin.y, origin.z)
                             } text={`Origin: ${data?.airport?.origin?.name || ''}`}/>
 
-                            <Sphere args={[EARTH_RADIUS / 100, 10, 10]}
-                                    position={
-                                        new Vector3(destination.x, destination.y, destination.z)
-                                    }>
-                                <meshStandardMaterial
-                                    color={'white'}
-                                    emissive={'white'}
-                                    emissiveIntensity={0.5}
-                                    flatShading={false}
 
-                                />
-                            </Sphere>
-                            <Sphere args={[EARTH_RADIUS / 100, 10, 10]}
-                                    position={
-                                        new Vector3(origin.x, origin.y, origin.z)
-                                    }>
-                                <meshStandardMaterial
-                                    color={'white'}
-                                    emissive={'white'}
-                                    emissiveIntensity={0.5}
-                                    flatShading={false}
-
-                                />
-                            </Sphere>
                         </>
                     }
 
