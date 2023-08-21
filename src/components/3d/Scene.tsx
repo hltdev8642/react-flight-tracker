@@ -3,7 +3,7 @@ import {Bloom, EffectComposer, SMAA, Vignette} from "@react-three/postprocessing
 import {useRecoilValue} from "recoil";
 import {graphicOptionsState} from "../../atoms.ts";
 import {CountryBorders} from "./countryBorders.tsx";
-import {lazy} from "react";
+import {lazy, Suspense} from "react";
 import Sun from "./Sun.tsx";
 import Moon from "./Moon.tsx";
 import Camera from "./Camera.tsx";
@@ -31,11 +31,17 @@ function Scene() {
                     : <></>
             }
             <Camera/>
-            {
-                graphicOptions.highResolutionEarth ?
-                    <Earth/>
-                    : <MobileEarth/>
-            }
+            <Suspense fallback={
+                <>
+                    <MobileEarth/>
+                </>
+            }>
+                {
+                    graphicOptions.highResolutionEarth ?
+                        <Earth/>
+                        : <MobileEarth/>
+                }
+            </Suspense>
             <Sun/>
             <Moon/>
             <Flights/>

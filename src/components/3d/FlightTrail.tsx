@@ -9,7 +9,7 @@ import {
 import {EARTH_RADIUS, reductionFactor} from "../../constants.ts";
 import {Vector3} from "three";
 import {Line, Sphere} from "@react-three/drei";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import Callout from "./Callout.tsx";
 
@@ -40,6 +40,12 @@ export default function FlightTrail() {
         }
         , [refetch, selectedFlight])
 
+    useEffect(() => {
+        setDestinationAnnotationVisible(false)
+        setOriginAnnotationVisible(false)
+    },
+        [selectedFlight]
+    )
     const altitudeFactor = useRecoilValue(miscellaneousOptionsState).altitudeFactor
     const lineWidth = 20000000 * reductionFactor
     let points = data?.trail && data?.trail?.length > 3 && data?.trail?.map((trailPoint) => {
@@ -58,7 +64,8 @@ export default function FlightTrail() {
 
     const destination = convertToCartesian(data?.airport?.destination?.position.latitude || 0, data?.airport?.destination?.position.longitude || 0, EARTH_RADIUS + (data?.airport?.destination?.position.altitude || 0) * reductionFactor * altitudeFactor + 0.001)
     const origin = convertToCartesian(data?.airport?.origin?.position?.latitude || 0, data?.airport?.origin?.position?.longitude || 0, EARTH_RADIUS + (data?.airport?.origin?.position?.altitude || 0) * reductionFactor * altitudeFactor + 0.001)
-
+    const [originAnnotationVisible, setOriginAnnotationVisible] = useState(false)
+    const [destinationAnnotationVisible, setDestinationAnnotationVisible] = useState(false)
     return (
         <>
             <Line
@@ -89,7 +96,7 @@ export default function FlightTrail() {
                                             longitude: data?.airport.destination?.position.longitude || 0,
                                             altitude: data?.airport.destination?.position.altitude || 0
                                         },
-                                        100,
+                                        10,
                                     ).map(
                                         (point) => {
                                             const cartesian = convertToCartesian(point.latitude, point.longitude, EARTH_RADIUS + point.altitude * reductionFactor * altitudeFactor)
@@ -99,42 +106,89 @@ export default function FlightTrail() {
                                 }/>
                         )
                     }
-                    {
-                        annotationsEnabled &&
-                        <>
-                            <Callout position={
+                    <Sphere args={[EARTH_RADIUS / 100, 10, 10]}
+                            position={
                                 new Vector3(destination.x, destination.y, destination.z)
+                            }
 
-                            } text={`Destination: ${data?.airport?.destination?.name || ''}`}/>
-                            <Callout position={
+                            onClick={
+                                () => {
+                                    setDestinationAnnotationVisible(true)
+                                }
+                            }
+                            onPointerOver={
+                                () => {
+                                    setDestinationAnnotationVisible(true)
+                                }
+                            }
+
+                            onPointerMissed={
+                                () => {
+                                    setDestinationAnnotationVisible(false)
+                                }
+
+                            }
+
+                    >
+                        <meshStandardMaterial
+                            color={'white'}
+                            emissive={'white'}
+                            emissiveIntensity={0.5}
+                            flatShading={false}
+
+                        />
+                    </Sphere>
+                    <Sphere args={[EARTH_RADIUS / 100, 10, 10]}
+                            position={
                                 new Vector3(origin.x, origin.y, origin.z)
-                            } text={`Origin: ${data?.airport?.origin?.name || ''}`}/>
+                            }
+                            onClick={
+                                () => {
+                                    setOriginAnnotationVisible(true)
+                                }
+                            }
 
-                            <Sphere args={[EARTH_RADIUS / 100, 10, 10]}
-                                    position={
-                                        new Vector3(destination.x, destination.y, destination.z)
-                                    }>
-                                <meshStandardMaterial
-                                    color={'white'}
-                                    emissive={'white'}
-                                    emissiveIntensity={0.5}
-                                    flatShading={false}
+                            onPointerOver={
+                                () => {
+                                    setOriginAnnotationVisible(true)
+                                }
+                            }
 
-                                />
-                            </Sphere>
-                            <Sphere args={[EARTH_RADIUS / 100, 10, 10]}
-                                    position={
-                                        new Vector3(origin.x, origin.y, origin.z)
-                                    }>
-                                <meshStandardMaterial
-                                    color={'white'}
-                                    emissive={'white'}
-                                    emissiveIntensity={0.5}
-                                    flatShading={false}
+                            onPointerMissed={
+                                () => {
+                                    setOriginAnnotationVisible(false)
+                                }
+                            }
 
-                                />
-                            </Sphere>
-                        </>
+                    >
+                        <meshStandardMaterial
+                            color={'white'}
+                            emissive={'white'}
+                            emissiveIntensity={0.5}
+                            flatShading={false}
+
+                        />
+                    </Sphere>
+                    {
+                        originAnnotationVisible && annotationsEnabled &&
+                        <Callout position={
+                            new Vector3(origin.x, origin.y, origin.z)
+                        } text={`Origin: ${data?.airport?.origin?.name || ''}`}
+
+                        />
+
+
+                    }
+                    {
+                        destinationAnnotationVisible && annotationsEnabled &&
+                        <Callout position={
+                            new Vector3(destination.x, destination.y, destination.z)
+
+
+                        } text={`Destination: ${data?.airport?.destination?.name || ''}`}
+
+                        />
+
                     }
 
 

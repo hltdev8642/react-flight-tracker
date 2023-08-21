@@ -44,7 +44,7 @@ export function Miscellaneous() {
                                 altitudeFactor: value as number
                             })}
                             min={1}
-                            max={10}
+                            max={100}
                             step={0.1}
                             marks={
                                 [

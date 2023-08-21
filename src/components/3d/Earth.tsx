@@ -6,7 +6,7 @@ import EarthBumpMap from "../../assets/earthmap/8081_earthbump10k.jpg";
 import EarthNightMap from "../../assets/earthmap/5_night_16k.jpg";
 import {Sphere} from "@react-three/drei";
 import {EARTH_RADIUS} from "../../constants.ts";
-
+import {toast} from "react-toastify";
 export default function Earth() {
     // load texture
     const [colorMap, specularMap, bumpMap, nightMap] = useLoader(TextureLoader, [
@@ -14,22 +14,35 @@ export default function Earth() {
             EarthSpecularMap,
             EarthBumpMap,
             EarthNightMap
-        ]
+        ],
+        (loader) => {
+            toast.loading(`Downloading High Resolution Earth Textures...`, {
+                toastId: 'loadingEarth',
+                autoClose: false,
+            })
+            loader.manager.onProgress = (_url, itemsLoaded, itemsTotal) => {
+                if (itemsLoaded === itemsTotal) {
+                    toast.dismiss('loadingEarth')
+                }
+
+            }
+
+        }
     ) as Texture[]
+
     return (
-        <><Sphere args={[EARTH_RADIUS, 50, 50]}>
-            <meshPhongMaterial specularMap={specularMap}/>
-            <meshStandardMaterial
-                map={colorMap}
-                bumpMap={bumpMap}
-                bumpScale={0.01}
-                displacementMap={bumpMap}
-                displacementScale={0.01}
-                displacementBias={0.0001}
-                emissiveMap={nightMap}
-                emissiveIntensity={5}
-                emissive={0xaaaaaa}
-            />
-        </Sphere></>
+        <>
+            <Sphere args={[EARTH_RADIUS, 50, 50]}>
+                <meshPhongMaterial specularMap={specularMap}/>
+                <meshStandardMaterial
+                    map={colorMap}
+                    bumpMap={bumpMap}
+                    bumpScale={0.01}
+                    emissiveMap={nightMap}
+                    emissiveIntensity={5}
+                    emissive={0xaaaaaa}
+                />
+            </Sphere>
+        </>
     )
 }

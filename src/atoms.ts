@@ -21,7 +21,7 @@ export const liveFlightsOptionsState = atom<RadarOptions>({
 )
 
 
-interface GraphicOptions {
+export interface GraphicOptions {
     bloom: boolean,
     vignette: boolean,
     SMAA: boolean,
@@ -30,7 +30,7 @@ interface GraphicOptions {
     stars: boolean,
 }
 
-export const defaultGraphicOptions: GraphicOptions = {
+export const ultraGraphics: GraphicOptions = {
     bloom: true,
     vignette: true,
     SMAA: true,
@@ -39,19 +39,61 @@ export const defaultGraphicOptions: GraphicOptions = {
     countryBorders: true,
 }
 
-export const mobileGraphicOptions: GraphicOptions = {
+export const highGraphics: GraphicOptions = {
+    bloom: true,
+    vignette: true,
+    SMAA: false,
+    stars: true,
+    highResolutionEarth: true,
+    countryBorders: true,
+}
+
+export const mediumGraphics: GraphicOptions = {
+    bloom: false,
+    vignette: false,
+    SMAA: false,
+    stars: true,
+    highResolutionEarth: true,
+    countryBorders: true,
+}
+
+export const lowGraphics: GraphicOptions = {
     bloom: false,
     vignette: false,
     SMAA: false,
     stars: false,
     highResolutionEarth: false,
-    countryBorders: true,
+    countryBorders: false,
 }
-const gpuTier = await getGPUTier();
+
+export const graphicOptionsOptions = {
+    ultra: ultraGraphics,
+    high: highGraphics,
+    medium: mediumGraphics,
+    low: lowGraphics,
+}
+
+
+async function calculateGraphicOptions() {
+    const gpuTier = await getGPUTier(
+        {
+            desktopTiers: [0, 15, 30, 60, 120, 200, 280, 400, 500, 600, 700, 800, 900, 1000],
+        }
+    );
+    if (gpuTier.tier >= 6) {
+        return graphicOptionsOptions.ultra
+    } else if (gpuTier.tier === 5 || gpuTier.tier === 4) {
+        return graphicOptionsOptions.high
+    } else if (gpuTier.tier === 2 || gpuTier.tier === 3) {
+        return graphicOptionsOptions.medium
+    } else {
+        return graphicOptionsOptions.low
+    }
+}
 
 export const graphicOptionsState = atom<GraphicOptions>({
         key: 'graphicOptions',
-        default: gpuTier.isMobile ? mobileGraphicOptions : defaultGraphicOptions,
+        default: calculateGraphicOptions(),
     }
 )
 

@@ -8,6 +8,7 @@ export default function Callout(
     props: {
         position: Vector3,
         text: string,
+        onClick?: () => void,
     }
 ) {
 
@@ -28,9 +29,19 @@ export default function Callout(
 
     return (
         <Html position={props.position}
+
+              zIndexRange={[0, 0]}
               visible={true}
+              style={
+                  {
+                      zIndex: 1,
+                  }
+              }
         >
-            <div className={'arrow_box'}>
+            <div className={'arrow_box'}
+
+
+            >
                 {props.text}
             </div>
         </Html>
