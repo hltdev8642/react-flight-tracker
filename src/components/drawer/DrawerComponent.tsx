@@ -33,6 +33,7 @@ export default function DrawerComponent() {
                         width: drawerWidth,
                         boxSizing: 'border-box',
                     },
+                    position: "absolute",
                 }}
                 anchor="left"
                 open={open}
