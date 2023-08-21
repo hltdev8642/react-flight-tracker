@@ -1,3 +1,19 @@
+## [1.8.0-develop.4](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0-develop.3...v1.8.0-develop.4) (2023-08-21)
+
+
+### Features
+
+* add loading texture toast ([cb88bb5](https://gitlab.com/dev6645326/react-flight-tracker/commit/cb88bb5c515aa194e9f91abc1e8f4fe4bb2f1ef9))
+* add multiple graphic options presets ([15fa780](https://gitlab.com/dev6645326/react-flight-tracker/commit/15fa7804cef1a3f4fc56af6a5e161b7d68595389))
+* raise altitude factor limit ([a9b5a19](https://gitlab.com/dev6645326/react-flight-tracker/commit/a9b5a19ce0b6b0dac5725a243eecb23f1a1ed4ca))
+
+
+### Bug Fixes
+
+* annotation and menu zIndex ([5d289af](https://gitlab.com/dev6645326/react-flight-tracker/commit/5d289af8d8ec7e483a4be517a62022a6ce8fdc81))
+* annotations (make it appear on hover) ([edae6ab](https://gitlab.com/dev6645326/react-flight-tracker/commit/edae6abc6f5bd19c62e111dec372fa4a82381826))
+* country border overlap ([412530d](https://gitlab.com/dev6645326/react-flight-tracker/commit/412530d47ed805f7f5d48904e2777af6c7bbd80f))
+
 ## [1.8.0-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0-develop.2...v1.8.0-develop.3) (2023-08-20)
 
 
