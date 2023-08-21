@@ -37,4 +37,5 @@ spec:
     namespace: flux-system
   update:
     path: ./manifests/react-flight-tracker/overlays/dev
+    strategy: Setters
   interval: 5m
