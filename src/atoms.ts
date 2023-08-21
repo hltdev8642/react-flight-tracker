@@ -64,7 +64,7 @@ export const miscellaneousOptionsState = atom<MiscellaneousOptions>({
         key: 'miscellaneousOptions',
         default: {
             altitudeFactor: 1,
-            enableAnnotations: false,
+            enableAnnotations: true,
         }
     }
 )
