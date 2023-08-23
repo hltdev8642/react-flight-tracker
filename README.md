@@ -7,6 +7,7 @@
 ![pipeline status](https://gitlab.com/dev6645326/react-flight-tracker/badges/master/pipeline.svg?ignore_skipped=true)
 ![release](https://gitlab.com/dev6645326/react-flight-tracker/-/badges/release.svg)
 ![coverage](https://gitlab.com/dev6645326/react-flight-tracker/badges/master/coverage.svg)
+
 </div>
 
 ## Table of Contents

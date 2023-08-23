@@ -9,7 +9,8 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prepare": "husky install",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "format": "npx prettier --write ."
   },
   "husky": {
     "hooks": {
@@ -20,7 +21,8 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
-    ]
+    ],
+    "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -62,12 +64,14 @@
     "@vitejs/plugin-react-swc": "^3.3.2",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.44.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "marked-gfm-heading-id": "^3.0.4",
     "marked-mangle": "^1.1.0",
+    "prettier": "^3.0.2",
     "semantic-release": "^21.0.7",
     "typescript": "^5.0.2",
     "vite": "4.4.9"
