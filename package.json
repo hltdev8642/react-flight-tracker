@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "commit": "git-cz",
-    "format": "npx prettier --write ."
+    "format": "npx prettier --write .",
+    "format:check": "npx prettier --check ."
   },
   "husky": {
     "hooks": {

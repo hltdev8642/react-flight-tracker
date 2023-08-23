@@ -44,6 +44,7 @@ lint:
   stage: lint
   script:
     - yarn lint
+    - yarn format:check
     - npx tsc --noEmit
 
 build-app:
