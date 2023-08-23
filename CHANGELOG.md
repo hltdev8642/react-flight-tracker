@@ -1,3 +1,5 @@
+## [1.8.0-develop.5](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0-develop.4...v1.8.0-develop.5) (2023-08-23)
+
 ## [1.8.0-develop.4](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0-develop.3...v1.8.0-develop.4) (2023-08-21)
 
 ### Features
