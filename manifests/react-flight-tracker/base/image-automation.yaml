@@ -21,11 +21,10 @@ spec:
         - {{ $resource.Kind }} {{ $resource.Name }}
         {{ end -}}
         [skip ci]
-        
         Images:
         {{ range .Updated.Images -}}
         - {{.}}
-        {{ end -}}  
+        {{ end -}}
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot

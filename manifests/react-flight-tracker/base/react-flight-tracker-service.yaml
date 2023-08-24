@@ -16,4 +16,4 @@ spec:
   selector:
     io.kompose.service: react-flight-tracker
 status:
-  loadBalancer: { }
+  loadBalancer: {}

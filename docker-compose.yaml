@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 services:
   react-flight-tracker:
     image: ghcr.io/apoorva64/react-flight-tracker
