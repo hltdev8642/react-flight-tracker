@@ -1,19 +1,16 @@
 ## [1.9.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0...v1.9.0-develop.1) (2023-08-24)
 
-
 ### Features
 
-* remove esnext dep ([4939a31](https://gitlab.com/dev6645326/react-flight-tracker/commit/4939a31a3e7270ec40155f200e0b646ad4e0f67f))
-
+- remove esnext dep ([4939a31](https://gitlab.com/dev6645326/react-flight-tracker/commit/4939a31a3e7270ec40155f200e0b646ad4e0f67f))
 
 ### Bug Fixes
 
-* merge ([4025e11](https://gitlab.com/dev6645326/react-flight-tracker/commit/4025e11fb5cd0e7a955ff234d9f06b1c96aaf425))
-
+- merge ([4025e11](https://gitlab.com/dev6645326/react-flight-tracker/commit/4025e11fb5cd0e7a955ff234d9f06b1c96aaf425))
 
 ### Other Updates
 
-* **release:** 1.8.0-develop.5 [skip ci] ([d6cf3de](https://gitlab.com/dev6645326/react-flight-tracker/commit/d6cf3debef9f17eba4adbe0c7ad46d24ed3def6c))
+- **release:** 1.8.0-develop.5 [skip ci] ([d6cf3de](https://gitlab.com/dev6645326/react-flight-tracker/commit/d6cf3debef9f17eba4adbe0c7ad46d24ed3def6c))
 
 ## [1.8.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0...v1.8.0) (2023-08-21)
 
