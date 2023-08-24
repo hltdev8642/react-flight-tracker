@@ -1,36 +1,33 @@
 ## [1.8.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.7.0...v1.8.0) (2023-08-21)
 
-
 ### Features
 
-* add analytics ([86ced64](https://gitlab.com/dev6645326/react-flight-tracker/commit/86ced641845f3eb993d710b012568d373fd80ef8))
-* add description meta tag ([7b8795c](https://gitlab.com/dev6645326/react-flight-tracker/commit/7b8795cd959bdbcc8a3df105e495034a62d8c2ea))
-* add loading texture toast ([cb88bb5](https://gitlab.com/dev6645326/react-flight-tracker/commit/cb88bb5c515aa194e9f91abc1e8f4fe4bb2f1ef9))
-* add multiple graphic options presets ([15fa780](https://gitlab.com/dev6645326/react-flight-tracker/commit/15fa7804cef1a3f4fc56af6a5e161b7d68595389))
-* make origin and destination points visible when annotations are disabled ([2d23f5d](https://gitlab.com/dev6645326/react-flight-tracker/commit/2d23f5d613b51b9d619bfd4c1193d70e655d0412))
-* move toast to bottom-center ([4964aec](https://gitlab.com/dev6645326/react-flight-tracker/commit/4964aec251dd6ffbb3aa8e95b1cf75dffdf127ce))
-* raise altitude factor limit ([a9b5a19](https://gitlab.com/dev6645326/react-flight-tracker/commit/a9b5a19ce0b6b0dac5725a243eecb23f1a1ed4ca))
-* use low-res textures for MobileEarth instead of no textures at all ([8c3ed9c](https://gitlab.com/dev6645326/react-flight-tracker/commit/8c3ed9c9bb98c5434f7a20b2c51f105c94f489d5))
-* use MobileEarth as suspense for Earth ([af26de6](https://gitlab.com/dev6645326/react-flight-tracker/commit/af26de67fd3c8771897465a9e4099d89de189442))
-
+- add analytics ([86ced64](https://gitlab.com/dev6645326/react-flight-tracker/commit/86ced641845f3eb993d710b012568d373fd80ef8))
+- add description meta tag ([7b8795c](https://gitlab.com/dev6645326/react-flight-tracker/commit/7b8795cd959bdbcc8a3df105e495034a62d8c2ea))
+- add loading texture toast ([cb88bb5](https://gitlab.com/dev6645326/react-flight-tracker/commit/cb88bb5c515aa194e9f91abc1e8f4fe4bb2f1ef9))
+- add multiple graphic options presets ([15fa780](https://gitlab.com/dev6645326/react-flight-tracker/commit/15fa7804cef1a3f4fc56af6a5e161b7d68595389))
+- make origin and destination points visible when annotations are disabled ([2d23f5d](https://gitlab.com/dev6645326/react-flight-tracker/commit/2d23f5d613b51b9d619bfd4c1193d70e655d0412))
+- move toast to bottom-center ([4964aec](https://gitlab.com/dev6645326/react-flight-tracker/commit/4964aec251dd6ffbb3aa8e95b1cf75dffdf127ce))
+- raise altitude factor limit ([a9b5a19](https://gitlab.com/dev6645326/react-flight-tracker/commit/a9b5a19ce0b6b0dac5725a243eecb23f1a1ed4ca))
+- use low-res textures for MobileEarth instead of no textures at all ([8c3ed9c](https://gitlab.com/dev6645326/react-flight-tracker/commit/8c3ed9c9bb98c5434f7a20b2c51f105c94f489d5))
+- use MobileEarth as suspense for Earth ([af26de6](https://gitlab.com/dev6645326/react-flight-tracker/commit/af26de67fd3c8771897465a9e4099d89de189442))
 
 ### Bug Fixes
 
-* annotation and menu zIndex ([5d289af](https://gitlab.com/dev6645326/react-flight-tracker/commit/5d289af8d8ec7e483a4be517a62022a6ce8fdc81))
-* annotations (make it appear on hover) ([edae6ab](https://gitlab.com/dev6645326/react-flight-tracker/commit/edae6abc6f5bd19c62e111dec372fa4a82381826))
-* country border overlap ([412530d](https://gitlab.com/dev6645326/react-flight-tracker/commit/412530d47ed805f7f5d48904e2777af6c7bbd80f))
-* google analytics ([718d5ee](https://gitlab.com/dev6645326/react-flight-tracker/commit/718d5ee4c0573c241550d707f7d83a3cc3a7e593))
-* merge ([d8c9b68](https://gitlab.com/dev6645326/react-flight-tracker/commit/d8c9b68d8b9a2bfcb7a05196b59c7e54b1b0c2c1))
-* reduce overlap offset ([0ad053a](https://gitlab.com/dev6645326/react-flight-tracker/commit/0ad053aae6c2b0af892e0bd7b8eff527e387cc7a))
-
+- annotation and menu zIndex ([5d289af](https://gitlab.com/dev6645326/react-flight-tracker/commit/5d289af8d8ec7e483a4be517a62022a6ce8fdc81))
+- annotations (make it appear on hover) ([edae6ab](https://gitlab.com/dev6645326/react-flight-tracker/commit/edae6abc6f5bd19c62e111dec372fa4a82381826))
+- country border overlap ([412530d](https://gitlab.com/dev6645326/react-flight-tracker/commit/412530d47ed805f7f5d48904e2777af6c7bbd80f))
+- google analytics ([718d5ee](https://gitlab.com/dev6645326/react-flight-tracker/commit/718d5ee4c0573c241550d707f7d83a3cc3a7e593))
+- merge ([d8c9b68](https://gitlab.com/dev6645326/react-flight-tracker/commit/d8c9b68d8b9a2bfcb7a05196b59c7e54b1b0c2c1))
+- reduce overlap offset ([0ad053a](https://gitlab.com/dev6645326/react-flight-tracker/commit/0ad053aae6c2b0af892e0bd7b8eff527e387cc7a))
 
 ### Other Updates
 
-* **release:** 1.7.0-develop.8 [skip ci] ([8d9a6ae](https://gitlab.com/dev6645326/react-flight-tracker/commit/8d9a6aee5055a06f1dc655304fbe62eda2c14dee))
-* **release:** 1.8.0-develop.1 [skip ci] ([c83fe79](https://gitlab.com/dev6645326/react-flight-tracker/commit/c83fe79df980501a59b7ce470494e729de53d830))
-* **release:** 1.8.0-develop.2 [skip ci] ([9856634](https://gitlab.com/dev6645326/react-flight-tracker/commit/985663410f14f4cc580e2a9eb42eac4a750816bf))
-* **release:** 1.8.0-develop.3 [skip ci] ([1c22073](https://gitlab.com/dev6645326/react-flight-tracker/commit/1c2207300108853fbb2b5c1a5e93b5488e801484))
-* **release:** 1.8.0-develop.4 [skip ci] ([eadb04d](https://gitlab.com/dev6645326/react-flight-tracker/commit/eadb04db6067ef8f93379ef9e6c5c017a002c719))
+- **release:** 1.7.0-develop.8 [skip ci] ([8d9a6ae](https://gitlab.com/dev6645326/react-flight-tracker/commit/8d9a6aee5055a06f1dc655304fbe62eda2c14dee))
+- **release:** 1.8.0-develop.1 [skip ci] ([c83fe79](https://gitlab.com/dev6645326/react-flight-tracker/commit/c83fe79df980501a59b7ce470494e729de53d830))
+- **release:** 1.8.0-develop.2 [skip ci] ([9856634](https://gitlab.com/dev6645326/react-flight-tracker/commit/985663410f14f4cc580e2a9eb42eac4a750816bf))
+- **release:** 1.8.0-develop.3 [skip ci] ([1c22073](https://gitlab.com/dev6645326/react-flight-tracker/commit/1c2207300108853fbb2b5c1a5e93b5488e801484))
+- **release:** 1.8.0-develop.4 [skip ci] ([eadb04d](https://gitlab.com/dev6645326/react-flight-tracker/commit/eadb04db6067ef8f93379ef9e6c5c017a002c719))
 
 ## [1.8.0-develop.5](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0-develop.4...v1.8.0-develop.5) (2023-08-23)
 
