@@ -1,3 +1,16 @@
+## [1.9.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.0-develop.1...v1.9.0-develop.2) (2023-08-24)
+
+
+### Features
+
+* add version number ([15cd056](https://gitlab.com/dev6645326/react-flight-tracker/commit/15cd056b6c723489afb99f536334a68b0b399adf))
+* add version number ([4df86d1](https://gitlab.com/dev6645326/react-flight-tracker/commit/4df86d1deecb25d05bda582031ef60e5cb187c78))
+
+
+### Bug Fixes
+
+* add CHANGELOG.md to prettier-ignore ([6a61ad3](https://gitlab.com/dev6645326/react-flight-tracker/commit/6a61ad38af9fdc5edfef8c10fb38446b4465cd0c))
+
 ## [1.9.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0...v1.9.0-develop.1) (2023-08-24)
 
 ### Features
