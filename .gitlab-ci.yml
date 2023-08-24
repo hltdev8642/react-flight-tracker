@@ -53,6 +53,7 @@ build-app:
     - .build-on
   stage: build
   script:
+    - export VITE_APP_VERSION=$(cat .VERSION)
     - yarn build
   artifacts:
     paths:

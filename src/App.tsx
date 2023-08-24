@@ -38,7 +38,10 @@ export function App() {
           opacity: 0.5,
         }}
       >
-        v{import.meta.env.PACKAGE_VERSION}
+        v
+        {import.meta.env.VITE_APP_VERSION ||
+          import.meta.env.PACKAGE_VERSION ||
+          "0.0.0"}
       </Typography>
     </>
   );
