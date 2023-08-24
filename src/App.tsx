@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { Suspense } from "react";
 import Scene from "./components/3d/Scene.tsx";
 import { Canvas } from "@react-three/fiber";
@@ -27,6 +27,19 @@ export function App() {
         </Canvas>
       </Grid>
       <ToastContainer position="bottom-center" />
+      <Typography
+        style={{
+          position: "absolute",
+          bottom: 0,
+          right: 0,
+          margin: "0.5em",
+          color: "white",
+          fontSize: "0.5em",
+          opacity: 0.5,
+        }}
+      >
+        v{import.meta.env.PACKAGE_VERSION}
+      </Typography>
     </>
   );
 }
