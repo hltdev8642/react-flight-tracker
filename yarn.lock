@@ -3003,10 +3003,10 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
 
-flightradar24-client-ts@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/flightradar24-client-ts/-/flightradar24-client-ts-1.3.0.tgz#50ba974b40c10ecaec9a7af379eac50f8ba7129e"
-  integrity sha512-IFR+Py/enKk6NJCeKXSZlOXpqnRdA8LZjEyJ2hS1xzrUlcfP7HSSpdXK9jeRIm0HbY/P01IVIwdpB+JY2VPBqg==
+flightradar24-client-ts@1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/flightradar24-client-ts/-/flightradar24-client-ts-1.3.2.tgz#67ee4c7af416dcbb79f6f9530358af5169d29d09"
+  integrity sha512-IlpBQukjIEAk2ENEMwTlaRAaFiAs5f0snfaUoOwJjQ9+Yd6MVSrPg51mHF8R0y3nZSzgaOhok1TD31q52zA8mA==
   dependencies:
     cross-fetch "^4.0.0"
     moment-timezone "^0.5.43"
