@@ -1,7 +1,7 @@
 {
   "name": "react-flight-tracker",
   "private": true,
-  "version": "1.9.0-develop.1",
+  "version": "1.9.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

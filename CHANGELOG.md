@@ -1,3 +1,38 @@
+## [1.9.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0...v1.9.0) (2023-08-24)
+
+
+### Features
+
+* add version number ([15cd056](https://gitlab.com/dev6645326/react-flight-tracker/commit/15cd056b6c723489afb99f536334a68b0b399adf))
+* add version number ([4df86d1](https://gitlab.com/dev6645326/react-flight-tracker/commit/4df86d1deecb25d05bda582031ef60e5cb187c78))
+* remove esnext dep ([4939a31](https://gitlab.com/dev6645326/react-flight-tracker/commit/4939a31a3e7270ec40155f200e0b646ad4e0f67f))
+
+
+### Bug Fixes
+
+* add CHANGELOG.md to prettier-ignore ([6a61ad3](https://gitlab.com/dev6645326/react-flight-tracker/commit/6a61ad38af9fdc5edfef8c10fb38446b4465cd0c))
+* merge ([4025e11](https://gitlab.com/dev6645326/react-flight-tracker/commit/4025e11fb5cd0e7a955ff234d9f06b1c96aaf425))
+
+
+### Other Updates
+
+* **release:** 1.8.0-develop.5 [skip ci] ([d6cf3de](https://gitlab.com/dev6645326/react-flight-tracker/commit/d6cf3debef9f17eba4adbe0c7ad46d24ed3def6c))
+* **release:** 1.9.0-develop.1 [skip ci] ([80c4279](https://gitlab.com/dev6645326/react-flight-tracker/commit/80c4279e96bfa3c964bb239e1dafa58e82b188fc))
+* **release:** 1.9.0-develop.2 [skip ci] ([0fa696c](https://gitlab.com/dev6645326/react-flight-tracker/commit/0fa696c8749de071116100ecd1718e980c3fab4b))
+
+## [1.9.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.0-develop.1...v1.9.0-develop.2) (2023-08-24)
+
+
+### Features
+
+* add version number ([15cd056](https://gitlab.com/dev6645326/react-flight-tracker/commit/15cd056b6c723489afb99f536334a68b0b399adf))
+* add version number ([4df86d1](https://gitlab.com/dev6645326/react-flight-tracker/commit/4df86d1deecb25d05bda582031ef60e5cb187c78))
+
+
+### Bug Fixes
+
+* add CHANGELOG.md to prettier-ignore ([6a61ad3](https://gitlab.com/dev6645326/react-flight-tracker/commit/6a61ad38af9fdc5edfef8c10fb38446b4465cd0c))
+
 ## [1.9.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0...v1.9.0-develop.1) (2023-08-24)
 
 ### Features
