@@ -1,3 +1,16 @@
+## [1.9.1-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.0...v1.9.1-develop.1) (2023-11-25)
+
+
+### Bug Fixes
+
+* use another proxy ([a590602](https://gitlab.com/dev6645326/react-flight-tracker/commit/a590602ddb3198afb05eca4dc163bf17a30198ef))
+* use low tier gpu ([30723ae](https://gitlab.com/dev6645326/react-flight-tracker/commit/30723ae277b9ea64a8e049ce29c85b496fb33f62))
+
+
+### Other Updates
+
+* update flight radar client api version to 1.3.2 ([6787615](https://gitlab.com/dev6645326/react-flight-tracker/commit/678761523496717f978ba5c3d7a986be81427c80))
+
 ## [1.9.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.8.0...v1.9.0) (2023-08-24)
 
 
