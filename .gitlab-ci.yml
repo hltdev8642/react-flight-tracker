@@ -96,7 +96,6 @@ build-image:
     - chmod +x /usr/bin/docker-buildx
     - apk add --no-cache git
   script:
-    - sudo apt-get install qemu binfmt-support qemu-user-static -y # Install the qemu packages
     - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
     # pull the latest version of the branch we are building as the version is updated in the release job
     - docker buildx create --use --name buildcontext
