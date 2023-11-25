@@ -81,11 +81,11 @@ async function calculateGraphicOptions() {
       0, 15, 30, 60, 120, 200, 280, 400, 500, 600, 700, 800, 900, 1000,
     ],
   });
-  if (gpuTier.tier >= 6) {
+  if (gpuTier.tier >= 7) {
     return graphicOptionsOptions.ultra;
-  } else if (gpuTier.tier === 5 || gpuTier.tier === 4) {
+  } else if (gpuTier.tier === 5 || gpuTier.tier === 6) {
     return graphicOptionsOptions.high;
-  } else if (gpuTier.tier === 2 || gpuTier.tier === 3) {
+  } else if (gpuTier.tier === 3 || gpuTier.tier === 4) {
     return graphicOptionsOptions.medium;
   } else {
     return graphicOptionsOptions.low;
