@@ -64,5 +64,9 @@ export function listInterpolatedGeoCoordinates(
   return coordinates;
 }
 
-const flightRadarApi = new FlightRadarApi();
+const flightRadarApi = new FlightRadarApi(
+    {
+      corsProxy: "https://thingproxy.freeboard.io/fetch/"
+    }
+);
 export { flightRadarApi };
