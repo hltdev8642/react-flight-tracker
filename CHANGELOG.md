@@ -1,3 +1,10 @@
+## [1.9.1-develop.4](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.1-develop.3...v1.9.1-develop.4) (2023-11-26)
+
+
+### Bug Fixes
+
+* use my own proxy ([1cba3ac](https://gitlab.com/dev6645326/react-flight-tracker/commit/1cba3acd365edc299f9cd5e53aba985f322fc6bb))
+
 ## [1.9.1-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.1-develop.2...v1.9.1-develop.3) (2023-11-26)
 
 ## [1.9.1-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.1-develop.1...v1.9.1-develop.2) (2023-11-25)
