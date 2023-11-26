@@ -12,6 +12,7 @@ import { sunPositionState } from "../../atoms.ts";
 
 export default function Sun() {
   const [pos, setPos] = useRecoilState(sunPositionState);
+
   const cartesian = convertToCartesian(
     toDegrees(pos.geoLatitude),
     toDegrees(pos.geoLongitude),
@@ -35,9 +36,9 @@ export default function Sun() {
       intensity={1}
     >
       <mesh>
-        <sphereGeometry args={[SUN_RADIUS, 10, 10]} />
+        <sphereGeometry args={[SUN_RADIUS, 20, 20]} />
         <meshStandardMaterial
-          color={"yellow"}
+          flatShading={false}
           emissive={"yellow"}
           emissiveIntensity={10}
         />

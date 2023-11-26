@@ -2,8 +2,8 @@ import { EARTH_RADIUS } from "../../constants.ts";
 import { Sphere } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { Texture, TextureLoader } from "three";
-import EarthColorMap from "../../assets/earthmap-compressed/8081_earthmap10k-min.jpg";
-import EarthNightMap from "../../assets/earthmap-compressed/5_night_16k-min.jpg";
+import EarthColorMap from "../../assets/earth/compressed/8081_earthmap10k-min.jpg";
+import EarthNightMap from "../../assets/earth/compressed/5_night_16k-min.jpg";
 
 export default function MobileEarth() {
   // load texture

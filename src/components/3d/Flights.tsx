@@ -32,7 +32,7 @@ export default function Flights() {
     queryFn: () =>
       flightRadarApi.fetchFromRadarMultiZone(zones!, liveFlightsOptions),
     refetchIntervalInBackground: true,
-    refetchInterval: 10000,
+    refetchInterval: 20000,
     enabled: !!zones,
   });
 
