@@ -1,3 +1,5 @@
+## [1.9.1-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.1-develop.2...v1.9.1-develop.3) (2023-11-26)
+
 ## [1.9.1-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.1-develop.1...v1.9.1-develop.2) (2023-11-25)
 
 ## [1.9.1-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.0...v1.9.1-develop.1) (2023-11-25)
