@@ -1,3 +1,34 @@
+## [1.10.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.0...v1.10.0) (2023-11-26)
+
+
+### Features
+
+* add moon textures ([81a432d](https://gitlab.com/dev6645326/react-flight-tracker/commit/81a432d4c35bb5d17e1c8b9b92fe1849225763b2))
+
+
+### Bug Fixes
+
+* use another proxy ([a590602](https://gitlab.com/dev6645326/react-flight-tracker/commit/a590602ddb3198afb05eca4dc163bf17a30198ef))
+* use low tier gpu ([30723ae](https://gitlab.com/dev6645326/react-flight-tracker/commit/30723ae277b9ea64a8e049ce29c85b496fb33f62))
+* use my own proxy ([1cba3ac](https://gitlab.com/dev6645326/react-flight-tracker/commit/1cba3acd365edc299f9cd5e53aba985f322fc6bb))
+
+
+### Other Updates
+
+* **release:** 1.10.0-develop.1 [skip ci] ([c206fe2](https://gitlab.com/dev6645326/react-flight-tracker/commit/c206fe257626db04533660d14b7e17113649487d))
+* **release:** 1.9.1-develop.1 [skip ci] ([2044367](https://gitlab.com/dev6645326/react-flight-tracker/commit/20443672958e48244e59f0043bc065018e89e888))
+* **release:** 1.9.1-develop.2 [skip ci] ([e91f72a](https://gitlab.com/dev6645326/react-flight-tracker/commit/e91f72a0e5a517a77ec78dfcfcb8ae8e91ba79b9))
+* **release:** 1.9.1-develop.3 [skip ci] ([ffc3768](https://gitlab.com/dev6645326/react-flight-tracker/commit/ffc376809e770075698c12a3381acaffe480f5b1))
+* **release:** 1.9.1-develop.4 [skip ci] ([d39700e](https://gitlab.com/dev6645326/react-flight-tracker/commit/d39700e7f9aab5f1c8de5fe2058a9814369d04e3))
+* update flight radar client api version to 1.3.2 ([6787615](https://gitlab.com/dev6645326/react-flight-tracker/commit/678761523496717f978ba5c3d7a986be81427c80))
+
+## [1.10.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.1-develop.4...v1.10.0-develop.1) (2023-11-26)
+
+
+### Features
+
+* add moon textures ([81a432d](https://gitlab.com/dev6645326/react-flight-tracker/commit/81a432d4c35bb5d17e1c8b9b92fe1849225763b2))
+
 ## [1.9.1-develop.4](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.1-develop.3...v1.9.1-develop.4) (2023-11-26)
 
 
