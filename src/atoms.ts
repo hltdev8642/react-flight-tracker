@@ -98,6 +98,7 @@ export const graphicOptionsState = atom<GraphicOptions>({
 });
 
 interface MiscellaneousOptions {
+  showSatellites: boolean;
   altitudeFactor: number;
   enableAnnotations: boolean;
 }
@@ -105,6 +106,7 @@ interface MiscellaneousOptions {
 export const miscellaneousOptionsState = atom<MiscellaneousOptions>({
   key: "miscellaneousOptions",
   default: {
+    showSatellites: false,
     altitudeFactor: 1,
     enableAnnotations: true,
   },
