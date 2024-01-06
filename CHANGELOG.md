@@ -1,3 +1,11 @@
+## [1.11.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.10.0...v1.11.0-develop.1) (2024-01-06)
+
+
+### Features
+
+* add satellites ([d8113d2](https://gitlab.com/dev6645326/react-flight-tracker/commit/d8113d24e1e4baf541df4e0e08a375c309c3e4e5))
+* add satellites ([d07213a](https://gitlab.com/dev6645326/react-flight-tracker/commit/d07213a2ba7f8c43148b2a7927fc1c35730dd82e))
+
 ## [1.10.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.9.0...v1.10.0) (2023-11-26)
 
 
