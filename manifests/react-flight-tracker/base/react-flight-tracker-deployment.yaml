@@ -14,7 +14,9 @@ spec:
     matchLabels:
       io.kompose.service: react-flight-tracker
   strategy: {}
+
   template:
+
     metadata:
       annotations:
         kompose.cmd: C:\Users\appad\Kompose\kompose.exe convert --out manifests/react-flight-tracker/base/
@@ -23,6 +25,8 @@ spec:
       labels:
         io.kompose.service: react-flight-tracker
     spec:
+      nodeSelector:
+        kubernetes.io/arch: arm64
       containers:
         - image: ghcr.io/apoorva64/react-flight-tracker
           name: react-flight-tracker
