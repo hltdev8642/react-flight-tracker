@@ -115,3 +115,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [<img alt="Github" src="https://img.shields.io/badge/Apoorva64-%23181717.svg?style=for-the-badge&logo=github&logoColor=white" />](https://github.com/Apoorva64)
 [<img alt="Gitlab" src="https://img.shields.io/badge/Apoorva64-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white" />](https://gitlab.com/Apoorva64)
 [<img alt="LinkedIn" src="https://img.shields.io/badge/Apoorva Srinivas Appadoo-%23181717.svg?style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/appadoo-apoorva-srinivas-481367207/)
+
+## Acknowledgements
+- [Great Tutorial on calculating the position of astral objects](https://stjarnhimlen.se/comp/tutorial.html)
