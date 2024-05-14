@@ -4,7 +4,6 @@ import {
   InstancedMesh,
   Matrix4,
   Object3D,
-  Texture,
   TextureLoader,
   Vector3,
 } from "three";
@@ -21,7 +20,7 @@ import { useLoader } from "@react-three/fiber";
 
 const temp = new Object3D();
 export default function Flights() {
-  const planeTexture = useLoader(TextureLoader, PlaneTexture) as Texture;
+  const planeTexture = useLoader(TextureLoader, PlaneTexture);
   const { data: zones } = useQuery({
     queryKey: ["zones"],
     queryFn: () => flightRadarApi.fetchZones(),

@@ -107,14 +107,7 @@ export default function Satellites() {
         clearInterval(interval);
       };
     }
-  }, [
-    SatelliteData,
-    altitudeFactor,
-    satellitePositions,
-    scale,
-    camera,
-    instancedMeshRef.current,
-  ]);
+  }, [SatelliteData, altitudeFactor, satellitePositions, scale, camera]);
 
   useFrame(() => {
     if (instancedMeshRef.current) {
