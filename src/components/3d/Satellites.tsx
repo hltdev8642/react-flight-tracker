@@ -69,8 +69,9 @@ export default function Satellites() {
   >([]);
   // update every 10 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (SatelliteData) {
+    const update = () => {
+      if (SatelliteData && instancedMeshRef.current) {
+        console.log("Satellites updated");
         setSatellitePositions(
           updateSatellitePositions(SatelliteData, altitudeFactor),
         );
@@ -86,23 +87,35 @@ export default function Satellites() {
         // Update the instance
         instancedMeshRef.current.instanceMatrix.needsUpdate = true;
       }
-    }, 5000);
-    return () => {
-      clearInterval(interval);
     };
-  }, [SatelliteData, altitudeFactor, satellitePositions, scale, camera]);
+    if (!SatelliteData || SatelliteData.length == 0) {
+      update();
+    } else {
+      const interval = setInterval(update, 10000);
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [
+    SatelliteData,
+    altitudeFactor,
+    satellitePositions,
+    scale,
+    camera,
+    instancedMeshRef.current,
+  ]);
 
   return (
     <>
-      {satellitePositions.length != 0 && (
+      {
         <instancedMesh
           ref={instancedMeshRef}
           args={[undefined, undefined, satellitePositions.length]}
         >
-          <sphereGeometry args={[1, 32, 32]} />
+          <sphereGeometry args={[1, 6, 6]} />
           <meshBasicMaterial transparent={true} opacity={0.5} />
         </instancedMesh>
-      )}
+      }
     </>
   );
 }
