@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { InstancedMesh, Object3D } from "three";
-import { convertToCartesian } from "../../utils.ts";
+import { convertToCartesian, interpolateGeoCoordinates } from "../../utils.ts";
 import { useRecoilValue } from "recoil";
 import { miscellaneousOptionsState } from "../../atoms.ts";
 import { EARTH_RADIUS, reductionFactor } from "../../constants.ts";
-import { useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import SatelliteDataUrl from "../../assets/satellites/gp.json?url";
 import {
   eciToGeodetic,
@@ -16,31 +16,33 @@ import {
 } from "satellite.js";
 
 const temp = new Object3D();
+const DELTA = 30 * 60 * 1000;
 
 function updateSatellitePositions(
   SatelliteData: { TLE_LINE1: string; TLE_LINE2: string }[],
   altitudeFactor: number,
+  date: Date,
 ) {
   const satellitePositions: {
-    x: number;
-    y: number;
-    z: number;
+    latitude: number;
+    longitude: number;
+    altitude: number;
   }[] = [];
   SatelliteData?.forEach((gp: { TLE_LINE1: string; TLE_LINE2: string }) => {
     const satrec = twoline2satrec(gp.TLE_LINE1, gp.TLE_LINE2);
     //  Or you can use a JavaScript Date
-    const positionAndVelocity = propagate(satrec, new Date());
+    const positionAndVelocity = propagate(satrec, date);
     const positionEci = positionAndVelocity.position;
     if (positionEci) {
       const gmst = gstime(new Date());
       const positionGd = eciToGeodetic(positionEci as EciVec3<number>, gmst);
-      const cartesian = convertToCartesian(
-        (positionGd.latitude * 180) / Math.PI,
-        (positionGd.longitude * 180) / Math.PI,
-        EARTH_RADIUS +
+      satellitePositions.push({
+        latitude: (positionGd.latitude * 180) / Math.PI,
+        longitude: (positionGd.longitude * 180) / Math.PI,
+        altitude:
+          EARTH_RADIUS +
           positionGd.height * 1000 * reductionFactor * altitudeFactor,
-      );
-      satellitePositions.push(cartesian);
+      });
     }
   });
 
@@ -62,36 +64,45 @@ export default function Satellites() {
   const { camera } = useThree();
   const [satellitePositions, setSatellitePositions] = useState<
     {
-      x: number;
-      y: number;
-      z: number;
+      latitude: number;
+      longitude: number;
+      altitude: number;
     }[]
   >([]);
+  const [satellitePositions30, setSatellitePositions30] = useState<
+    {
+      latitude: number;
+      longitude: number;
+      altitude: number;
+    }[]
+  >([]);
+
+  const [lastCalculatedDate, setLastCalculatedDate] = useState<Date>(
+    new Date(),
+  );
+
   // update every 10 seconds
   useEffect(() => {
     const update = () => {
-      if (SatelliteData && instancedMeshRef.current) {
-        console.log("Satellites updated");
+      if (SatelliteData) {
+        const date = new Date();
         setSatellitePositions(
-          updateSatellitePositions(SatelliteData, altitudeFactor),
+          updateSatellitePositions(SatelliteData, altitudeFactor, date),
         );
-        satellitePositions.forEach((cartesian, i) => {
-          temp.position.set(cartesian.x, cartesian.y, cartesian.z);
-          temp.scale.set(scale / 5, scale / 5, scale / 5);
-          // Set rotation to look at the camera
-          temp.quaternion.copy(camera.quaternion);
-          temp.updateMatrix();
-
-          instancedMeshRef.current.setMatrixAt(i, temp.matrix);
-        });
-        // Update the instance
-        instancedMeshRef.current.instanceMatrix.needsUpdate = true;
+        setSatellitePositions30(
+          updateSatellitePositions(
+            SatelliteData,
+            altitudeFactor,
+            new Date(date.getTime() + DELTA),
+          ),
+        );
+        setLastCalculatedDate(date);
       }
     };
-    if (!SatelliteData || SatelliteData.length == 0) {
+    if (!satellitePositions || satellitePositions.length == 0) {
       update();
     } else {
-      const interval = setInterval(update, 10000);
+      const interval = setInterval(update, DELTA);
       return () => {
         clearInterval(interval);
       };
@@ -104,6 +115,39 @@ export default function Satellites() {
     camera,
     instancedMeshRef.current,
   ]);
+
+  useFrame(() => {
+    if (instancedMeshRef.current) {
+      instancedMeshRef.current.instanceMatrix.needsUpdate = true;
+    }
+
+    satellitePositions.forEach((geodetic, i) => {
+      const currentDate = new Date();
+      const ratio =
+        (currentDate.getTime() - lastCalculatedDate.getTime()) / DELTA;
+
+      geodetic = interpolateGeoCoordinates(
+        geodetic,
+        satellitePositions30[i],
+        ratio,
+      );
+
+      const cartesian = convertToCartesian(
+        geodetic.latitude,
+        geodetic.longitude,
+        geodetic.altitude,
+      );
+      temp.position.set(cartesian.x, cartesian.y, cartesian.z);
+      temp.scale.set(scale / 5, scale / 5, scale / 5);
+      // Set rotation to look at the camera
+      temp.quaternion.copy(camera.quaternion);
+      temp.updateMatrix();
+
+      instancedMeshRef.current.setMatrixAt(i, temp.matrix);
+    });
+    // Update the instance
+    instancedMeshRef.current.instanceMatrix.needsUpdate = true;
+  });
 
   return (
     <>
