@@ -1,3 +1,10 @@
+## [1.11.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.1...v1.11.0-develop.2) (2024-05-14)
+
+
+### Documentation
+
+* add readme ([eb0c6db](https://gitlab.com/dev6645326/react-flight-tracker/commit/eb0c6db14d992e0d1e3b10057334d8d7af66d6e9))
+
 ## [1.11.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.10.0...v1.11.0-develop.1) (2024-01-06)
 
 
