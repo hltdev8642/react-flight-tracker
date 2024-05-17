@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { InstancedMesh, Object3D } from "three";
-import { convertToCartesian, interpolateGeoCoordinates } from "../../utils.ts";
 import { useRecoilValue } from "recoil";
 import { miscellaneousOptionsState } from "../../atoms.ts";
-import { EARTH_RADIUS, reductionFactor } from "../../constants.ts";
+import { reductionFactor } from "../../constants.ts";
 import { useFrame, useThree } from "@react-three/fiber";
 import SatelliteDataUrl from "../../assets/satellites/gp.json?url";
 import {
@@ -15,38 +14,47 @@ import {
   twoline2satrec,
 } from "satellite.js";
 
+import { DateTime, Duration } from "luxon";
+import { convertToCartesian, interpolateGeoCoordinates } from "../../utils.ts";
+
 const temp = new Object3D();
-const DELTA = 30 * 60 * 1000;
+const DELTA = Duration.fromObject({ milliseconds: 10000 });
+
+type GeoCoordinate = { latitude: number; longitude: number; altitude: number };
+
+type CalculatedData = {
+  date: DateTime;
+  satellitePositions: GeoCoordinate[];
+};
 
 function updateSatellitePositions(
   SatelliteData: { TLE_LINE1: string; TLE_LINE2: string }[],
   altitudeFactor: number,
-  date: Date,
+  date: DateTime,
+  buffer: CalculatedData,
 ) {
-  const satellitePositions: {
-    latitude: number;
-    longitude: number;
-    altitude: number;
-  }[] = [];
-  SatelliteData?.forEach((gp: { TLE_LINE1: string; TLE_LINE2: string }) => {
+  SatelliteData?.map((gp: { TLE_LINE1: string; TLE_LINE2: string }, i) => {
     const satrec = twoline2satrec(gp.TLE_LINE1, gp.TLE_LINE2);
     //  Or you can use a JavaScript Date
-    const positionAndVelocity = propagate(satrec, date);
+    const positionAndVelocity = propagate(satrec, new Date(date.toMillis()));
     const positionEci = positionAndVelocity.position;
     if (positionEci) {
-      const gmst = gstime(new Date());
+      const gmst = gstime(new Date(date.toMillis()));
       const positionGd = eciToGeodetic(positionEci as EciVec3<number>, gmst);
-      satellitePositions.push({
+      buffer.satellitePositions[i] = {
         latitude: (positionGd.latitude * 180) / Math.PI,
         longitude: (positionGd.longitude * 180) / Math.PI,
-        altitude:
-          EARTH_RADIUS +
-          positionGd.height * 1000 * reductionFactor * altitudeFactor,
-      });
+        altitude: positionGd.height * 1000 * reductionFactor * altitudeFactor,
+      };
     }
   });
 
-  return satellitePositions;
+  buffer.date = date;
+  return buffer;
+}
+
+function nextIndex(index: number, length: number) {
+  return (index + 1) % length;
 }
 
 export default function Satellites() {
@@ -62,76 +70,119 @@ export default function Satellites() {
     miscellaneousOptionsState,
   ).altitudeFactor;
   const { camera } = useThree();
-  const [satellitePositions, setSatellitePositions] = useState<
-    {
-      latitude: number;
-      longitude: number;
-      altitude: number;
-    }[]
-  >([]);
-  const [satellitePositions30, setSatellitePositions30] = useState<
-    {
-      latitude: number;
-      longitude: number;
-      altitude: number;
-    }[]
-  >([]);
+  const [buffers, setBuffers] = useState<CalculatedData[]>([
+    { date: DateTime.now(), satellitePositions: [] },
+    { date: DateTime.now(), satellitePositions: [] },
+    { date: DateTime.now(), satellitePositions: [] },
+  ]);
 
-  const [lastCalculatedDate, setLastCalculatedDate] = useState<Date>(
-    new Date(),
-  );
-
+  const [index, setIndex] = useState(-1);
   // update every 10 seconds
   useEffect(() => {
     const update = () => {
       if (SatelliteData) {
-        const date = new Date();
-        setSatellitePositions(
-          updateSatellitePositions(SatelliteData, altitudeFactor, date),
-        );
-        setSatellitePositions30(
+        const currentEndIndex = nextIndex(index, buffers.length);
+        const currentEndDate = buffers[currentEndIndex].date;
+        const nextEndIndex = nextIndex(currentEndIndex, buffers.length);
+        const nextEndDate = currentEndDate.plus(DELTA);
+
+        if (buffers[nextEndIndex].date.toMillis() == nextEndDate.toMillis()) {
+          return;
+        }
+
+        setBuffers((prev) => {
           updateSatellitePositions(
             SatelliteData,
             altitudeFactor,
-            new Date(date.getTime() + DELTA),
-          ),
-        );
-        setLastCalculatedDate(date);
+            nextEndDate,
+            prev[nextEndIndex],
+          );
+          return prev;
+        });
       }
     };
-    if (!satellitePositions || satellitePositions.length == 0) {
-      update();
+    if (index == -1) {
+      if (SatelliteData) {
+        const date = DateTime.now();
+
+        setIndex(0);
+        setBuffers((prev) => {
+          updateSatellitePositions(
+            SatelliteData,
+            altitudeFactor,
+            date,
+            prev[0],
+          );
+          updateSatellitePositions(
+            SatelliteData,
+            altitudeFactor,
+            date.plus(DELTA),
+            prev[1],
+          );
+
+          return prev;
+        });
+      }
     } else {
-      const interval = setInterval(update, DELTA);
+      const interval = setInterval(update, DELTA.toMillis() / 10);
       return () => {
         clearInterval(interval);
       };
     }
-  }, [SatelliteData, altitudeFactor, satellitePositions, scale, camera]);
+  }, [SatelliteData, altitudeFactor, scale, camera, index, buffers]);
 
   useFrame(() => {
-    if (instancedMeshRef.current) {
-      instancedMeshRef.current.instanceMatrix.needsUpdate = true;
+    const date = DateTime.now();
+    let calculatedIndex = index;
+    if (!buffers[index]) {
+      return;
     }
+    if (
+      date > buffers[nextIndex(index, buffers.length)].date &&
+      buffers[index].date.second !=
+        buffers[nextIndex(index, buffers.length)].date.second
+    ) {
+      setIndex(nextIndex(index, buffers.length));
 
-    satellitePositions.forEach((geodetic, i) => {
-      const currentDate = new Date();
-      const ratio =
-        (currentDate.getTime() - lastCalculatedDate.getTime()) / DELTA;
+      calculatedIndex = nextIndex(index, buffers.length);
+    }
+    const startBuffer = buffers[calculatedIndex];
+    const endBuffer = buffers[nextIndex(calculatedIndex, buffers.length)];
 
+    startBuffer.satellitePositions.forEach((geodetic, i) => {
+      let ratio;
+
+      ratio =
+        (date.toMillis() - startBuffer.date.toMillis()) /
+        (endBuffer.date.toMillis() - startBuffer.date.toMillis());
       geodetic = interpolateGeoCoordinates(
         geodetic,
-        satellitePositions30[i],
+        endBuffer.satellitePositions[i],
         ratio,
       );
 
-      const cartesian = convertToCartesian(
+      // const cartesian = interpolateCartesian(cartesian1, cartesian2, ratio);
+      let cartesian = convertToCartesian(
         geodetic.latitude,
         geodetic.longitude,
         geodetic.altitude,
       );
+      let scale = Math.max(geodetic.altitude / 200, 0.01);
+
+      if (
+        isNaN(geodetic.latitude) ||
+        isNaN(endBuffer.satellitePositions[i].latitude) ||
+        geodetic.altitude > 2000
+      ) {
+        cartesian = {
+          x: 0,
+          y: 0,
+          z: 0,
+        };
+        scale = 0;
+      }
       temp.position.set(cartesian.x, cartesian.y, cartesian.z);
-      temp.scale.set(scale / 5, scale / 5, scale / 5);
+      temp.scale.set(scale, scale, scale);
       // Set rotation to look at the camera
       temp.quaternion.copy(camera.quaternion);
       temp.updateMatrix();
@@ -141,16 +192,21 @@ export default function Satellites() {
     // Update the instance
     instancedMeshRef.current.instanceMatrix.needsUpdate = true;
   });
-
   return (
     <>
       {
         <instancedMesh
           ref={instancedMeshRef}
-          args={[undefined, undefined, satellitePositions.length]}
+          args={[undefined, undefined, buffers[0].satellitePositions.length]}
         >
-          <sphereGeometry args={[1, 6, 6]} />
-          <meshBasicMaterial transparent={true} opacity={0.5} />
+          <sphereGeometry args={[0.5, 6, 6]} />
+          <meshBasicMaterial
+            transparent={true}
+            opacity={0.5}
+            type={"MeshBasicMaterial"}
+            color={"#ffffff"}
+            wireframe={false}
+          />
         </instancedMesh>
       }
     </>

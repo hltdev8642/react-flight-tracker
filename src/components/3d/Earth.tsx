@@ -34,7 +34,7 @@ export default function Earth() {
           bumpMap={bumpMap}
           bumpScale={0.01}
           emissiveMap={nightMap}
-          emissiveIntensity={5}
+          emissiveIntensity={3}
           emissive={0xaaaaaa}
         />
       </Sphere>
