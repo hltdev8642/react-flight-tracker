@@ -117,4 +117,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [<img alt="LinkedIn" src="https://img.shields.io/badge/Apoorva Srinivas Appadoo-%23181717.svg?style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/appadoo-apoorva-srinivas-481367207/)
 
 ## Acknowledgements
+
 - [Great Tutorial on calculating the position of astral objects](https://stjarnhimlen.se/comp/tutorial.html)

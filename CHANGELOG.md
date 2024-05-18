@@ -1,3 +1,23 @@
+## [1.11.0-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.2...v1.11.0-develop.3) (2024-05-14)
+
+
+### Features
+
+* add predictive movement for satellites ([339ecea](https://gitlab.com/dev6645326/react-flight-tracker/commit/339eceaf1c5ba982db4e3ae692dee9892edd0ba9))
+* optimize satellites ([9c033ef](https://gitlab.com/dev6645326/react-flight-tracker/commit/9c033ef25febaf99fea91cae577735f8d926f7fb))
+
+
+### Bug Fixes
+
+* remove unnecessary deps ([50828fa](https://gitlab.com/dev6645326/react-flight-tracker/commit/50828fa7363a3b09c3d6cfab7e7900fa894896e9))
+
+## [1.11.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.1...v1.11.0-develop.2) (2024-05-14)
+
+
+### Documentation
+
+* add readme ([eb0c6db](https://gitlab.com/dev6645326/react-flight-tracker/commit/eb0c6db14d992e0d1e3b10057334d8d7af66d6e9))
+
 ## [1.11.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.10.0...v1.11.0-develop.1) (2024-01-06)
 
 
