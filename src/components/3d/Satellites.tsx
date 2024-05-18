@@ -150,11 +150,10 @@ export default function Satellites() {
     const endBuffer = buffers[nextIndex(calculatedIndex, buffers.length)];
 
     startBuffer.satellitePositions.forEach((geodetic, i) => {
-      let ratio;
-
-      ratio =
+      const ratio =
         (date.toMillis() - startBuffer.date.toMillis()) /
         (endBuffer.date.toMillis() - startBuffer.date.toMillis());
+
       geodetic = interpolateGeoCoordinates(
         geodetic,
         endBuffer.satellitePositions[i],
