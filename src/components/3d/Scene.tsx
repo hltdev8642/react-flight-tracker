@@ -48,7 +48,6 @@ function Scene() {
       </Suspense>
       <Sun />
       <Moon />
-      <Flights />
       <FlightTrail />
       {miscellaneousOptions.showSatellites ? <Satellites /> : <></>}
       {graphicOptions.countryBorders ? <CountryBorders /> : <></>}
