@@ -24,6 +24,7 @@ export const liveFlightsOptionsState = atom<RadarOptions>({
 });
 
 export interface GraphicOptions {
+  enableMoon: boolean;
   bloom: boolean;
   vignette: boolean;
   SMAA: boolean;
@@ -39,6 +40,7 @@ export const ultraGraphics: GraphicOptions = {
   stars: true,
   highResolutionEarth: true,
   countryBorders: true,
+  enableMoon: true,
 };
 
 export const highGraphics: GraphicOptions = {
@@ -48,6 +50,7 @@ export const highGraphics: GraphicOptions = {
   stars: true,
   highResolutionEarth: true,
   countryBorders: true,
+  enableMoon: true,
 };
 
 export const mediumGraphics: GraphicOptions = {
@@ -57,6 +60,7 @@ export const mediumGraphics: GraphicOptions = {
   stars: true,
   highResolutionEarth: true,
   countryBorders: true,
+  enableMoon: true,
 };
 
 export const lowGraphics: GraphicOptions = {
@@ -66,6 +70,7 @@ export const lowGraphics: GraphicOptions = {
   stars: false,
   highResolutionEarth: false,
   countryBorders: false,
+  enableMoon: false,
 };
 
 export const graphicOptionsOptions = {

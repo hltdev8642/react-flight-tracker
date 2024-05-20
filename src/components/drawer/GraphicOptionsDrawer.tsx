@@ -176,6 +176,19 @@ export function GraphicOptionsDrawer() {
               inputProps={{ "aria-label": "controlled" }}
             />
           </ListItem>
+          <ListItem sx={{ pl: 4 }}>
+            <ListItemText primary="Enable Moon" />
+            <Checkbox
+              checked={graphicOptionsS.enableMoon}
+              onChange={(e) =>
+                setGraphicOptions({
+                  ...graphicOptionsS,
+                  enableMoon: e?.target?.checked,
+                })
+              }
+              inputProps={{ "aria-label": "controlled" }}
+            />
+          </ListItem>
         </List>
       </Collapse>
     </>

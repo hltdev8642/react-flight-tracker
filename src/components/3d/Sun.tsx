@@ -36,7 +36,7 @@ export default function Sun() {
       intensity={1}
     >
       <mesh>
-        <sphereGeometry args={[SUN_RADIUS, 20, 20]} />
+        <sphereGeometry args={[SUN_RADIUS, 10, 10]} />
         <meshStandardMaterial
           flatShading={false}
           emissive={"yellow"}

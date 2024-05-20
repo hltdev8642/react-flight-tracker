@@ -47,7 +47,14 @@ function Scene() {
         {graphicOptions.highResolutionEarth ? <Earth /> : <MobileEarth />}
       </Suspense>
       <Sun />
-      <Moon />
+      {graphicOptions.enableMoon ? (
+        <Suspense fallback={<></>}>
+          <Moon />
+        </Suspense>
+      ) : (
+        <></>
+      )}
+
       <Flights />
       <FlightTrail />
       {miscellaneousOptions.showSatellites ? <Satellites /> : <></>}

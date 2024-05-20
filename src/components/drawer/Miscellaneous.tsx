@@ -2,6 +2,7 @@ import { useRecoilState } from "recoil";
 import {
   CAMERA_TARGETS,
   cameraTargetState,
+  graphicOptionsState,
   isAnimationRunningState,
   miscellaneousOptionsState,
 } from "../../atoms.ts";
@@ -28,6 +29,7 @@ export function Miscellaneous() {
   const [open, setOpen] = useState(false);
   const [cameraTarget, setCameraTarget] = useRecoilState(cameraTargetState);
   const [isAnimationRunning] = useRecoilState(isAnimationRunningState);
+  const [graphicOptionsS] = useRecoilState(graphicOptionsState);
   const handleClick = () => {
     setOpen(!open);
   };
@@ -89,12 +91,19 @@ export function Miscellaneous() {
               {[
                 { value: "sun", label: "Sun" },
                 { value: "earth", label: "Earth" },
-                { value: "moon", label: "Moon" },
-              ].map(({ value, label }) => (
-                <ToggleButton value={value} aria-label={label} key={value}>
-                  {label}
-                </ToggleButton>
-              ))}
+                graphicOptionsS.enableMoon && {
+                  value: "moon",
+                  label: "Moon",
+                },
+              ]
+                .filter(
+                  (v): v is { value: CAMERA_TARGETS; label: string } => !!v,
+                )
+                .map(({ value, label }) => (
+                  <ToggleButton value={value} aria-label={label} key={value}>
+                    {label}
+                  </ToggleButton>
+                ))}
             </ToggleButtonGroup>
           </ListItem>
           <ListItem sx={{ pl: 4 }}>
