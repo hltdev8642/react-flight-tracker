@@ -1,3 +1,10 @@
+## [1.11.0-develop.6](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.5...v1.11.0-develop.6) (2024-05-20)
+
+
+### Features
+
+* **optimisation:** disable Moon on Mobile ([e285368](https://gitlab.com/dev6645326/react-flight-tracker/commit/e28536844bc70f1ad2a412cd8f19ff96e11895d2))
+
 ## [1.11.0-develop.5](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.4...v1.11.0-develop.5) (2024-05-20)
 
 
