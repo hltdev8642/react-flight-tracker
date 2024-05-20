@@ -1,3 +1,10 @@
+## [1.11.0-develop.5](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.4...v1.11.0-develop.5) (2024-05-20)
+
+
+### Bug Fixes
+
+* nginx security issues ([b4675a8](https://gitlab.com/dev6645326/react-flight-tracker/commit/b4675a8b2f1d789cc51d20a5e8b6757511039f8c))
+
 ## [1.11.0-develop.4](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.3...v1.11.0-develop.4) (2024-05-20)
 
 
