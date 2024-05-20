@@ -1,3 +1,12 @@
+## [1.11.0-develop.4](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.3...v1.11.0-develop.4) (2024-05-20)
+
+
+### Bug Fixes
+
+* lint error ([f2ea4bf](https://gitlab.com/dev6645326/react-flight-tracker/commit/f2ea4bf7fa922a231d4b246eac46995493572ef3))
+* lint error ([6f90ad9](https://gitlab.com/dev6645326/react-flight-tracker/commit/6f90ad96a2516fb1e1cc96119c23ee6a105c3f05))
+* statellites ([fd17de7](https://gitlab.com/dev6645326/react-flight-tracker/commit/fd17de7cd35326bada464858e796fe86ddcffbb4))
+
 ## [1.11.0-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.2...v1.11.0-develop.3) (2024-05-14)
 
 
