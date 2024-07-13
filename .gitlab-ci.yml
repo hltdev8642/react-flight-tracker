@@ -111,7 +111,7 @@ sonarqube-check:
   extends: .build-on
   image:
     name: noenv/sonar-scanner
-    entrypoint: [""]
+    entrypoint: [ "" ]
   stage: test
   variables:
     SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar" # Defines the location of the analysis task cache
