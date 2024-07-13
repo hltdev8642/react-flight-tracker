@@ -48,7 +48,7 @@ export function Miscellaneous() {
             <ListItemText primary="Altitude Factor" />
             <Slider
               value={miscellaneousOption.altitudeFactor}
-              onChange={(_, value) =>
+              onChange={(_: Event, value: number | number[]) =>
                 setMiscellaneousOption({
                   ...miscellaneousOption,
                   altitudeFactor: value as number,

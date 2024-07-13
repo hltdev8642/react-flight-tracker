@@ -1,24 +1,20 @@
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { InstancedMesh, Object3D } from "three";
 import { useRecoilValue } from "recoil";
 import { miscellaneousOptionsState } from "../../atoms.ts";
-import { reductionFactor } from "../../constants.ts";
+import { EARTH_RADIUS } from "../../constants.ts";
 import { useFrame, useThree } from "@react-three/fiber";
-import SatelliteDataUrl from "../../assets/satellites/gp.json?url";
-import {
-  eciToGeodetic,
-  EciVec3,
-  gstime,
-  propagate,
-  twoline2satrec,
-} from "satellite.js";
 
 import { DateTime, Duration } from "luxon";
-import { convertToCartesian, interpolateGeoCoordinates } from "../../utils.ts";
+import {
+  convertToCartesian,
+  interpolateGeoCoordinates,
+  satelliteApi,
+} from "../../utils.ts";
+import { toDegrees } from "../../astronomy-utils.tsx";
 
 const temp = new Object3D();
-const DELTA = Duration.fromObject({ milliseconds: 10000 });
+const DELTA = Duration.fromObject({ seconds: 5 });
 
 type GeoCoordinate = { latitude: number; longitude: number; altitude: number };
 
@@ -27,114 +23,92 @@ type CalculatedData = {
   satellitePositions: GeoCoordinate[];
 };
 
-function updateSatellitePositions(
-  SatelliteData: { TLE_LINE1: string; TLE_LINE2: string }[],
+async function updateSatellitePositions(
   altitudeFactor: number,
   date: DateTime,
-  buffer: CalculatedData,
 ) {
-  SatelliteData?.map((gp: { TLE_LINE1: string; TLE_LINE2: string }, i) => {
-    const satrec = twoline2satrec(gp.TLE_LINE1, gp.TLE_LINE2);
-    //  Or you can use a JavaScript Date
-    const positionAndVelocity = propagate(satrec, new Date(date.toMillis()));
-    const positionEci = positionAndVelocity.position;
-    if (positionEci) {
-      const gmst = gstime(new Date(date.toMillis()));
-      const positionGd = eciToGeodetic(positionEci as EciVec3<number>, gmst);
-      buffer.satellitePositions[i] = {
-        latitude: (positionGd.latitude * 180) / Math.PI,
-        longitude: (positionGd.longitude * 180) / Math.PI,
-        altitude: positionGd.height * 1000 * reductionFactor * altitudeFactor,
+  const res = await satelliteApi.satelliteServiceGetSatellitePositions(
+    date.toISO() as string,
+    [],
+  );
+  return {
+    date: date,
+    satellitePositions: res.data.satellites?.map((satellite) => {
+      return {
+        latitude: toDegrees(satellite.lat as number),
+        longitude: toDegrees(satellite.lon as number),
+        altitude:
+          (satellite.altitude as number) * altitudeFactor * 0.0001 +
+          EARTH_RADIUS,
       };
-    }
-  });
-
-  buffer.date = date;
-  return buffer;
+    }),
+  } as CalculatedData;
 }
 
 function nextIndex(index: number, length: number) {
   return (index + 1) % length;
 }
 
-export default function Satellites() {
-  const { data: SatelliteData } = useQuery<
-    { TLE_LINE1: string; TLE_LINE2: string }[]
-  >({
-    queryKey: ["satellites"],
-    queryFn: () => fetch(SatelliteDataUrl).then((res) => res.json()),
-  });
-  const instancedMeshRef = useRef<InstancedMesh>(null!);
-  const scale = 140000 * reductionFactor;
+function useBuffers(index: number) {
+  const [buffers, setBuffers] = useState<CalculatedData[]>([]);
   const altitudeFactor = useRecoilValue(
     miscellaneousOptionsState,
   ).altitudeFactor;
-  const { camera } = useThree();
-  const [buffers, setBuffers] = useState<CalculatedData[]>([
-    { date: DateTime.now(), satellitePositions: [] },
-    { date: DateTime.now(), satellitePositions: [] },
-    { date: DateTime.now(), satellitePositions: [] },
-  ]);
-
-  const [index, setIndex] = useState(-1);
-  // update every 10 seconds
   useEffect(() => {
-    const update = () => {
-      if (SatelliteData) {
-        const currentEndIndex = nextIndex(index, buffers.length);
-        const currentEndDate = buffers[currentEndIndex].date;
-        const nextEndIndex = nextIndex(currentEndIndex, buffers.length);
-        const nextEndDate = currentEndDate.plus(DELTA);
-
-        if (buffers[nextEndIndex].date.toMillis() == nextEndDate.toMillis()) {
-          return;
-        }
-
-        setBuffers((prev) => {
-          updateSatellitePositions(
-            SatelliteData,
-            altitudeFactor,
-            nextEndDate,
-            prev[nextEndIndex],
-          );
-          return prev;
-        });
-      }
-    };
-    if (index == -1) {
-      if (SatelliteData) {
-        const date = DateTime.now();
-
-        setIndex(0);
-        setBuffers((prev) => {
-          updateSatellitePositions(
-            SatelliteData,
-            altitudeFactor,
-            date,
-            prev[0],
-          );
-          updateSatellitePositions(
-            SatelliteData,
-            altitudeFactor,
-            date.plus(DELTA),
-            prev[1],
-          );
-
-          return prev;
-        });
-      }
-    } else {
-      const interval = setInterval(update, DELTA.toMillis() / 10);
-      return () => {
-        clearInterval(interval);
-      };
+    function resetSatelliteData() {
+      const now = DateTime.now();
+      const bufferStart = updateSatellitePositions(altitudeFactor, now);
+      const bufferEnd = updateSatellitePositions(
+        altitudeFactor,
+        now.plus(DELTA),
+      );
+      const bufferNext = updateSatellitePositions(
+        altitudeFactor,
+        now.plus(DELTA).plus(DELTA),
+      );
+      Promise.all([bufferStart, bufferEnd, bufferNext]).then((buffers) => {
+        setBuffers(buffers);
+      });
     }
-  }, [SatelliteData, altitudeFactor, scale, camera, index, buffers]);
+
+    if (buffers.length == 0) {
+      resetSatelliteData();
+      return;
+    }
+    const currentEndIndex = nextIndex(index, buffers.length);
+    const currentEndDate = buffers[currentEndIndex].date;
+    const nextEndIndex = nextIndex(currentEndIndex, buffers.length);
+    const nextEndDate = currentEndDate.plus(DELTA);
+
+    if (nextEndDate < DateTime.now()) {
+      setBuffers([]);
+      return;
+    }
+
+    if (buffers[nextEndIndex].date.toMillis() == nextEndDate.toMillis()) {
+      return;
+    }
+    updateSatellitePositions(altitudeFactor, nextEndDate).then((buffer) => {
+      setBuffers((prev) => {
+        prev[nextEndIndex] = buffer;
+        return prev;
+      });
+    });
+  }, [index, buffers]);
+
+  return buffers;
+}
+
+export default function Satellites() {
+  const instancedMeshRef = useRef<InstancedMesh>(null!);
+  const { camera } = useThree();
+  const [index, setIndex] = useState(0);
+  const buffers = useBuffers(index);
 
   useFrame(() => {
     const date = DateTime.now();
     let calculatedIndex = index;
-    if (!buffers[index]) {
+    if (!buffers[index] || !buffers[nextIndex(index, buffers.length)]) {
       return;
     }
     if (
@@ -151,9 +125,7 @@ export default function Satellites() {
 
     startBuffer.satellitePositions.forEach((geodetic, i) => {
       const ratio =
-        (date.toMillis() - startBuffer.date.toMillis()) /
-        (endBuffer.date.toMillis() - startBuffer.date.toMillis());
-
+        (date.toMillis() - startBuffer.date.toMillis()) / DELTA.toMillis();
       geodetic = interpolateGeoCoordinates(
         geodetic,
         endBuffer.satellitePositions[i],
@@ -166,7 +138,7 @@ export default function Satellites() {
         geodetic.longitude,
         geodetic.altitude,
       );
-      let scale = Math.max(geodetic.altitude / 200, 0.01);
+      let scale = Math.max(geodetic.altitude / 400, 0.001);
 
       if (
         isNaN(geodetic.latitude) ||
@@ -191,12 +163,18 @@ export default function Satellites() {
     // Update the instance
     instancedMeshRef.current.instanceMatrix.needsUpdate = true;
   });
+
+  let instanceCount = 0;
+  if (buffers.length > 0 && buffers[0].satellitePositions) {
+    instanceCount = buffers[0].satellitePositions.length;
+  }
+
   return (
     <>
       {
         <instancedMesh
           ref={instancedMeshRef}
-          args={[undefined, undefined, buffers[0].satellitePositions.length]}
+          args={[undefined, undefined, instanceCount]}
         >
           <sphereGeometry args={[0.5, 6, 6]} />
           <meshBasicMaterial

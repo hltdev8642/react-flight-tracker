@@ -4,7 +4,7 @@ import {
   graphicOptionsState,
   GraphicOptions,
 } from "../../atoms.ts";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Checkbox,
   Collapse,
@@ -76,7 +76,10 @@ export function GraphicOptionsDrawer() {
                     key={value.value}
                     value={value.value}
                     aria-label={value.label}
-                    onClick={(_e, value) => {
+                    onClick={(
+                      _e: React.MouseEvent<HTMLElement>,
+                      value: any,
+                    ) => {
                       if (value === "custom") {
                         return;
                       }

@@ -1,5 +1,9 @@
 import { FlightRadarApi } from "flightradar24-client-ts";
 import { toDegrees, toRadians } from "./astronomy-utils.tsx";
+import {
+  Configuration,
+  SatelliteServiceApi,
+} from "satellite-api-react-flight-tracker-axios";
 
 export function convertToCartesian(
   latitude: number,
@@ -51,6 +55,18 @@ export function interpolateGeoCoordinates(
   };
 }
 
+export function interpolateGeoCoordinatesLinear(
+  start: { latitude: number; longitude: number; altitude: number },
+  end: { latitude: number; longitude: number; altitude: number },
+  fraction: number,
+) {
+  return {
+    latitude: start.latitude + fraction * (end.latitude - start.latitude),
+    longitude: start.longitude + fraction * (end.longitude - start.longitude),
+    altitude: start.altitude + fraction * (end.altitude - start.altitude),
+  };
+}
+
 export function listInterpolatedGeoCoordinates(
   start: { latitude: number; longitude: number; altitude: number },
   end: { latitude: number; longitude: number; altitude: number },
@@ -67,4 +83,11 @@ export function listInterpolatedGeoCoordinates(
 const flightRadarApi = new FlightRadarApi({
   corsProxy: "https://cors-proxy.appadooapoorva.workers.dev/",
 });
-export { flightRadarApi };
+
+const satelliteApi = new SatelliteServiceApi(
+  new Configuration({
+    basePath: "https://satellite-api.react-flight-tracker.dev.apoorva64.com",
+  }),
+);
+
+export { flightRadarApi, satelliteApi };

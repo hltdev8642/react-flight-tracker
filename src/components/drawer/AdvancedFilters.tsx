@@ -26,10 +26,14 @@ export function AdvancedFilters() {
   const { data: airlines, isLoading: isAirlinesLoading } = useQuery({
     queryKey: ["airlines"],
     queryFn: () => flightRadarApi.fetchAirlines(),
+    cacheTime: 1000 * 60 * 60,
+    staleTime: 1000 * 60 * 60,
   });
   const { data: airports, isLoading: isAirportsLoading } = useQuery({
     queryKey: ["airports"],
     queryFn: () => flightRadarApi.fetchAirports(),
+    cacheTime: 1000 * 60 * 60,
+    staleTime: 1000 * 60 * 60,
   });
   const handleClick = () => {
     setOpen(!open);

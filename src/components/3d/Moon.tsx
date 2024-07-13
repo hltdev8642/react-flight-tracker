@@ -9,24 +9,12 @@ import { moonPositionState } from "../../atoms.ts";
 import { useLoader } from "@react-three/fiber";
 import MoonColorMap from "../../assets/moon/compressed/colormap.jpg";
 import MoonDisplacementMap from "../../assets/moon/compressed/displacementmap.jpg";
-import { toast } from "react-toastify";
 
 export default function Moon() {
-  const [colorMap, displacementMap] = useLoader(
-    TextureLoader,
-    [MoonColorMap, MoonDisplacementMap],
-    (loader) => {
-      toast.loading(`Downloading High Resolution Moon Textures...`, {
-        toastId: "loadingMoon",
-        autoClose: false,
-      });
-      loader.manager.onProgress = (_url, itemsLoaded, itemsTotal) => {
-        if (itemsLoaded === itemsTotal) {
-          toast.dismiss("loadingMoon");
-        }
-      };
-    },
-  ) as Texture[];
+  const [colorMap, displacementMap] = useLoader(TextureLoader, [
+    MoonColorMap,
+    MoonDisplacementMap,
+  ]) as Texture[];
   const [pos, setPos] = useRecoilState(moonPositionState);
   const cartesian = convertToCartesian(
     toDegrees(pos.geoLatitude),

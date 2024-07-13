@@ -111,7 +111,7 @@ interface MiscellaneousOptions {
 export const miscellaneousOptionsState = atom<MiscellaneousOptions>({
   key: "miscellaneousOptions",
   default: {
-    showSatellites: false,
+    showSatellites: true,
     altitudeFactor: 1,
     enableAnnotations: true,
   },

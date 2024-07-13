@@ -7,6 +7,7 @@ import EarthNightMap from "../../assets/earth/10k/5_night_16k.jpg";
 import { Sphere } from "@react-three/drei";
 import { EARTH_RADIUS } from "../../constants.ts";
 import { toast } from "react-toastify";
+
 export default function Earth() {
   // load texture
   const [colorMap, specularMap, bumpMap, nightMap] = useLoader(
