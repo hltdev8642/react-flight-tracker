@@ -33,14 +33,14 @@ export default function Sun() {
       visible={true}
       position={new Vector3(cartesian.x, cartesian.y, cartesian.z)}
       castShadow={true}
-      power={14}
+      intensity={1}
     >
       <mesh>
         <sphereGeometry args={[SUN_RADIUS, 10, 10]} />
         <meshStandardMaterial
           flatShading={false}
           emissive={"yellow"}
-          emissiveIntensity={100}
+          emissiveIntensity={10}
         />
       </mesh>
     </pointLight>

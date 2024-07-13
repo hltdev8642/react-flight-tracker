@@ -13,7 +13,6 @@ export function App() {
       <DrawerComponent />
       <Grid>
         <Canvas
-          dpr={1}
           gl={{ alpha: true, stencil: false, antialias: true, depth: true }}
           style={{
             height: "100vh",

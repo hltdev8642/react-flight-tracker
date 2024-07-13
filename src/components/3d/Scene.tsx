@@ -63,7 +63,7 @@ function Scene() {
       {miscellaneousOptions.showSatellites ? <Satellites /> : <></>}
       {graphicOptions.countryBorders ? <CountryBorders /> : <></>}
 
-      <EffectComposer multisampling={0}>
+      <EffectComposer>
         {graphicOptions.bloom ? (
           <Bloom
             luminanceThreshold={0}

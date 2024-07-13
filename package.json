@@ -48,7 +48,7 @@
     "react-type-animation": "^3.2.0",
     "recoil": "^0.7.7",
     "satellite-api-react-flight-tracker-axios": "^1.0.4",
-    "three": "^0.166.1"
+    "three": "^0.154.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
