@@ -130,7 +130,9 @@ release-docker:
   stage: release
   needs:
     - job: release
-      artifacts: false
+      artifacts: true
+    - job: get-next-version
+      artifacts: true
   services:
     - docker:20.10-dind
   before_script:
