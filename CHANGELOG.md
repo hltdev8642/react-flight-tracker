@@ -1,3 +1,10 @@
+## [1.11.0-develop.8](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.7...v1.11.0-develop.8) (2024-07-13)
+
+
+### Bug Fixes
+
+* semantic release ([b90929a](https://gitlab.com/dev6645326/react-flight-tracker/commit/b90929a48a789f2adf4583997d03d2bb84235588))
+
 ## [1.11.0-develop.7](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.6...v1.11.0-develop.7) (2024-07-13)
 
 
