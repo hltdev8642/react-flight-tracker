@@ -1,3 +1,21 @@
+## [1.11.0-develop.7](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.6...v1.11.0-develop.7) (2024-07-13)
+
+
+### Features
+
+* add connection to satellite api ([35c7c35](https://gitlab.com/dev6645326/react-flight-tracker/commit/35c7c35a4085050f84821dd11e850471b36a18aa))
+
+
+### Bug Fixes
+
+* lint issues ([94aca4c](https://gitlab.com/dev6645326/react-flight-tracker/commit/94aca4c2d299c7273ee7a389214a554edd4978f0))
+* revert threejs version bump ([56576dd](https://gitlab.com/dev6645326/react-flight-tracker/commit/56576ddd8786baccced3ed6be1646c1632da855b))
+
+
+### Other Updates
+
+* cleanup unused deps and assets ([a47d643](https://gitlab.com/dev6645326/react-flight-tracker/commit/a47d6433b0fdc7b1b1dc598bb6442f23a6b1240b))
+
 ## [1.11.0-develop.6](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.5...v1.11.0-develop.6) (2024-05-20)
 
 
