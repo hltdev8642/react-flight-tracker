@@ -1,10 +1,10 @@
 import { useRecoilState } from "recoil";
 import {
+  GraphicOptions,
   graphicOptionsOptions,
   graphicOptionsState,
-  GraphicOptions,
 } from "../../atoms.ts";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Checkbox,
   Collapse,
@@ -78,7 +78,7 @@ export function GraphicOptionsDrawer() {
                     aria-label={value.label}
                     onClick={(
                       _e: React.MouseEvent<HTMLElement>,
-                      value: any,
+                      value: string | null,
                     ) => {
                       if (value === "custom") {
                         return;

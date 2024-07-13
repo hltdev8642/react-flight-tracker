@@ -66,9 +66,13 @@ function useBuffers(index: number) {
         altitudeFactor,
         now.plus(DELTA).plus(DELTA),
       );
-      Promise.all([bufferStart, bufferEnd, bufferNext]).then((buffers) => {
-        setBuffers(buffers);
-      });
+      Promise.all([bufferStart, bufferEnd, bufferNext])
+        .then((buffers) => {
+          setBuffers(buffers);
+        })
+        .catch((error) => {
+          console.error("Error fetching satellite data", error);
+        });
     }
 
     if (buffers.length == 0) {
@@ -88,13 +92,17 @@ function useBuffers(index: number) {
     if (buffers[nextEndIndex].date.toMillis() == nextEndDate.toMillis()) {
       return;
     }
-    updateSatellitePositions(altitudeFactor, nextEndDate).then((buffer) => {
-      setBuffers((prev) => {
-        prev[nextEndIndex] = buffer;
-        return prev;
+    updateSatellitePositions(altitudeFactor, nextEndDate)
+      .then((buffer) => {
+        setBuffers((prev) => {
+          prev[nextEndIndex] = buffer;
+          return prev;
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching satellite data", error);
       });
-    });
-  }, [index, buffers]);
+  }, [index, buffers, altitudeFactor]);
 
   return buffers;
 }
