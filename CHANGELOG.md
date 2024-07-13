@@ -1,3 +1,10 @@
+## [1.11.0-develop.9](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.8...v1.11.0-develop.9) (2024-07-13)
+
+
+### Bug Fixes
+
+* missing .VERSION in CI ([ff00878](https://gitlab.com/dev6645326/react-flight-tracker/commit/ff00878e826159a37ceb978dcfc57c6dd24e95a1))
+
 ## [1.11.0-develop.8](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.7...v1.11.0-develop.8) (2024-07-13)
 
 
