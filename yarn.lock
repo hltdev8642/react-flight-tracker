@@ -6172,11 +6172,6 @@ satellite-api-react-flight-tracker-axios@^1.0.4:
   dependencies:
     axios "^1.6.1"
 
-satellite.js@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/satellite.js/-/satellite.js-5.0.0.tgz#9db39c7c6f202d3486fb7b9da072d023d8ec0a63"
-  integrity sha512-ie3yiJ2LJAJIhVUKdYhgp7V0btXKAMImDjRnuaNfJGl8rjwP2HwVIh4HLFcpiXYEiYwXc5fqh5+yZqCe6KIwWw==
-
 scheduler@^0.21.0:
   version "0.21.0"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0.tgz#6fd2532ff5a6d877b6edb12f00d8ab7e8f308820"
