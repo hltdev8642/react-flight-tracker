@@ -7,6 +7,8 @@ import EarthNightMap from "../../assets/earth/10k/5_night_16k.jpg";
 import { Sphere } from "@react-three/drei";
 import { EARTH_RADIUS } from "../../constants.ts";
 import { toast } from "react-toastify";
+import EARTH_FRAGMENT from "././shader/earth_fragment.glsl?raw";
+import EARTH_VERTEX from "././shader/earth_vertex.glsl?raw";
 
 export default function Earth() {
   // load texture
@@ -25,18 +27,26 @@ export default function Earth() {
       };
     },
   ) as Texture[];
-
   return (
     <>
-      <Sphere args={[EARTH_RADIUS, 50, 50]}>
-        <meshPhongMaterial specularMap={specularMap} />
-        <meshStandardMaterial
+      <Sphere args={[EARTH_RADIUS, 100, 100]}>
+        <meshPhysicalMaterial
+          onBeforeCompile={(shader) => {
+            shader.fragmentShader = EARTH_FRAGMENT;
+            shader.vertexShader = EARTH_VERTEX;
+          }}
+          clipShadows={true}
+          flatShading={false}
           map={colorMap}
           bumpMap={bumpMap}
-          bumpScale={0.01}
+          bumpScale={0.03}
+          roughness={1}
+          dithering={true}
           emissiveMap={nightMap}
           emissiveIntensity={3}
-          emissive={0xaaaaaa}
+          emissive={"#ffffff"}
+          specularColor={"#ffffff"}
+          specularIntensityMap={specularMap}
         />
       </Sphere>
     </>
