@@ -1,6 +1,4 @@
 import { MutableRefObject, useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { miscellaneousOptionsState } from "../../../atoms.ts";
 import { DateTime } from "luxon";
 import {
   InstancedMesh,
@@ -27,19 +25,15 @@ type CalculatedData = {
 
 function useBuffers(index: number) {
   const [buffers, setBuffers] = useState<CalculatedData[]>([]);
-  const altitudeFactor = useRecoilValue(
-    miscellaneousOptionsState,
-  ).altitudeFactor;
+
   useEffect(() => {
     function resetSatelliteData() {
       const now = DateTime.now();
-      const bufferStart = updateSatellitePositions(altitudeFactor, now);
+      const bufferStart = updateSatellitePositions(now);
       const bufferEnd = updateSatellitePositions(
-        altitudeFactor,
         now.plus(SATELLITE_BUFFER_DELTA),
       );
       const bufferNext = updateSatellitePositions(
-        altitudeFactor,
         now.plus(SATELLITE_BUFFER_DELTA).plus(SATELLITE_BUFFER_DELTA),
       );
       Promise.all([bufferStart, bufferEnd, bufferNext])
@@ -68,7 +62,7 @@ function useBuffers(index: number) {
     if (buffers[nextEndIndex].date.toMillis() == nextEndDate.toMillis()) {
       return;
     }
-    updateSatellitePositions(altitudeFactor, nextEndDate)
+    updateSatellitePositions(nextEndDate)
       .then((buffer) => {
         setBuffers((prev) => {
           prev[nextEndIndex] = buffer;
@@ -78,7 +72,7 @@ function useBuffers(index: number) {
       .catch((error) => {
         console.error("Error fetching satellite data", error);
       });
-  }, [index, buffers, altitudeFactor]);
+  }, [index, buffers]);
 
   return buffers;
 }
@@ -93,6 +87,7 @@ function handleSatellitePositionUpdate(
       })
     | (PerspectiveCamera & { manual?: boolean }),
   instancedMeshRef: MutableRefObject<InstancedMesh>,
+  altitudeFactor: number,
 ): { x: number; y: number; z: number }[] {
   const date = DateTime.now();
   let calculatedIndex = index;
@@ -119,6 +114,8 @@ function handleSatellitePositionUpdate(
       endBuffer.satellitePositions[i],
       ratio,
     );
+
+    geodetic.altitude = geodetic.altitude * altitudeFactor + EARTH_RADIUS;
 
     // const cartesian = interpolateCartesian(cartesian1, cartesian2, ratio);
     let cartesian = convertToCartesian(
@@ -154,10 +151,7 @@ function handleSatellitePositionUpdate(
   return satPositions;
 }
 
-async function updateSatellitePositions(
-  altitudeFactor: number,
-  date: DateTime,
-) {
+async function updateSatellitePositions(date: DateTime) {
   const res = await satelliteApi.satelliteServiceGetSatellitePositions(
     date.toISO() as string,
     [],
@@ -168,9 +162,7 @@ async function updateSatellitePositions(
       return {
         latitude: toDegrees(satellite.lat as number),
         longitude: toDegrees(satellite.lon as number),
-        altitude:
-          (satellite.altitude as number) * altitudeFactor * 0.0001 +
-          EARTH_RADIUS,
+        altitude: (satellite.altitude as number) * 0.0001,
       };
     }),
   } as CalculatedData;

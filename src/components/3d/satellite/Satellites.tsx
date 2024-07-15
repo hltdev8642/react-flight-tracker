@@ -7,6 +7,8 @@ import { satelliteApi } from "../../../utils.ts";
 import { Html } from "@react-three/drei";
 import { useQuery } from "@tanstack/react-query";
 import { handleSatellitePositionUpdate, useBuffers } from "./updateUtils.tsx";
+import { miscellaneousOptionsState } from "../../../atoms.ts";
+import { useRecoilValue } from "recoil";
 
 export default function Satellites() {
   const instancedMeshRef = useRef<InstancedMesh>(null!);
@@ -23,7 +25,9 @@ export default function Satellites() {
     refetchInterval: 10000,
     refetchOnWindowFocus: false,
   });
-
+  const altitudeFactor = useRecoilValue(
+    miscellaneousOptionsState,
+  ).altitudeFactor;
   // set up raycaster
   const { raycaster } = useThree();
   raycaster.params.Points.threshold = 0.1;
@@ -35,6 +39,7 @@ export default function Satellites() {
       setIndex,
       camera,
       instancedMeshRef,
+      altitudeFactor,
     );
     if (groupRef.current && currentSatellite !== -1) {
       groupRef.current.position.set(
@@ -95,6 +100,9 @@ export default function Satellites() {
           args={[undefined, undefined, instanceCount]}
           onPointerOver={(e) => {
             setCurrentSatellite(e.instanceId as number);
+          }}
+          onPointerMissed={() => {
+            setCurrentSatellite(-1);
           }}
         >
           <sphereGeometry args={[0.5, 8, 8]} />
