@@ -23,6 +23,7 @@ export default function Satellites() {
   // set up raycaster
   const { raycaster } = useThree();
   raycaster.params.Points.threshold = 0.1;
+  raycaster.params.Line.threshold = 0.1;
 
   useFrame(() => {
     const satPositions = handleSatellitePositionUpdate(
