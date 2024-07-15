@@ -55,8 +55,12 @@ export default function Satellites() {
   });
 
   let instanceCount = 0;
-  if (buffers.length > 0 && buffers[0].satellitePositions) {
-    instanceCount = buffers[0].satellitePositions.length;
+  if (
+    buffers.length > 0 &&
+    buffers[index] &&
+    buffers[index].satellitePositions
+  ) {
+    instanceCount = buffers[index].satellitePositions.length;
   }
 
   return (
