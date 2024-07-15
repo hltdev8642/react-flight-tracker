@@ -1,3 +1,10 @@
+## [1.11.0-develop.10](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.9...v1.11.0-develop.10) (2024-07-14)
+
+
+### Features
+
+* add night lights only during the night ([8014bc4](https://gitlab.com/dev6645326/react-flight-tracker/commit/8014bc42b339ecaf471690c581515257a6a6ffeb))
+
 ## [1.11.0-develop.9](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.8...v1.11.0-develop.9) (2024-07-13)
 
 
