@@ -1,3 +1,15 @@
+## [1.11.0-develop.13](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.12...v1.11.0-develop.13) (2024-07-15)
+
+
+### Features
+
+* add texture for satellites ([c71d29b](https://gitlab.com/dev6645326/react-flight-tracker/commit/c71d29b0584fdea2309feae0032e5aa50ea37550))
+
+
+### Bug Fixes
+
+* tweak raycast parameters ([23fb83d](https://gitlab.com/dev6645326/react-flight-tracker/commit/23fb83d35852571c31d24d279ecbeb85575f06ff))
+
 ## [1.11.0-develop.12](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.11...v1.11.0-develop.12) (2024-07-15)
 
 
