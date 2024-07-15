@@ -34,7 +34,11 @@ export default function Satellites() {
       instancedMeshRef,
       altitudeFactor,
     );
-    if (groupRef.current && currentSatellite !== -1) {
+    if (
+      groupRef.current &&
+      currentSatellite !== -1 &&
+      satPositions[currentSatellite]
+    ) {
       groupRef.current.position.set(
         satPositions[currentSatellite].x,
         satPositions[currentSatellite].y,
