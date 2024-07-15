@@ -1,3 +1,10 @@
+## [1.11.0-develop.12](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.11...v1.11.0-develop.12) (2024-07-15)
+
+
+### Features
+
+* altitude factor now works with satellites ([1adc08e](https://gitlab.com/dev6645326/react-flight-tracker/commit/1adc08e2ffc5f8437d6d9febd7bedf4047d9fcb2))
+
 ## [1.11.0-develop.11](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.10...v1.11.0-develop.11) (2024-07-15)
 
 
