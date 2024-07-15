@@ -97,7 +97,7 @@ function handleSatellitePositionUpdate(
   const date = DateTime.now();
   let calculatedIndex = index;
   if (!buffers[index] || !buffers[nextIndex(index, buffers.length)]) {
-    return;
+    return [];
   }
   if (
     date > buffers[nextIndex(index, buffers.length)].date &&

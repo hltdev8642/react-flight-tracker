@@ -43,11 +43,12 @@ export default function Satellites() {
         satPositions[currentSatellite].z,
       );
     }
-    if (satelliteHtmlRef.current) {
-      satelliteHtmlRef.current.innerHTML =
-        currentSatellite !== -1
-          ? `Alt: ${buffers[index].satellitePositions[currentSatellite].altitude.toFixed(4) * 1000}<br>Lat: ${buffers[index].satellitePositions[currentSatellite].latitude.toFixed(4)}<br>Lon: ${buffers[index].satellitePositions[currentSatellite].longitude.toFixed(4)}`
-          : "";
+    if (satelliteHtmlRef.current && buffers[index].satellitePositions) {
+      if (currentSatellite !== -1) {
+        satelliteHtmlRef.current.innerHTML = `Alt: ${(buffers[index].satellitePositions[currentSatellite].altitude * 1000).toFixed(4)}<br>Lat: ${buffers[index].satellitePositions[currentSatellite].latitude.toFixed(4)}<br>Lon: ${buffers[index].satellitePositions[currentSatellite].longitude.toFixed(4)}`;
+      } else {
+        satelliteHtmlRef.current.innerHTML = "No satellite selected";
+      }
     }
   });
 
@@ -59,32 +60,34 @@ export default function Satellites() {
   return (
     <>
       <group ref={groupRef}>
-        {currentSatellite !== -1 && satelliteMap && (
-          <Html>
-            <svg
-              height="42"
-              width="42"
-              transform="translate(-16 -16)"
-              style={{ cursor: "pointer" }}
-            >
-              <circle
-                cx="16"
-                cy="16"
-                r="16"
-                stroke="white"
-                strokeWidth="2"
-                fill="rgba(0,0,0,0)"
-              />
-            </svg>
-            <div className="annotationDescription">
-              <div className="annotationTitle">
-                {satelliteMap.data.satellites[currentSatellite].objectName} (
-                {satelliteMap.data.satellites[currentSatellite].noradCatId})
+        {currentSatellite !== -1 &&
+          satelliteMap &&
+          satelliteMap.data.satellites && (
+            <Html>
+              <svg
+                height="42"
+                width="42"
+                transform="translate(-16 -16)"
+                style={{ cursor: "pointer" }}
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="16"
+                  stroke="white"
+                  strokeWidth="2"
+                  fill="rgba(0,0,0,0)"
+                />
+              </svg>
+              <div className="annotationDescription">
+                <div className="annotationTitle">
+                  {satelliteMap.data.satellites[currentSatellite].objectName} (
+                  {satelliteMap.data.satellites[currentSatellite].noradCatId})
+                </div>
+                <div className="annotationContent" ref={satelliteHtmlRef}></div>
               </div>
-              <div className="annotationContent" ref={satelliteHtmlRef}></div>
-            </div>
-          </Html>
-        )}
+            </Html>
+          )}
       </group>
       {
         <instancedMesh
