@@ -1,3 +1,10 @@
+## [1.11.0-develop.14](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.13...v1.11.0-develop.14) (2024-07-15)
+
+
+### Bug Fixes
+
+* add check to verify for satPositions[currentSatellite] ([2adb037](https://gitlab.com/dev6645326/react-flight-tracker/commit/2adb037071f5f901f2922b2c0e93849de70f77a8))
+
 ## [1.11.0-develop.13](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.12...v1.11.0-develop.13) (2024-07-15)
 
 
