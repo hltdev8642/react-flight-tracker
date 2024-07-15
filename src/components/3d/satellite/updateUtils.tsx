@@ -16,11 +16,18 @@ import { EARTH_RADIUS, SATELLITE_BUFFER_DELTA } from "../../../constants.ts";
 
 const temp = new Object3D();
 
-type GeoCoordinate = { latitude: number; longitude: number; altitude: number };
+type SatelliteWithGeoPosition = {
+  latitude: number;
+  longitude: number;
+  altitude: number;
+  velocity: number;
+  name: string;
+  id: string;
+};
 
 type CalculatedData = {
   date: DateTime;
-  satellitePositions: GeoCoordinate[];
+  satellitePositions: SatelliteWithGeoPosition[];
 };
 
 function useBuffers(index: number) {
@@ -108,44 +115,55 @@ function handleSatellitePositionUpdate(
   const ratio =
     (date.toMillis() - startBuffer.date.toMillis()) /
     SATELLITE_BUFFER_DELTA.toMillis();
-  const satPositions = startBuffer.satellitePositions.map((geodetic, i) => {
-    geodetic = interpolateGeoCoordinates(
-      geodetic,
-      endBuffer.satellitePositions[i],
-      ratio,
-    );
-
-    geodetic.altitude = geodetic.altitude * altitudeFactor + EARTH_RADIUS;
-
-    // const cartesian = interpolateCartesian(cartesian1, cartesian2, ratio);
-    let cartesian = convertToCartesian(
-      geodetic.latitude,
-      geodetic.longitude,
-      geodetic.altitude,
-    );
-    let scale = Math.max(geodetic.altitude / 400, 0.001);
-
-    if (
-      isNaN(geodetic.latitude) ||
-      isNaN(endBuffer.satellitePositions[i].latitude) ||
-      geodetic.altitude > 2000
-    ) {
-      cartesian = {
-        x: 0,
-        y: 0,
-        z: 0,
+  const satPositions = startBuffer.satellitePositions.map(
+    (satelliteWithGeoPosition, i) => {
+      const interpolatedGeoCoordinates = interpolateGeoCoordinates(
+        satelliteWithGeoPosition,
+        endBuffer.satellitePositions[i],
+        ratio,
+      );
+      satelliteWithGeoPosition = {
+        ...satelliteWithGeoPosition,
+        velocity:
+          satelliteWithGeoPosition.velocity * ratio +
+          endBuffer.satellitePositions[i].velocity * (1 - ratio),
+        ...interpolatedGeoCoordinates,
+        altitude:
+          interpolatedGeoCoordinates.altitude * altitudeFactor * 0.0001 +
+          EARTH_RADIUS,
       };
-      scale = 0;
-    }
-    temp.position.set(cartesian.x, cartesian.y, cartesian.z);
-    temp.scale.set(scale, scale, scale);
-    // Set rotation to look at the camera
-    temp.quaternion.copy(camera.quaternion);
-    temp.updateMatrix();
 
-    instancedMeshRef.current.setMatrixAt(i, temp.matrix);
-    return cartesian;
-  });
+      // const cartesian = interpolateCartesian(cartesian1, cartesian2, ratio);
+      let cartesian = convertToCartesian(
+        satelliteWithGeoPosition.latitude,
+        satelliteWithGeoPosition.longitude,
+        satelliteWithGeoPosition.altitude,
+      );
+      let scale = Math.max(satelliteWithGeoPosition.altitude / 400, 0.001);
+
+      if (
+        isNaN(satelliteWithGeoPosition.latitude) ||
+        isNaN(endBuffer.satellitePositions[i].latitude) ||
+        satelliteWithGeoPosition.altitude > 2000
+      ) {
+        cartesian = {
+          x: 0,
+          y: 0,
+          z: 0,
+        };
+        scale = 0;
+      }
+      scale *= 5;
+      temp.position.set(cartesian.x, cartesian.y, cartesian.z);
+      temp.scale.set(scale, scale, scale);
+      // Set rotation to look at the camera
+      temp.quaternion.copy(camera.quaternion);
+      temp.updateMatrix();
+
+      instancedMeshRef.current.setMatrixAt(i, temp.matrix);
+      return cartesian;
+    },
+  );
   // Update the instance
   instancedMeshRef.current.instanceMatrix.needsUpdate = true;
   return satPositions;
@@ -162,7 +180,10 @@ async function updateSatellitePositions(date: DateTime) {
       return {
         latitude: toDegrees(satellite.lat as number),
         longitude: toDegrees(satellite.lon as number),
-        altitude: (satellite.altitude as number) * 0.0001,
+        altitude: satellite.altitude as number,
+        id: satellite.id,
+        name: satellite.name,
+        velocity: satellite.velocity as number,
       };
     }),
   } as CalculatedData;

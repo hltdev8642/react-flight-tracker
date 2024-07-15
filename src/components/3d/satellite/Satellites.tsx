@@ -1,16 +1,15 @@
 import { useRef, useState } from "react";
-import { Group, InstancedMesh } from "three";
-import { useFrame, useThree } from "@react-three/fiber";
+import { Group, InstancedMesh, TextureLoader } from "three";
+import { useFrame, useLoader, useThree } from "@react-three/fiber";
 
-import { DateTime } from "luxon";
-import { satelliteApi } from "../../../utils.ts";
 import { Html } from "@react-three/drei";
-import { useQuery } from "@tanstack/react-query";
 import { handleSatellitePositionUpdate, useBuffers } from "./updateUtils.tsx";
 import { miscellaneousOptionsState } from "../../../atoms.ts";
 import { useRecoilValue } from "recoil";
+import SatelliteTexture from "../../../assets/satellites/satelliteTexture.png";
 
 export default function Satellites() {
+  const satelliteTexture = useLoader(TextureLoader, SatelliteTexture);
   const instancedMeshRef = useRef<InstancedMesh>(null!);
   const { camera } = useThree();
   const [index, setIndex] = useState(0);
@@ -18,13 +17,6 @@ export default function Satellites() {
   const groupRef = useRef<Group>(null!);
   const [currentSatellite, setCurrentSatellite] = useState(-1);
   const satelliteHtmlRef = useRef<HTMLDivElement>(null!);
-  const { data: satelliteMap } = useQuery({
-    queryKey: ["satelliteMap"],
-    queryFn: () =>
-      satelliteApi.satelliteServiceGetMinimalSatellites(DateTime.now().toISO()),
-    refetchInterval: 10000,
-    refetchOnWindowFocus: false,
-  });
   const altitudeFactor = useRecoilValue(
     miscellaneousOptionsState,
   ).altitudeFactor;
@@ -50,7 +42,7 @@ export default function Satellites() {
     }
     if (satelliteHtmlRef.current && buffers[index].satellitePositions) {
       if (currentSatellite !== -1) {
-        satelliteHtmlRef.current.innerHTML = `Alt: ${(buffers[index].satellitePositions[currentSatellite].altitude * 1000).toFixed(4)}<br>Lat: ${buffers[index].satellitePositions[currentSatellite].latitude.toFixed(4)}<br>Lon: ${buffers[index].satellitePositions[currentSatellite].longitude.toFixed(4)}`;
+        satelliteHtmlRef.current.innerHTML = `Alt: ${buffers[index].satellitePositions[currentSatellite].altitude.toFixed(0)} Km<br>Velocity: ${buffers[index].satellitePositions[currentSatellite].velocity.toFixed(2)} Km/s`;
       } else {
         satelliteHtmlRef.current.innerHTML = "No satellite selected";
       }
@@ -66,8 +58,8 @@ export default function Satellites() {
     <>
       <group ref={groupRef}>
         {currentSatellite !== -1 &&
-          satelliteMap &&
-          satelliteMap.data.satellites && (
+          buffers[index] &&
+          buffers[index].satellitePositions && (
             <Html>
               <svg
                 height="42"
@@ -86,8 +78,8 @@ export default function Satellites() {
               </svg>
               <div className="annotationDescription">
                 <div className="annotationTitle">
-                  {satelliteMap.data.satellites[currentSatellite].objectName} (
-                  {satelliteMap.data.satellites[currentSatellite].noradCatId})
+                  {buffers[index].satellitePositions[currentSatellite].name} (
+                  {buffers[index].satellitePositions[currentSatellite].id})
                 </div>
                 <div className="annotationContent" ref={satelliteHtmlRef}></div>
               </div>
@@ -105,13 +97,13 @@ export default function Satellites() {
             setCurrentSatellite(-1);
           }}
         >
-          <sphereGeometry args={[0.5, 8, 8]} />
-          <meshBasicMaterial
-            transparent={true}
-            opacity={1}
-            type={"MeshBasicMaterial"}
-            color={"#ffffff"}
-            wireframe={false}
+          <planeGeometry args={[1, 1, 1, 1]} />
+          <meshPhysicalMaterial
+            map={satelliteTexture}
+            emissive={"white"}
+            emissiveMap={satelliteTexture}
+            emissiveIntensity={0.3}
+            alphaHash={true}
           />
         </instancedMesh>
       }

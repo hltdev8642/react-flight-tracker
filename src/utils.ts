@@ -86,8 +86,8 @@ const flightRadarApi = new FlightRadarApi({
 
 const satelliteApi = new SatelliteServiceApi(
   new Configuration({
-    // basePath: "https://satellite-api.react-flight-tracker.dev.apoorva64.com",
-    basePath: "http://localhost:8080",
+    basePath: "https://satellite-api.react-flight-tracker.dev.apoorva64.com",
+    // basePath: "http://localhost:8080",
   }),
 );
 

@@ -17,6 +17,7 @@ export function App() {
           style={{
             height: "100vh",
           }}
+          dpr={1}
           camera={{
             near: 0.01,
             far: 100000000,
