@@ -7,15 +7,15 @@ import {
   TextureLoader,
   Vector3,
 } from "three";
-import { convertToCartesian, flightRadarApi } from "../../utils.ts";
+import { convertToCartesian, flightRadarApi } from "../../../utils.ts";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   liveFlightsOptionsState,
   miscellaneousOptionsState,
   selectedFlightState,
-} from "../../atoms.ts";
-import { EARTH_RADIUS, reductionFactor } from "../../constants.ts";
-import PlaneTexture from "../../assets/planeTexture.png";
+} from "../../../atoms.ts";
+import { EARTH_RADIUS, reductionFactor } from "../../../constants.ts";
+import PlaneTexture from "../../../assets/planeTexture.png";
 import { useLoader } from "@react-three/fiber";
 
 const temp = new Object3D();

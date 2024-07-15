@@ -6,16 +6,16 @@ import {
   MOON_RADIUS,
   reductionFactor,
   SUN_RADIUS,
-} from "../../constants.ts";
+} from "../../../constants.ts";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   cameraTargetState,
   isAnimationRunningState,
   moonPositionState,
   sunPositionState,
-} from "../../atoms.ts";
-import { toDegrees } from "../../astronomy-utils.tsx";
-import { convertToCartesian } from "../../utils.ts";
+} from "../../../atoms.ts";
+import { toDegrees } from "../../../astronomy-utils.tsx";
+import { convertToCartesian } from "../../../utils.ts";
 
 export default function Camera() {
   const cameraControlsRef = useRef<CameraControls>(null!);

@@ -2,13 +2,13 @@ import {
   ASTRONOMICAL_UNIT,
   reductionFactor,
   SUN_RADIUS,
-} from "../../constants.ts";
+} from "../../../constants.ts";
 import { Vector3 } from "three";
-import { convertToCartesian } from "../../utils.ts";
-import { calculateSunPosition, toDegrees } from "../../astronomy-utils.tsx";
+import { convertToCartesian } from "../../../utils.ts";
+import { calculateSunPosition, toDegrees } from "../../../astronomy-utils.tsx";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { sunPositionState } from "../../atoms.ts";
+import { sunPositionState } from "../../../atoms.ts";
 
 export default function Sun() {
   const [pos, setPos] = useRecoilState(sunPositionState);

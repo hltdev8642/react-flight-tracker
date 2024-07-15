@@ -9,18 +9,18 @@ import {
 } from "@react-three/postprocessing";
 import { useRecoilValue } from "recoil";
 import { graphicOptionsState, miscellaneousOptionsState } from "../../atoms.ts";
-import { CountryBorders } from "./countryBorders.tsx";
+import { CountryBorders } from "./planets/countryBorders.tsx";
 import { lazy, Suspense } from "react";
-import Sun from "./Sun.tsx";
-import Moon from "./Moon.tsx";
-import Camera from "./Camera.tsx";
+import Sun from "./planets/Sun.tsx";
+import Moon from "./planets/Moon.tsx";
+import Camera from "./common/Camera.tsx";
 import { ToneMappingMode } from "postprocessing";
 
-const FlightTrail = lazy(() => import("./FlightTrail.tsx"));
-const Flights = lazy(() => import("./Flights.tsx"));
-const Earth = lazy(() => import("./Earth.tsx"));
-const MobileEarth = lazy(() => import("./MobileEarth.tsx"));
-const Satellites = lazy(() => import("./Satellites.tsx"));
+const FlightTrail = lazy(() => import("./flight/FlightTrail.tsx"));
+const Flights = lazy(() => import("./flight/Flights.tsx"));
+const Earth = lazy(() => import("./planets/Earth.tsx"));
+const MobileEarth = lazy(() => import("./planets/MobileEarth.tsx"));
+const Satellites = lazy(() => import("./satellite/Satellites.tsx"));
 
 function Scene() {
   const graphicOptions = useRecoilValue(graphicOptionsState);
