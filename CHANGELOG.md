@@ -1,3 +1,15 @@
+## [1.11.0-develop.11](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.10...v1.11.0-develop.11) (2024-07-15)
+
+
+### Features
+
+* add tooltip for satellites ([f461b77](https://gitlab.com/dev6645326/react-flight-tracker/commit/f461b77095b383376912810bb94690c4b96167d8))
+
+
+### Bug Fixes
+
+* typescript errors ([968b1e3](https://gitlab.com/dev6645326/react-flight-tracker/commit/968b1e3ba82497f9e3f40db356a41384b0347d23))
+
 ## [1.11.0-develop.10](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.9...v1.11.0-develop.10) (2024-07-14)
 
 
