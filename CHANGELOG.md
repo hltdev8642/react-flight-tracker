@@ -1,3 +1,16 @@
+## [1.11.0-develop.15](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.14...v1.11.0-develop.15) (2024-07-20)
+
+
+### Features
+
+* add satellite Details in tolltip ([ccd0ded](https://gitlab.com/dev6645326/react-flight-tracker/commit/ccd0dedd705a40a0c4a79d4247e1e571b9aa2c16))
+
+
+### Bug Fixes
+
+* add check to verify for buffers[index].satellitePositions ([a81bf88](https://gitlab.com/dev6645326/react-flight-tracker/commit/a81bf883b9386418e9a8055b57524e795cad8532))
+* typescript errors ([96e800e](https://gitlab.com/dev6645326/react-flight-tracker/commit/96e800e630bbc020a9d7bc7955693941acd4b0c0))
+
 ## [1.11.0-develop.14](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.13...v1.11.0-develop.14) (2024-07-15)
 
 
