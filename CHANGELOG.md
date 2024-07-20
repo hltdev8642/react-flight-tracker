@@ -1,3 +1,15 @@
+## [1.11.0-develop.16](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.15...v1.11.0-develop.16) (2024-07-20)
+
+
+### Features
+
+* add satellite path but needs optimisations ([37c415f](https://gitlab.com/dev6645326/react-flight-tracker/commit/37c415fc2b11a2c78829d6ffda201369c6c27fea))
+
+
+### Bug Fixes
+
+* use the real satellite api ([1f67711](https://gitlab.com/dev6645326/react-flight-tracker/commit/1f67711cef41ffc8f83100acc32d8330571f4b69))
+
 ## [1.11.0-develop.15](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.14...v1.11.0-develop.15) (2024-07-20)
 
 
