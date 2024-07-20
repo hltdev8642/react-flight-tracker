@@ -20,7 +20,7 @@ svg text {
   position: absolute;
   top: 20px;
   padding: 1em;
-  width: 200px;
+  width: max-content;
   background: rgba(0, 0, 0, 0.66);
   border-radius: 0.5em;
   display: block;

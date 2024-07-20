@@ -13,21 +13,28 @@ import {
 } from "../../../utils.ts";
 import { toDegrees } from "../../../astronomy-utils.tsx";
 import { EARTH_RADIUS, SATELLITE_BUFFER_DELTA } from "../../../constants.ts";
+import { V1Satellite } from "satellite-api-react-flight-tracker-axios";
 
 const temp = new Object3D();
-
-type SatelliteWithGeoPosition = {
+export type GeoPosition = {
   latitude: number;
   longitude: number;
   altitude: number;
-  velocity: number;
-  name: string;
-  id: string;
 };
 
-type CalculatedData = {
+export type CartesianPosition = {
+  x: number;
+  y: number;
+  z: number;
+};
+
+export type SatelliteWithCartesian = V1Satellite &
+  CartesianPosition &
+  GeoPosition;
+
+export type CalculatedData = {
   date: DateTime;
-  satellitePositions: SatelliteWithGeoPosition[];
+  satellitePositions: SatelliteWithCartesian[];
 };
 
 function useBuffers(index: number) {
@@ -35,7 +42,7 @@ function useBuffers(index: number) {
 
   useEffect(() => {
     function resetSatelliteData() {
-      const now = DateTime.now();
+      const now = DateTime.now().toUTC();
       const bufferStart = updateSatellitePositions(now);
       const bufferEnd = updateSatellitePositions(
         now.plus(SATELLITE_BUFFER_DELTA),
@@ -95,7 +102,7 @@ function handleSatellitePositionUpdate(
     | (PerspectiveCamera & { manual?: boolean }),
   instancedMeshRef: MutableRefObject<InstancedMesh>,
   altitudeFactor: number,
-): { x: number; y: number; z: number }[] {
+): SatelliteWithCartesian[] {
   const date = DateTime.now();
   let calculatedIndex = index;
   if (!buffers[index] || !buffers[nextIndex(index, buffers.length)]) {
@@ -116,16 +123,17 @@ function handleSatellitePositionUpdate(
     (date.toMillis() - startBuffer.date.toMillis()) /
     SATELLITE_BUFFER_DELTA.toMillis();
   const satPositions = startBuffer.satellitePositions.map(
-    (satelliteWithGeoPosition, i) => {
+    (satelliteWithCartesian, i) => {
+      const isSatelliteSlow = satelliteWithCartesian.velocity < 0.5;
       const interpolatedGeoCoordinates = interpolateGeoCoordinates(
-        satelliteWithGeoPosition,
+        satelliteWithCartesian,
         endBuffer.satellitePositions[i],
-        ratio,
+        isSatelliteSlow ? 0 : ratio,
       );
-      satelliteWithGeoPosition = {
-        ...satelliteWithGeoPosition,
+      satelliteWithCartesian = {
+        ...satelliteWithCartesian,
         velocity:
-          satelliteWithGeoPosition.velocity * ratio +
+          satelliteWithCartesian.velocity * ratio +
           endBuffer.satellitePositions[i].velocity * (1 - ratio),
         ...interpolatedGeoCoordinates,
         altitude:
@@ -135,16 +143,16 @@ function handleSatellitePositionUpdate(
 
       // const cartesian = interpolateCartesian(cartesian1, cartesian2, ratio);
       let cartesian = convertToCartesian(
-        satelliteWithGeoPosition.latitude,
-        satelliteWithGeoPosition.longitude,
-        satelliteWithGeoPosition.altitude,
+        satelliteWithCartesian.latitude,
+        satelliteWithCartesian.longitude,
+        satelliteWithCartesian.altitude,
       );
-      let scale = Math.max(satelliteWithGeoPosition.altitude / 400, 0.001);
+      let scale = Math.max(satelliteWithCartesian.altitude / 400, 0.001);
 
       if (
-        isNaN(satelliteWithGeoPosition.latitude) ||
+        isNaN(satelliteWithCartesian.latitude) ||
         isNaN(endBuffer.satellitePositions[i].latitude) ||
-        satelliteWithGeoPosition.altitude > 2000
+        satelliteWithCartesian.altitude > 2000
       ) {
         cartesian = {
           x: 0,
@@ -161,11 +169,16 @@ function handleSatellitePositionUpdate(
       temp.updateMatrix();
 
       instancedMeshRef.current.setMatrixAt(i, temp.matrix);
-      return cartesian;
+      satelliteWithCartesian = {
+        ...satelliteWithCartesian,
+        ...cartesian,
+      };
+      return satelliteWithCartesian;
     },
   );
   // Update the instance
   instancedMeshRef.current.instanceMatrix.needsUpdate = true;
+  instancedMeshRef.current.computeBoundingSphere();
   return satPositions;
 }
 
