@@ -124,6 +124,12 @@ function handleSatellitePositionUpdate(
     SATELLITE_BUFFER_DELTA.toMillis();
   const satPositions = startBuffer.satellitePositions.map(
     (satelliteWithCartesian, i) => {
+      if (
+        !satelliteWithCartesian.velocity ||
+        !endBuffer.satellitePositions[i].velocity
+      ) {
+        return satelliteWithCartesian;
+      }
       const isSatelliteSlow = satelliteWithCartesian.velocity < 0.5;
       const interpolatedGeoCoordinates = interpolateGeoCoordinates(
         satelliteWithCartesian,
