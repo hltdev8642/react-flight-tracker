@@ -1,4 +1,4 @@
-import { MutableRefObject } from "react";
+import { MutableRefObject, Suspense } from "react";
 import { Group } from "three";
 
 import { Html } from "@react-three/drei";
@@ -7,6 +7,7 @@ import { EARTH_RADIUS } from "../../../constants.ts";
 import { useQuery } from "@tanstack/react-query";
 import { satelliteApi } from "../../../utils.ts";
 import { Grid, Typography } from "@mui/material";
+import SatellitePath from "./SatellitePath.tsx";
 
 function ToolTip(props: {
   groupRef: MutableRefObject<Group>;
@@ -150,6 +151,9 @@ export default function SatelliteDetails(props: {
         fullDetails
         noradId={noradId}
       />
+      <Suspense fallback={<></>}>
+        <SatellitePath noradId={noradId} />
+      </Suspense>
     </>
   );
 }
