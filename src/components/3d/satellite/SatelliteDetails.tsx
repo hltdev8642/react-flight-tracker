@@ -33,7 +33,10 @@ function ToolTip(props: {
     <group ref={props.groupRef}>
       {props.currentSatellite !== -1 &&
         props.calculatedData[props.index] &&
-        props.calculatedData[props.index].satellitePositions && (
+        props.calculatedData[props.index].satellitePositions &&
+        props.calculatedData[props.index].satellitePositions[
+          props.currentSatellite
+        ] && (
           <Html>
             <svg
               height="42"
@@ -130,7 +133,8 @@ export default function SatelliteDetails(props: {
     props.currentSatellite !== -1 &&
     props.fullDetails &&
     props.calculatedData[props.index] &&
-    props.calculatedData[props.index].satellitePositions
+    props.calculatedData[props.index].satellitePositions &&
+    props.calculatedData[props.index].satellitePositions[props.currentSatellite]
   ) {
     noradId =
       props.calculatedData[props.index].satellitePositions[

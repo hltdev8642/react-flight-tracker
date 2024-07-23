@@ -21,6 +21,7 @@ export default function SatellitePath(props: { noradId: string | undefined }) {
     refetchInterval: 100000,
     enabled: props.noradId !== undefined,
     refetchOnWindowFocus: true,
+    retry: true,
   });
   const altitudeFactor = useRecoilValue(
     miscellaneousOptionsState,

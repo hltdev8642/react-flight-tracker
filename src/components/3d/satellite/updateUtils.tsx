@@ -14,6 +14,11 @@ import {
 import { toDegrees } from "../../../astronomy-utils.tsx";
 import { EARTH_RADIUS, SATELLITE_BUFFER_DELTA } from "../../../constants.ts";
 import { V1Satellite } from "satellite-api-react-flight-tracker-axios";
+import {
+  SatelliteFilterOptions,
+  satelliteFilterOptionsState,
+} from "../../../atoms.ts";
+import { useRecoilState } from "recoil";
 
 const temp = new Object3D();
 export type GeoPosition = {
@@ -39,26 +44,29 @@ export type CalculatedData = {
 
 function useBuffers(index: number) {
   const [buffers, setBuffers] = useState<CalculatedData[]>([]);
+  const [satelliteFilterOptions] = useRecoilState(satelliteFilterOptionsState);
+
+  function resetSatelliteData() {
+    const now = DateTime.now().toUTC();
+    const bufferStart = updateSatellitePositions(now, satelliteFilterOptions);
+    const bufferEnd = updateSatellitePositions(
+      now.plus(SATELLITE_BUFFER_DELTA),
+      satelliteFilterOptions,
+    );
+    const bufferNext = updateSatellitePositions(
+      now.plus(SATELLITE_BUFFER_DELTA).plus(SATELLITE_BUFFER_DELTA),
+      satelliteFilterOptions,
+    );
+    Promise.all([bufferStart, bufferEnd, bufferNext])
+      .then((buffers) => {
+        setBuffers(buffers);
+      })
+      .catch((error) => {
+        console.error("Error fetching satellite data", error);
+      });
+  }
 
   useEffect(() => {
-    function resetSatelliteData() {
-      const now = DateTime.now().toUTC();
-      const bufferStart = updateSatellitePositions(now);
-      const bufferEnd = updateSatellitePositions(
-        now.plus(SATELLITE_BUFFER_DELTA),
-      );
-      const bufferNext = updateSatellitePositions(
-        now.plus(SATELLITE_BUFFER_DELTA).plus(SATELLITE_BUFFER_DELTA),
-      );
-      Promise.all([bufferStart, bufferEnd, bufferNext])
-        .then((buffers) => {
-          setBuffers(buffers);
-        })
-        .catch((error) => {
-          console.error("Error fetching satellite data", error);
-        });
-    }
-
     if (buffers.length == 0) {
       resetSatelliteData();
       return;
@@ -76,7 +84,7 @@ function useBuffers(index: number) {
     if (buffers[nextEndIndex].date.toMillis() == nextEndDate.toMillis()) {
       return;
     }
-    updateSatellitePositions(nextEndDate)
+    updateSatellitePositions(nextEndDate, satelliteFilterOptions)
       .then((buffer) => {
         setBuffers((prev) => {
           prev[nextEndIndex] = buffer;
@@ -86,7 +94,17 @@ function useBuffers(index: number) {
       .catch((error) => {
         console.error("Error fetching satellite data", error);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, buffers]);
+
+  useEffect(() => {
+    if (buffers.length == 0) {
+      return;
+    } else {
+      resetSatelliteData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [satelliteFilterOptions, buffers.length]);
 
   return buffers;
 }
@@ -188,10 +206,13 @@ function handleSatellitePositionUpdate(
   return satPositions;
 }
 
-async function updateSatellitePositions(date: DateTime) {
+async function updateSatellitePositions(
+  date: DateTime,
+  options: SatelliteFilterOptions,
+) {
   const res = await satelliteApi.satelliteServiceGetSatellitePositions(
     date.toISO() as string,
-    [],
+    options.groups,
   );
   return {
     date: date,

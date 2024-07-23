@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { liveFlightsOptionsState } from "../../atoms.ts";
+import { liveFlightsOptionsState } from "../../../atoms.ts";
 import { useState } from "react";
 import {
   Checkbox,

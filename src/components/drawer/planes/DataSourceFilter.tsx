@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { liveFlightsOptionsState } from "../../atoms.ts";
+import { liveFlightsOptionsState } from "../../../atoms.ts";
 import { useState } from "react";
 import {
   Avatar,
@@ -13,8 +13,8 @@ import {
 } from "@mui/material";
 import SourceIcon from "@mui/icons-material/Source";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import FAA from "../../assets/FAA_LOGO.png";
-import ADSB from "../../assets/ADSB.png";
+import FAA from "../../../assets/FAA_LOGO.png";
+import ADSB from "../../../assets/ADSB.png";
 
 export function DataSourceFilter() {
   const [liveFlightsOptions, setLiveFlightsOptions] = useRecoilState(

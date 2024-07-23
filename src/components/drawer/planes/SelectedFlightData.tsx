@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { flightRadarApi } from "../../utils.ts";
-import { selectedFlightState } from "../../atoms.ts";
+import { flightRadarApi } from "../../../utils.ts";
+import { selectedFlightState } from "../../../atoms.ts";
 import { useRecoilValue } from "recoil";
 import {
   Collapse,

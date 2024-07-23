@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { liveFlightsOptionsState } from "../../atoms.ts";
+import { liveFlightsOptionsState } from "../../../atoms.ts";
 import { useState } from "react";
 import {
   Autocomplete,
@@ -14,7 +14,7 @@ import {
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useQuery } from "@tanstack/react-query";
-import { flightRadarApi } from "../../utils.ts";
+import { flightRadarApi } from "../../../utils.ts";
 import { AirlineDetail } from "flightradar24-client-ts/lib/types";
 import { AirportData } from "flightradar24-client-ts/lib/airportTypes";
 

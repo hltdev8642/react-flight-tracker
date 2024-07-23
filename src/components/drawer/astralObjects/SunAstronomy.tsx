@@ -11,26 +11,26 @@ import {
   TableCell,
   TableRow,
 } from "@mui/material";
-import NightlightIcon from "@mui/icons-material/Nightlight";
-import { toDegrees } from "../../astronomy-utils.tsx";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import { toDegrees } from "../../../astronomy-utils.tsx";
 import { useRecoilValue } from "recoil";
-import { moonPositionState } from "../../atoms.ts";
+import { sunPositionState } from "../../../atoms.ts";
 
-export function MoonAstronomy() {
+export function SunAstronomy() {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
   };
 
-  const MoonPosition = useRecoilValue(moonPositionState);
+  const sunPosition = useRecoilValue(sunPositionState);
 
   return (
     <>
       <ListItemButton onClick={handleClick}>
         <ListItemIcon>
-          <NightlightIcon />
+          <WbSunnyIcon />
         </ListItemIcon>
-        <ListItemText primary="Moon Astronomy" />
+        <ListItemText primary="Sun Astronomy" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
@@ -39,18 +39,18 @@ export function MoonAstronomy() {
             <TableBody>
               <TableRow>
                 <TableCell>Distance</TableCell>
-                <TableCell>{MoonPosition.r.toFixed(5)} Earth Radii</TableCell>
+                <TableCell>{sunPosition.r.toFixed(5)} AU</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Elliptical Longitude</TableCell>
                 <TableCell>
-                  {toDegrees(MoonPosition.ellipticLongitude).toFixed(5)} °
+                  {toDegrees(sunPosition.ellipticLongitude).toFixed(5)} °
                 </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Elliptical Latitude</TableCell>
                 <TableCell>
-                  {toDegrees(MoonPosition.ellipticLatitude).toFixed(5)} °
+                  {toDegrees(sunPosition.ellipticLatitude).toFixed(5)} °
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -58,25 +58,23 @@ export function MoonAstronomy() {
               </TableRow>
               <TableRow>
                 <TableCell>xeq</TableCell>
-                <TableCell>{MoonPosition.xeq.toFixed(5)}</TableCell>
+                <TableCell>{sunPosition.xeq.toFixed(5)}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>yeq</TableCell>
-                <TableCell>{MoonPosition.yeq.toFixed(5)}</TableCell>
+                <TableCell>{sunPosition.yeq.toFixed(5)}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>zeq</TableCell>
-                <TableCell>{MoonPosition.zeq.toFixed(5)}</TableCell>
+                <TableCell>{sunPosition.zeq.toFixed(5)}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Right Ascension</TableCell>
-                <TableCell>{toDegrees(MoonPosition.ra).toFixed(5)} °</TableCell>
+                <TableCell>{toDegrees(sunPosition.ra).toFixed(5)} °</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Declination</TableCell>
-                <TableCell>
-                  {toDegrees(MoonPosition.dec).toFixed(5)} °
-                </TableCell>
+                <TableCell>{toDegrees(sunPosition.dec).toFixed(5)} °</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Geo Coordinates</TableCell>
@@ -84,13 +82,13 @@ export function MoonAstronomy() {
               <TableRow>
                 <TableCell>Longitude</TableCell>
                 <TableCell>
-                  {toDegrees(MoonPosition.geoLongitude).toFixed(5)} °
+                  {toDegrees(sunPosition.geoLongitude).toFixed(5)} °
                 </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Latitude</TableCell>
                 <TableCell>
-                  {toDegrees(MoonPosition.geoLatitude).toFixed(5)} °
+                  {toDegrees(sunPosition.geoLatitude).toFixed(5)} °
                 </TableCell>
               </TableRow>
             </TableBody>

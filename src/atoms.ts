@@ -168,3 +168,24 @@ export const isAnimationRunningState = atom<boolean>({
   key: "isAnimationRunning",
   default: false,
 });
+
+export const isPlanesEnabledState = atom<boolean>({
+  key: "isPlanesEnabled",
+  default: true,
+});
+
+export const isSatellitesEnabledState = atom<boolean>({
+  key: "isSatellitesEnabled",
+  default: true,
+});
+
+export interface SatelliteFilterOptions {
+  groups: string[];
+}
+
+export const satelliteFilterOptionsState = atom<SatelliteFilterOptions>({
+  key: "satelliteFilterOptions",
+  default: {
+    groups: [],
+  },
+});
