@@ -1,3 +1,10 @@
+## [1.11.0-develop.17](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.16...v1.11.0-develop.17) (2024-07-23)
+
+
+### Features
+
+* add filter for satellites ([e4e978a](https://gitlab.com/dev6645326/react-flight-tracker/commit/e4e978aa4163b5b23c69442132dc015df8b8d4ca))
+
 ## [1.11.0-develop.16](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.15...v1.11.0-develop.16) (2024-07-20)
 
 
