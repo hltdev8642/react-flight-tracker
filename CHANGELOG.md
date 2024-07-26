@@ -1,3 +1,10 @@
+## [1.11.0-develop.19](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.18...v1.11.0-develop.19) (2024-07-26)
+
+
+### Features
+
+* add a way to chose how to select satellites ([f2e5980](https://gitlab.com/dev6645326/react-flight-tracker/commit/f2e59804ffbb311dc799cf3851915bc8f9b8d2dc))
+
 ## [1.11.0-develop.18](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.17...v1.11.0-develop.18) (2024-07-26)
 
 
