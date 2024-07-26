@@ -1,3 +1,16 @@
+## [1.11.0-develop.18](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.17...v1.11.0-develop.18) (2024-07-26)
+
+
+### Features
+
+* add query params for state management ([7ccc1d8](https://gitlab.com/dev6645326/react-flight-tracker/commit/7ccc1d8511e5844ca7155bc10557d71b53bbd536))
+
+
+### Bug Fixes
+
+* dodge type issues ([f4a0b8c](https://gitlab.com/dev6645326/react-flight-tracker/commit/f4a0b8cb949334a0918e50694510fe101c31ed85))
+* low earth raycast propogation ([d8d38b5](https://gitlab.com/dev6645326/react-flight-tracker/commit/d8d38b5913de77e6ae93017e5124b8ae4a3bd7a6))
+
 ## [1.11.0-develop.17](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.16...v1.11.0-develop.17) (2024-07-23)
 
 
