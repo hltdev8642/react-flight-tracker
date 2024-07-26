@@ -20,6 +20,9 @@ export default function MobileEarth() {
         onPointerOver={(e) => {
           e.stopPropagation();
         }}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
       >
         <meshStandardMaterial
           map={colorMap}

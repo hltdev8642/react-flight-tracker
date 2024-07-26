@@ -34,6 +34,9 @@ export default function Earth() {
         onPointerOver={(e) => {
           e.stopPropagation();
         }}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
       >
         <meshPhysicalMaterial
           onBeforeCompile={(shader) => {

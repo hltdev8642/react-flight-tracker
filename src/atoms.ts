@@ -10,7 +10,7 @@ import {
   calculateSunPosition,
 } from "./astronomy-utils.tsx";
 import { syncEffect } from "recoil-sync";
-import { array, bool, Checker, object, string } from "@recoiljs/refine";
+import { array, bool, Checker, number, object, string } from "@recoiljs/refine";
 
 export const selectedFlightState = atom<AircraftData | undefined>({
   key: "selectedFlight",
@@ -105,7 +105,7 @@ export const graphicOptionsState = atom<GraphicOptions>({
 });
 
 interface MiscellaneousOptions {
-  showSatellites: boolean;
+  satelliteSelectionMethod: "hover" | "click";
   altitudeFactor: number;
   enableAnnotations: boolean;
 }
@@ -113,10 +113,20 @@ interface MiscellaneousOptions {
 export const miscellaneousOptionsState = atom<MiscellaneousOptions>({
   key: "miscellaneousOptions",
   default: {
-    showSatellites: true,
     altitudeFactor: 1,
     enableAnnotations: true,
+    satelliteSelectionMethod: "hover",
   },
+
+  effects: [
+    syncEffect({
+      refine: object({
+        altitudeFactor: number(),
+        enableAnnotations: bool(),
+        satelliteSelectionMethod: string(),
+      }) as Checker<MiscellaneousOptions>,
+    }),
+  ],
 });
 
 export const sunPositionState = atom<{

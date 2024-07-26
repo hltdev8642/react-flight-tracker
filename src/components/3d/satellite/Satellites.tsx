@@ -26,7 +26,9 @@ export default function Satellites() {
   const toolTipGroupRef = useRef<Group>(null!);
   const [currentSatellite, setCurrentSatellite] = useState(-1);
   const satelliteHtmlRef = useRef<HTMLDivElement>(null!);
-
+  const satelliteSelectionMethod = useRecoilValue(
+    miscellaneousOptionsState,
+  ).satelliteSelectionMethod;
   useFrame(() => {
     const satPositions = handleSatellitePositionUpdate(
       index,
@@ -71,7 +73,9 @@ export default function Satellites() {
           ref={instancedMeshRef}
           args={[undefined, undefined, instanceCount]}
           onPointerOver={(e) => {
-            setCurrentSatellite(e.instanceId as number);
+            if (satelliteSelectionMethod === "hover") {
+              setCurrentSatellite(e.instanceId as number);
+            }
           }}
           onPointerMissed={() => {
             setCurrentSatellite(-1);

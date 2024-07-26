@@ -45,6 +45,27 @@ export function Miscellaneous() {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem sx={{ pl: 4 }}>
+            <ListItemText primary="Satellite Select Method" />
+            <ToggleButtonGroup
+              exclusive
+              aria-label="text alignment"
+              value={miscellaneousOption.satelliteSelectionMethod}
+              onChange={(_, value) =>
+                setMiscellaneousOption({
+                  ...miscellaneousOption,
+                  satelliteSelectionMethod: value as "hover" | "click",
+                })
+              }
+            >
+              <ToggleButton value="hover" aria-label="left aligned">
+                Hover
+              </ToggleButton>
+              <ToggleButton value="click" aria-label="centered">
+                Click
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </ListItem>
+          <ListItem sx={{ pl: 4 }}>
             <ListItemText primary="Altitude Factor" />
             <Slider
               value={miscellaneousOption.altitudeFactor}
@@ -105,19 +126,6 @@ export function Miscellaneous() {
                   </ToggleButton>
                 ))}
             </ToggleButtonGroup>
-          </ListItem>
-          <ListItem sx={{ pl: 4 }}>
-            <ListItemText primary="Show Satellites" />
-            <Checkbox
-              checked={miscellaneousOption.showSatellites}
-              onChange={(_, checked) =>
-                setMiscellaneousOption({
-                  ...miscellaneousOption,
-                  showSatellites: checked,
-                })
-              }
-              disabled={isAnimationRunning}
-            />
           </ListItem>
         </List>
       </Collapse>

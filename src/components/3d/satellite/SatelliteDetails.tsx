@@ -107,8 +107,6 @@ function ToolTip(props: {
                     <br />
                     <b>RCS Size:</b> {satelliteDetailsData.data.rcsSize}
                     <br />
-                    <b>Decay Date:</b> {satelliteDetailsData.data.decayDate}
-                    <br />
                     <b>Period</b> {satelliteDetailsData.data.period}
                   </Grid>
                 )}
