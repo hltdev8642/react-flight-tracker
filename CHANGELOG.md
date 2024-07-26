@@ -1,3 +1,10 @@
+## [1.12.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0...v1.12.0-develop.1) (2024-07-26)
+
+
+### Features
+
+* use prod satellite url for production ([86fd3a4](https://gitlab.com/dev6645326/react-flight-tracker/commit/86fd3a4f2b231e04b9888db63f5bb0abeb0564c0))
+
 ## [1.11.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.10.0...v1.11.0) (2024-07-26)
 
 
