@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { liveFlightsOptionsState } from "../../../atoms.ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Avatar,
   Checkbox,
@@ -16,7 +16,7 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import FAA from "../../../assets/FAA_LOGO.png";
 import ADSB from "../../../assets/ADSB.png";
 
-export function DataSourceFilter() {
+export function DataSourceFilter(props: { disabled: boolean }) {
   const [liveFlightsOptions, setLiveFlightsOptions] = useRecoilState(
     liveFlightsOptionsState,
   );
@@ -24,9 +24,16 @@ export function DataSourceFilter() {
   const handleClick = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    if (props.disabled) {
+      setOpen(false);
+    }
+  }, [props.disabled]);
+
   return (
     <>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton onClick={handleClick} disabled={props.disabled}>
         <ListItemIcon>
           <SourceIcon />
         </ListItemIcon>

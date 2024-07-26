@@ -8,7 +8,11 @@ import {
   Vignette,
 } from "@react-three/postprocessing";
 import { useRecoilValue } from "recoil";
-import { graphicOptionsState, miscellaneousOptionsState } from "../../atoms.ts";
+import {
+  graphicOptionsState,
+  isPlanesEnabledState,
+  isSatellitesEnabledState,
+} from "../../atoms.ts";
 import { CountryBorders } from "./planets/countryBorders.tsx";
 import { lazy, Suspense } from "react";
 import Sun from "./planets/Sun.tsx";
@@ -24,7 +28,8 @@ const Satellites = lazy(() => import("./satellite/Satellites.tsx"));
 
 function Scene() {
   const graphicOptions = useRecoilValue(graphicOptionsState);
-  const miscellaneousOptions = useRecoilValue(miscellaneousOptionsState);
+  const isSatellitesEnabled = useRecoilValue(isSatellitesEnabledState);
+  const isPlanesEnabled = useRecoilValue(isPlanesEnabledState);
   return (
     <>
       {graphicOptions.stars ? (
@@ -57,11 +62,17 @@ function Scene() {
       ) : (
         <></>
       )}
-
-      <Flights />
-      <FlightTrail />
-      {miscellaneousOptions.showSatellites ? <Satellites /> : <></>}
       {graphicOptions.countryBorders ? <CountryBorders /> : <></>}
+
+      {isPlanesEnabled ? (
+        <>
+          <Flights />
+          <FlightTrail />
+        </>
+      ) : (
+        <></>
+      )}
+      {isSatellitesEnabled ? <Satellites /> : <></>}
 
       <EffectComposer>
         {graphicOptions.bloom ? (

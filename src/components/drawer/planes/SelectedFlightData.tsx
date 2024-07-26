@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { flightRadarApi } from "../../../utils.ts";
 import { selectedFlightState } from "../../../atoms.ts";
@@ -14,7 +14,7 @@ import {
 import DataObjectIcon from "@mui/icons-material/DataObject";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
-export function SelectedFlightData() {
+export function SelectedFlightData(props: { disabled: boolean }) {
   const selectedFlight = useRecoilValue(selectedFlightState);
   const { data } = useQuery({
     queryKey: ["flight", selectedFlight?.id],
@@ -25,9 +25,16 @@ export function SelectedFlightData() {
   const handleClick = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    if (props.disabled) {
+      setOpen(false);
+    }
+  }, [props.disabled]);
+
   return (
     <>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton onClick={handleClick} disabled={props.disabled}>
         <ListItemIcon>
           <DataObjectIcon />
         </ListItemIcon>

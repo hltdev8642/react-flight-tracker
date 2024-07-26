@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { liveFlightsOptionsState } from "../../../atoms.ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Checkbox,
   Collapse,
@@ -13,7 +13,7 @@ import {
 import RadarIcon from "@mui/icons-material/Radar";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
-export function RadarOptions() {
+export function RadarOptions(props: { disabled: boolean }) {
   const [liveFlightsOptions, setLiveFlightsOptions] = useRecoilState(
     liveFlightsOptionsState,
   );
@@ -21,9 +21,16 @@ export function RadarOptions() {
   const handleClick = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    if (props.disabled) {
+      setOpen(false);
+    }
+  }, [props.disabled]);
+
   return (
     <>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton onClick={handleClick} disabled={props.disabled}>
         <ListItemIcon>
           <RadarIcon />
         </ListItemIcon>

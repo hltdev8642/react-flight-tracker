@@ -33,6 +33,7 @@
     "@react-three/drei": "^9.108.3",
     "@react-three/fiber": "^8.16.8",
     "@react-three/postprocessing": "^2.16.2",
+    "@recoiljs/refine": "^0.1.1",
     "@tanstack/react-query": "^4.29.19",
     "@tanstack/react-query-devtools": "^4.29.19",
     "@types/luxon": "^3.4.2",
@@ -47,6 +48,7 @@
     "react-toastify": "^10.0.5",
     "react-type-animation": "^3.2.0",
     "recoil": "^0.7.7",
+    "recoil-sync": "^0.2.0",
     "satellite-api-react-flight-tracker-axios": "^1.2.0",
     "three": "^0.154.0"
   },

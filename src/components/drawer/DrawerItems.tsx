@@ -9,8 +9,8 @@ export function DrawerItems() {
   return (
     <List>
       <PlanesDrawer />
-      <AstralObjectsDrawer />
       <SatellitesDrawer />
+      <AstralObjectsDrawer />
       <GraphicOptionsDrawer />
       <Miscellaneous />
     </List>

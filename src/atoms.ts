@@ -9,6 +9,8 @@ import {
   calculateMoonPosition,
   calculateSunPosition,
 } from "./astronomy-utils.tsx";
+import { syncEffect } from "recoil-sync";
+import { array, bool, object, string } from "@recoiljs/refine";
 
 export const selectedFlightState = atom<AircraftData | undefined>({
   key: "selectedFlight",
@@ -163,6 +165,11 @@ export type CAMERA_TARGETS = "sun" | "moon" | "earth";
 export const cameraTargetState = atom<CAMERA_TARGETS>({
   key: "cameraTarget",
   default: "earth",
+  effects: [
+    syncEffect({
+      refine: string(),
+    }),
+  ],
 });
 export const isAnimationRunningState = atom<boolean>({
   key: "isAnimationRunning",
@@ -171,12 +178,22 @@ export const isAnimationRunningState = atom<boolean>({
 
 export const isPlanesEnabledState = atom<boolean>({
   key: "isPlanesEnabled",
-  default: true,
+  default: false,
+  effects: [
+    syncEffect({
+      refine: bool(),
+    }),
+  ],
 });
 
 export const isSatellitesEnabledState = atom<boolean>({
   key: "isSatellitesEnabled",
   default: true,
+  effects: [
+    syncEffect({
+      refine: bool(),
+    }),
+  ],
 });
 
 export interface SatelliteFilterOptions {
@@ -186,6 +203,14 @@ export interface SatelliteFilterOptions {
 export const satelliteFilterOptionsState = atom<SatelliteFilterOptions>({
   key: "satelliteFilterOptions",
   default: {
-    groups: [],
+    groups: [] as string[],
   },
+
+  effects: [
+    syncEffect({
+      refine: object({
+        groups: array(string()),
+      }),
+    }),
+  ],
 });

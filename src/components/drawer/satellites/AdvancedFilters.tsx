@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { satelliteFilterOptionsState } from "../../../atoms.ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Autocomplete,
   Collapse,
@@ -16,7 +16,7 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useQuery } from "@tanstack/react-query";
 import { satelliteApi } from "../../../utils.ts";
 
-export function AdvancedFilters() {
+export function AdvancedFilters(props: { disabled: boolean }) {
   const [open, setOpen] = useState(true);
   const handleClick = () => {
     setOpen(!open);
@@ -33,9 +33,15 @@ export function AdvancedFilters() {
     staleTime: 1000 * 60 * 60,
   });
 
+  useEffect(() => {
+    if (props.disabled) {
+      setOpen(false);
+    }
+  }, [props.disabled]);
+
   return (
     <>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton onClick={handleClick} disabled={props.disabled}>
         <ListItemIcon>
           <FilterAltIcon />
         </ListItemIcon>

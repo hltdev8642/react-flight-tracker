@@ -123,7 +123,12 @@ function handleSatellitePositionUpdate(
 ): SatelliteWithCartesian[] {
   const date = DateTime.now();
   let calculatedIndex = index;
-  if (!buffers[index] || !buffers[nextIndex(index, buffers.length)]) {
+  if (
+    !buffers[index] ||
+    !buffers[nextIndex(index, buffers.length)] ||
+    !buffers[index].satellitePositions ||
+    !buffers[nextIndex(index, buffers.length)].satellitePositions
+  ) {
     return [];
   }
   if (
@@ -144,6 +149,7 @@ function handleSatellitePositionUpdate(
     (satelliteWithCartesian, i) => {
       if (
         !satelliteWithCartesian.velocity ||
+        !endBuffer.satellitePositions[i] ||
         !endBuffer.satellitePositions[i].velocity
       ) {
         return satelliteWithCartesian;

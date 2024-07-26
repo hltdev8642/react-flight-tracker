@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { liveFlightsOptionsState } from "../../../atoms.ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Autocomplete,
   Collapse,
@@ -18,7 +18,7 @@ import { flightRadarApi } from "../../../utils.ts";
 import { AirlineDetail } from "flightradar24-client-ts/lib/types";
 import { AirportData } from "flightradar24-client-ts/lib/airportTypes";
 
-export function AdvancedFilters() {
+export function AdvancedFilters(props: { disabled: boolean }) {
   const [liveFlightsOptions, setLiveFlightsOptions] = useRecoilState(
     liveFlightsOptionsState,
   );
@@ -38,9 +38,16 @@ export function AdvancedFilters() {
   const handleClick = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    if (props.disabled) {
+      setOpen(false);
+    }
+  }, [props.disabled]);
+
   return (
     <>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton onClick={handleClick} disabled={props.disabled}>
         <ListItemIcon>
           <FilterAltIcon />
         </ListItemIcon>
