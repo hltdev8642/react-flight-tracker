@@ -1,3 +1,74 @@
+## [1.11.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.10.0...v1.11.0) (2024-07-26)
+
+
+### Features
+
+* add a way to chose how to select satellites ([f2e5980](https://gitlab.com/dev6645326/react-flight-tracker/commit/f2e59804ffbb311dc799cf3851915bc8f9b8d2dc))
+* add connection to satellite api ([35c7c35](https://gitlab.com/dev6645326/react-flight-tracker/commit/35c7c35a4085050f84821dd11e850471b36a18aa))
+* add filter for satellites ([e4e978a](https://gitlab.com/dev6645326/react-flight-tracker/commit/e4e978aa4163b5b23c69442132dc015df8b8d4ca))
+* add night lights only during the night ([8014bc4](https://gitlab.com/dev6645326/react-flight-tracker/commit/8014bc42b339ecaf471690c581515257a6a6ffeb))
+* add predictive movement for satellites ([339ecea](https://gitlab.com/dev6645326/react-flight-tracker/commit/339eceaf1c5ba982db4e3ae692dee9892edd0ba9))
+* add query params for state management ([7ccc1d8](https://gitlab.com/dev6645326/react-flight-tracker/commit/7ccc1d8511e5844ca7155bc10557d71b53bbd536))
+* add satellite Details in tolltip ([ccd0ded](https://gitlab.com/dev6645326/react-flight-tracker/commit/ccd0dedd705a40a0c4a79d4247e1e571b9aa2c16))
+* add satellite path but needs optimisations ([37c415f](https://gitlab.com/dev6645326/react-flight-tracker/commit/37c415fc2b11a2c78829d6ffda201369c6c27fea))
+* add satellites ([d8113d2](https://gitlab.com/dev6645326/react-flight-tracker/commit/d8113d24e1e4baf541df4e0e08a375c309c3e4e5))
+* add satellites ([d07213a](https://gitlab.com/dev6645326/react-flight-tracker/commit/d07213a2ba7f8c43148b2a7927fc1c35730dd82e))
+* add texture for satellites ([c71d29b](https://gitlab.com/dev6645326/react-flight-tracker/commit/c71d29b0584fdea2309feae0032e5aa50ea37550))
+* add tooltip for satellites ([f461b77](https://gitlab.com/dev6645326/react-flight-tracker/commit/f461b77095b383376912810bb94690c4b96167d8))
+* altitude factor now works with satellites ([1adc08e](https://gitlab.com/dev6645326/react-flight-tracker/commit/1adc08e2ffc5f8437d6d9febd7bedf4047d9fcb2))
+* **optimisation:** disable Moon on Mobile ([e285368](https://gitlab.com/dev6645326/react-flight-tracker/commit/e28536844bc70f1ad2a412cd8f19ff96e11895d2))
+* optimize satellites ([9c033ef](https://gitlab.com/dev6645326/react-flight-tracker/commit/9c033ef25febaf99fea91cae577735f8d926f7fb))
+
+
+### Bug Fixes
+
+* add check to verify for buffers[index].satellitePositions ([a81bf88](https://gitlab.com/dev6645326/react-flight-tracker/commit/a81bf883b9386418e9a8055b57524e795cad8532))
+* add check to verify for satPositions[currentSatellite] ([2adb037](https://gitlab.com/dev6645326/react-flight-tracker/commit/2adb037071f5f901f2922b2c0e93849de70f77a8))
+* dodge type issues ([f4a0b8c](https://gitlab.com/dev6645326/react-flight-tracker/commit/f4a0b8cb949334a0918e50694510fe101c31ed85))
+* lint error ([f2ea4bf](https://gitlab.com/dev6645326/react-flight-tracker/commit/f2ea4bf7fa922a231d4b246eac46995493572ef3))
+* lint error ([6f90ad9](https://gitlab.com/dev6645326/react-flight-tracker/commit/6f90ad96a2516fb1e1cc96119c23ee6a105c3f05))
+* lint issues ([94aca4c](https://gitlab.com/dev6645326/react-flight-tracker/commit/94aca4c2d299c7273ee7a389214a554edd4978f0))
+* low earth raycast propogation ([d8d38b5](https://gitlab.com/dev6645326/react-flight-tracker/commit/d8d38b5913de77e6ae93017e5124b8ae4a3bd7a6))
+* missing .VERSION in CI ([ff00878](https://gitlab.com/dev6645326/react-flight-tracker/commit/ff00878e826159a37ceb978dcfc57c6dd24e95a1))
+* nginx security issues ([b4675a8](https://gitlab.com/dev6645326/react-flight-tracker/commit/b4675a8b2f1d789cc51d20a5e8b6757511039f8c))
+* remove unnecessary deps ([50828fa](https://gitlab.com/dev6645326/react-flight-tracker/commit/50828fa7363a3b09c3d6cfab7e7900fa894896e9))
+* revert threejs version bump ([56576dd](https://gitlab.com/dev6645326/react-flight-tracker/commit/56576ddd8786baccced3ed6be1646c1632da855b))
+* semantic release ([b90929a](https://gitlab.com/dev6645326/react-flight-tracker/commit/b90929a48a789f2adf4583997d03d2bb84235588))
+* statellites ([fd17de7](https://gitlab.com/dev6645326/react-flight-tracker/commit/fd17de7cd35326bada464858e796fe86ddcffbb4))
+* tweak raycast parameters ([23fb83d](https://gitlab.com/dev6645326/react-flight-tracker/commit/23fb83d35852571c31d24d279ecbeb85575f06ff))
+* typescript errors ([96e800e](https://gitlab.com/dev6645326/react-flight-tracker/commit/96e800e630bbc020a9d7bc7955693941acd4b0c0))
+* typescript errors ([968b1e3](https://gitlab.com/dev6645326/react-flight-tracker/commit/968b1e3ba82497f9e3f40db356a41384b0347d23))
+* use the real satellite api ([1f67711](https://gitlab.com/dev6645326/react-flight-tracker/commit/1f67711cef41ffc8f83100acc32d8330571f4b69))
+
+
+### Other Updates
+
+* cleanup unused deps and assets ([a47d643](https://gitlab.com/dev6645326/react-flight-tracker/commit/a47d6433b0fdc7b1b1dc598bb6442f23a6b1240b))
+* **release:** 1.11.0-develop.1 [skip ci] ([7f59ef3](https://gitlab.com/dev6645326/react-flight-tracker/commit/7f59ef38bd4ca70b7c36597c25590f7d99129729))
+* **release:** 1.11.0-develop.10 [skip ci] ([45888be](https://gitlab.com/dev6645326/react-flight-tracker/commit/45888bed4dcfb25fa19a7c1f5fe335b8280ecf82))
+* **release:** 1.11.0-develop.11 [skip ci] ([a5d36b1](https://gitlab.com/dev6645326/react-flight-tracker/commit/a5d36b161f165ffc3c18b4306ecd5a6e04970f29))
+* **release:** 1.11.0-develop.12 [skip ci] ([3b5e2b0](https://gitlab.com/dev6645326/react-flight-tracker/commit/3b5e2b01d239ad5a6dd99557166f91301bb58fcb))
+* **release:** 1.11.0-develop.13 [skip ci] ([d8da9e1](https://gitlab.com/dev6645326/react-flight-tracker/commit/d8da9e1b9f709d278addf27f39d397442653ad62))
+* **release:** 1.11.0-develop.14 [skip ci] ([634cd4a](https://gitlab.com/dev6645326/react-flight-tracker/commit/634cd4a951750a105f8bad64fa7496d9647f2f8a))
+* **release:** 1.11.0-develop.15 [skip ci] ([e20b8d5](https://gitlab.com/dev6645326/react-flight-tracker/commit/e20b8d5fb4e4cefa9a4021d7cce8268a0fac96ea))
+* **release:** 1.11.0-develop.16 [skip ci] ([9da0f96](https://gitlab.com/dev6645326/react-flight-tracker/commit/9da0f9676260fd3dca8ceee051d42505f773b687))
+* **release:** 1.11.0-develop.17 [skip ci] ([c40ed97](https://gitlab.com/dev6645326/react-flight-tracker/commit/c40ed9712215dbc65fa4eb759292238aa0cdef33))
+* **release:** 1.11.0-develop.18 [skip ci] ([20970c6](https://gitlab.com/dev6645326/react-flight-tracker/commit/20970c6e490002dc68b35015a05eaecabcb18282))
+* **release:** 1.11.0-develop.19 [skip ci] ([60ebe83](https://gitlab.com/dev6645326/react-flight-tracker/commit/60ebe83d38a7497a79dcf1224e9dbdd2bc6602ff))
+* **release:** 1.11.0-develop.2 [skip ci] ([52d0f75](https://gitlab.com/dev6645326/react-flight-tracker/commit/52d0f75d51ff6a5e82098f14674b87a192aa2fb3))
+* **release:** 1.11.0-develop.3 [skip ci] ([5719fb1](https://gitlab.com/dev6645326/react-flight-tracker/commit/5719fb1ee327bd766cc23b364166a68bba901e60))
+* **release:** 1.11.0-develop.4 [skip ci] ([06a9257](https://gitlab.com/dev6645326/react-flight-tracker/commit/06a92572cc981b264022360bea4fd89003d15e8e))
+* **release:** 1.11.0-develop.5 [skip ci] ([434877e](https://gitlab.com/dev6645326/react-flight-tracker/commit/434877ec6d6d794d485a3bfbb302ee02a57069b6))
+* **release:** 1.11.0-develop.6 [skip ci] ([2673cc8](https://gitlab.com/dev6645326/react-flight-tracker/commit/2673cc891e951ed3f29aa97416809cff057d04d9))
+* **release:** 1.11.0-develop.7 [skip ci] ([4252cd3](https://gitlab.com/dev6645326/react-flight-tracker/commit/4252cd3952301c6839a5f6b308d7289bbe762fb3))
+* **release:** 1.11.0-develop.8 [skip ci] ([66def86](https://gitlab.com/dev6645326/react-flight-tracker/commit/66def86b15fecf7fbc549c91304e9112a0641b81))
+* **release:** 1.11.0-develop.9 [skip ci] ([cac5476](https://gitlab.com/dev6645326/react-flight-tracker/commit/cac547650e41d954181808ab8888a67b4b102409))
+
+
+### Documentation
+
+* add readme ([eb0c6db](https://gitlab.com/dev6645326/react-flight-tracker/commit/eb0c6db14d992e0d1e3b10057334d8d7af66d6e9))
+
 ## [1.11.0-develop.19](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0-develop.18...v1.11.0-develop.19) (2024-07-26)
 
 
