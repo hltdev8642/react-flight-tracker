@@ -15,7 +15,12 @@ export default function MobileEarth() {
 
   return (
     <>
-      <Sphere args={[EARTH_RADIUS, 20, 20]}>
+      <Sphere
+        args={[EARTH_RADIUS, 20, 20]}
+        onPointerOver={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <meshStandardMaterial
           map={colorMap}
           emissiveMap={nightMap}
