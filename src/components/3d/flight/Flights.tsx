@@ -4,24 +4,23 @@ import {
   InstancedMesh,
   Matrix4,
   Object3D,
-  Texture,
   TextureLoader,
   Vector3,
 } from "three";
-import { convertToCartesian, flightRadarApi } from "../../utils.ts";
+import { convertToCartesian, flightRadarApi } from "../../../utils.ts";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   liveFlightsOptionsState,
   miscellaneousOptionsState,
   selectedFlightState,
-} from "../../atoms.ts";
-import { EARTH_RADIUS, reductionFactor } from "../../constants.ts";
-import PlaneTexture from "../../assets/planeTexture.png";
+} from "../../../atoms.ts";
+import { EARTH_RADIUS, reductionFactor } from "../../../constants.ts";
+import PlaneTexture from "../../../assets/planeTexture.png";
 import { useLoader } from "@react-three/fiber";
 
 const temp = new Object3D();
 export default function Flights() {
-  const planeTexture = useLoader(TextureLoader, PlaneTexture) as Texture;
+  const planeTexture = useLoader(TextureLoader, PlaneTexture);
   const { data: zones } = useQuery({
     queryKey: ["zones"],
     queryFn: () => flightRadarApi.fetchZones(),

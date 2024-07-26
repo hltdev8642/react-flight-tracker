@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RecoilRoot } from "recoil";
 import { App } from "./App.tsx";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { RecoilURLSyncJSON } from "recoil-sync";
 
 const queryClient = new QueryClient();
 const theme = createTheme({
@@ -52,10 +53,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <App />
-        </ThemeProvider>
+        <RecoilURLSyncJSON location={{ part: "queryParams" }}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <App />
+          </ThemeProvider>
+        </RecoilURLSyncJSON>
       </RecoilRoot>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

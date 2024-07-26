@@ -2,6 +2,7 @@ import { useRecoilState } from "recoil";
 import {
   CAMERA_TARGETS,
   cameraTargetState,
+  graphicOptionsState,
   isAnimationRunningState,
   miscellaneousOptionsState,
 } from "../../atoms.ts";
@@ -28,6 +29,7 @@ export function Miscellaneous() {
   const [open, setOpen] = useState(false);
   const [cameraTarget, setCameraTarget] = useRecoilState(cameraTargetState);
   const [isAnimationRunning] = useRecoilState(isAnimationRunningState);
+  const [graphicOptionsS] = useRecoilState(graphicOptionsState);
   const handleClick = () => {
     setOpen(!open);
   };
@@ -43,10 +45,31 @@ export function Miscellaneous() {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem sx={{ pl: 4 }}>
+            <ListItemText primary="Satellite Select Method" />
+            <ToggleButtonGroup
+              exclusive
+              aria-label="text alignment"
+              value={miscellaneousOption.satelliteSelectionMethod}
+              onChange={(_, value) =>
+                setMiscellaneousOption({
+                  ...miscellaneousOption,
+                  satelliteSelectionMethod: value as "hover" | "click",
+                })
+              }
+            >
+              <ToggleButton value="hover" aria-label="left aligned">
+                Hover
+              </ToggleButton>
+              <ToggleButton value="click" aria-label="centered">
+                Click
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </ListItem>
+          <ListItem sx={{ pl: 4 }}>
             <ListItemText primary="Altitude Factor" />
             <Slider
               value={miscellaneousOption.altitudeFactor}
-              onChange={(_, value) =>
+              onChange={(_: Event, value: number | number[]) =>
                 setMiscellaneousOption({
                   ...miscellaneousOption,
                   altitudeFactor: value as number,
@@ -89,12 +112,19 @@ export function Miscellaneous() {
               {[
                 { value: "sun", label: "Sun" },
                 { value: "earth", label: "Earth" },
-                { value: "moon", label: "Moon" },
-              ].map(({ value, label }) => (
-                <ToggleButton value={value} aria-label={label} key={value}>
-                  {label}
-                </ToggleButton>
-              ))}
+                graphicOptionsS.enableMoon && {
+                  value: "moon",
+                  label: "Moon",
+                },
+              ]
+                .filter(
+                  (v): v is { value: CAMERA_TARGETS; label: string } => !!v,
+                )
+                .map(({ value, label }) => (
+                  <ToggleButton value={value} aria-label={label} key={value}>
+                    {label}
+                  </ToggleButton>
+                ))}
             </ToggleButtonGroup>
           </ListItem>
         </List>

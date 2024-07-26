@@ -1,14 +1,14 @@
-import { EARTH_RADIUS, MOON_RADIUS } from "../../constants.ts";
-import { convertToCartesian } from "../../utils.ts";
-import { calculateMoonPosition, toDegrees } from "../../astronomy-utils.tsx";
+import { EARTH_RADIUS, MOON_RADIUS } from "../../../constants.ts";
+import { convertToCartesian } from "../../../utils.ts";
+import { calculateMoonPosition, toDegrees } from "../../../astronomy-utils.tsx";
 import { useEffect } from "react";
 import { Sphere } from "@react-three/drei";
 import { Texture, TextureLoader, Vector3 } from "three";
 import { useRecoilState } from "recoil";
-import { moonPositionState } from "../../atoms.ts";
+import { moonPositionState } from "../../../atoms.ts";
 import { useLoader } from "@react-three/fiber";
-import MoonColorMap from "../../assets/moon/compressed/colormap.jpg";
-import MoonDisplacementMap from "../../assets/moon/compressed/displacementmap.jpg";
+import MoonColorMap from "../../../assets/moon/compressed/colormap.jpg";
+import MoonDisplacementMap from "../../../assets/moon/compressed/displacementmap.jpg";
 
 export default function Moon() {
   const [colorMap, displacementMap] = useLoader(TextureLoader, [

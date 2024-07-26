@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
-import { liveFlightsOptionsState } from "../../atoms.ts";
-import { useState } from "react";
+import { liveFlightsOptionsState } from "../../../atoms.ts";
+import { useEffect, useState } from "react";
 import {
   Autocomplete,
   Collapse,
@@ -14,11 +14,11 @@ import {
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useQuery } from "@tanstack/react-query";
-import { flightRadarApi } from "../../utils.ts";
+import { flightRadarApi } from "../../../utils.ts";
 import { AirlineDetail } from "flightradar24-client-ts/lib/types";
 import { AirportData } from "flightradar24-client-ts/lib/airportTypes";
 
-export function AdvancedFilters() {
+export function AdvancedFilters(props: { disabled: boolean }) {
   const [liveFlightsOptions, setLiveFlightsOptions] = useRecoilState(
     liveFlightsOptionsState,
   );
@@ -26,17 +26,28 @@ export function AdvancedFilters() {
   const { data: airlines, isLoading: isAirlinesLoading } = useQuery({
     queryKey: ["airlines"],
     queryFn: () => flightRadarApi.fetchAirlines(),
+    cacheTime: 1000 * 60 * 60,
+    staleTime: 1000 * 60 * 60,
   });
   const { data: airports, isLoading: isAirportsLoading } = useQuery({
     queryKey: ["airports"],
     queryFn: () => flightRadarApi.fetchAirports(),
+    cacheTime: 1000 * 60 * 60,
+    staleTime: 1000 * 60 * 60,
   });
   const handleClick = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    if (props.disabled) {
+      setOpen(false);
+    }
+  }, [props.disabled]);
+
   return (
     <>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton onClick={handleClick} disabled={props.disabled}>
         <ListItemIcon>
           <FilterAltIcon />
         </ListItemIcon>

@@ -1,17 +1,20 @@
-import { miscellaneousOptionsState, selectedFlightState } from "../../atoms.ts";
+import {
+  miscellaneousOptionsState,
+  selectedFlightState,
+} from "../../../atoms.ts";
 import { useRecoilValue } from "recoil";
 import { useQuery } from "@tanstack/react-query";
 import {
   convertToCartesian,
   flightRadarApi,
   listInterpolatedGeoCoordinates,
-} from "../../utils.ts";
-import { EARTH_RADIUS, reductionFactor } from "../../constants.ts";
+} from "../../../utils.ts";
+import { EARTH_RADIUS, reductionFactor } from "../../../constants.ts";
 import { Vector3 } from "three";
 import { Line, Sphere } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Callout from "./Callout.tsx";
+import Callout from "../common/Callout.tsx";
 
 export default function FlightTrail() {
   const selectedFlight = useRecoilValue(selectedFlightState);

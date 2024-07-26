@@ -9,6 +9,8 @@ import {
   calculateMoonPosition,
   calculateSunPosition,
 } from "./astronomy-utils.tsx";
+import { syncEffect } from "recoil-sync";
+import { array, bool, Checker, number, object, string } from "@recoiljs/refine";
 
 export const selectedFlightState = atom<AircraftData | undefined>({
   key: "selectedFlight",
@@ -24,6 +26,7 @@ export const liveFlightsOptionsState = atom<RadarOptions>({
 });
 
 export interface GraphicOptions {
+  enableMoon: boolean;
   bloom: boolean;
   vignette: boolean;
   SMAA: boolean;
@@ -39,6 +42,7 @@ export const ultraGraphics: GraphicOptions = {
   stars: true,
   highResolutionEarth: true,
   countryBorders: true,
+  enableMoon: true,
 };
 
 export const highGraphics: GraphicOptions = {
@@ -48,6 +52,7 @@ export const highGraphics: GraphicOptions = {
   stars: true,
   highResolutionEarth: true,
   countryBorders: true,
+  enableMoon: true,
 };
 
 export const mediumGraphics: GraphicOptions = {
@@ -57,6 +62,7 @@ export const mediumGraphics: GraphicOptions = {
   stars: true,
   highResolutionEarth: true,
   countryBorders: true,
+  enableMoon: true,
 };
 
 export const lowGraphics: GraphicOptions = {
@@ -66,6 +72,7 @@ export const lowGraphics: GraphicOptions = {
   stars: false,
   highResolutionEarth: false,
   countryBorders: false,
+  enableMoon: false,
 };
 
 export const graphicOptionsOptions = {
@@ -98,6 +105,7 @@ export const graphicOptionsState = atom<GraphicOptions>({
 });
 
 interface MiscellaneousOptions {
+  satelliteSelectionMethod: "hover" | "click";
   altitudeFactor: number;
   enableAnnotations: boolean;
 }
@@ -107,7 +115,18 @@ export const miscellaneousOptionsState = atom<MiscellaneousOptions>({
   default: {
     altitudeFactor: 1,
     enableAnnotations: true,
+    satelliteSelectionMethod: "hover",
   },
+
+  effects: [
+    syncEffect({
+      refine: object({
+        altitudeFactor: number(),
+        enableAnnotations: bool(),
+        satelliteSelectionMethod: string(),
+      }) as Checker<MiscellaneousOptions>,
+    }),
+  ],
 });
 
 export const sunPositionState = atom<{
@@ -156,8 +175,54 @@ export type CAMERA_TARGETS = "sun" | "moon" | "earth";
 export const cameraTargetState = atom<CAMERA_TARGETS>({
   key: "cameraTarget",
   default: "earth",
+  effects: [
+    syncEffect({
+      refine: string() as Checker<CAMERA_TARGETS>,
+    }),
+  ],
 });
 export const isAnimationRunningState = atom<boolean>({
   key: "isAnimationRunning",
   default: false,
+});
+
+// TODO: Fix the type of the atom
+export const isPlanesEnabledState = atom<boolean>({
+  key: "isPlanesEnabled",
+  default: false,
+  effects: [
+    syncEffect({
+      refine: bool(),
+    }),
+  ],
+});
+
+export const isSatellitesEnabledState = atom<boolean>({
+  key: "isSatellitesEnabled",
+  default: true,
+  effects: [
+    syncEffect({
+      refine: bool(),
+    }),
+  ],
+});
+
+export interface SatelliteFilterOptions {
+  groups: string[];
+}
+
+// TODO: Fix the type of the atom
+export const satelliteFilterOptionsState = atom<SatelliteFilterOptions>({
+  key: "satelliteFilterOptions",
+  default: {
+    groups: [],
+  },
+
+  effects: [
+    syncEffect({
+      refine: object({
+        groups: array(string()),
+      }) as Checker<SatelliteFilterOptions>,
+    }),
+  ],
 });

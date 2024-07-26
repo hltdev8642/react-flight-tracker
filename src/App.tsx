@@ -13,11 +13,13 @@ export function App() {
       <DrawerComponent />
       <Grid>
         <Canvas
+          gl={{ alpha: true, stencil: false, antialias: true, depth: true }}
           style={{
             height: "100vh",
           }}
+          dpr={1}
           camera={{
-            near: 0.1,
+            near: 0.01,
             far: 100000000,
           }}
         >

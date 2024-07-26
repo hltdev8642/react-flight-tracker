@@ -1,8 +1,8 @@
 import { useRecoilState } from "recoil";
 import {
+  GraphicOptions,
   graphicOptionsOptions,
   graphicOptionsState,
-  GraphicOptions,
 } from "../../atoms.ts";
 import { useState } from "react";
 import {
@@ -76,7 +76,10 @@ export function GraphicOptionsDrawer() {
                     key={value.value}
                     value={value.value}
                     aria-label={value.label}
-                    onClick={(_e, value) => {
+                    onClick={(
+                      _e: React.MouseEvent<HTMLElement>,
+                      value: string | null,
+                    ) => {
                       if (value === "custom") {
                         return;
                       }
@@ -171,6 +174,19 @@ export function GraphicOptionsDrawer() {
                 setGraphicOptions({
                   ...graphicOptionsS,
                   highResolutionEarth: e?.target?.checked,
+                })
+              }
+              inputProps={{ "aria-label": "controlled" }}
+            />
+          </ListItem>
+          <ListItem sx={{ pl: 4 }}>
+            <ListItemText primary="Enable Moon" />
+            <Checkbox
+              checked={graphicOptionsS.enableMoon}
+              onChange={(e) =>
+                setGraphicOptions({
+                  ...graphicOptionsS,
+                  enableMoon: e?.target?.checked,
                 })
               }
               inputProps={{ "aria-label": "controlled" }}

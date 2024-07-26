@@ -1,4 +1,4 @@
-import boundaries from "../../assets/bounderies.json?raw";
+import boundaries from "../../../assets/bounderies.json?raw";
 import { Geojson } from "geojson-parser-js";
 import {
   FeatureCollection,
@@ -6,8 +6,8 @@ import {
   MultiPolygon,
   Polygon,
 } from "geojson-parser-js/models/geojson";
-import { EARTH_RADIUS } from "../../constants.ts";
-import { convertToCartesian } from "../../utils.ts";
+import { EARTH_RADIUS } from "../../../constants.ts";
+import { convertToCartesian } from "../../../utils.ts";
 
 function mapPolygon(polygon: Polygon, index: number) {
   const vertices = new Float32Array(
