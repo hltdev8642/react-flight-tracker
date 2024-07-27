@@ -17,7 +17,7 @@ import {
 import { toDegrees } from "../../../astronomy-utils.tsx";
 import { convertToCartesian } from "../../../utils.ts";
 
-export default function Camera() {
+export default function CameraControl() {
   const cameraControlsRef = useRef<CameraControls>(null!);
   const [cameraTarget] = useRecoilState(cameraTargetState);
   const moonPosition = useRecoilValue(moonPositionState);

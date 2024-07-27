@@ -33,6 +33,7 @@ export interface GraphicOptions {
   countryBorders: boolean;
   highResolutionEarth: boolean;
   stars: boolean;
+  satellitePathResolution: number;
 }
 
 export const ultraGraphics: GraphicOptions = {
@@ -43,6 +44,7 @@ export const ultraGraphics: GraphicOptions = {
   highResolutionEarth: true,
   countryBorders: true,
   enableMoon: true,
+  satellitePathResolution: 200,
 };
 
 export const highGraphics: GraphicOptions = {
@@ -53,6 +55,7 @@ export const highGraphics: GraphicOptions = {
   highResolutionEarth: true,
   countryBorders: true,
   enableMoon: true,
+  satellitePathResolution: 90,
 };
 
 export const mediumGraphics: GraphicOptions = {
@@ -63,6 +66,7 @@ export const mediumGraphics: GraphicOptions = {
   highResolutionEarth: true,
   countryBorders: true,
   enableMoon: true,
+  satellitePathResolution: 60,
 };
 
 export const lowGraphics: GraphicOptions = {
@@ -73,6 +77,7 @@ export const lowGraphics: GraphicOptions = {
   highResolutionEarth: false,
   countryBorders: false,
   enableMoon: false,
+  satellitePathResolution: 30,
 };
 
 export const graphicOptionsOptions = {

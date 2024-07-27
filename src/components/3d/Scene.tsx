@@ -17,7 +17,7 @@ import { CountryBorders } from "./planets/countryBorders.tsx";
 import { lazy, Suspense } from "react";
 import Sun from "./planets/Sun.tsx";
 import Moon from "./planets/Moon.tsx";
-import Camera from "./common/Camera.tsx";
+import CameraControl from "./common/CameraControl.tsx";
 import { ToneMappingMode } from "postprocessing";
 
 const FlightTrail = lazy(() => import("./flight/FlightTrail.tsx"));
@@ -44,7 +44,7 @@ function Scene() {
       ) : (
         <></>
       )}
-      <Camera />
+      <CameraControl />
       <Suspense
         fallback={
           <>
