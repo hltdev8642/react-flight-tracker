@@ -50,7 +50,7 @@
     "recoil": "^0.7.7",
     "recoil-sync": "^0.2.0",
     "satellite-api-react-flight-tracker-axios": "^1.2.0",
-    "three": "^0.154.0"
+    "three": "0.154.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
