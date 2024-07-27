@@ -41,6 +41,7 @@ export type CalculatedData = {
   date: DateTime;
   satellitePositions: SatelliteWithCartesian[];
 };
+const SATELLITE_SLOW_THRESHOLD = 1;
 
 function useBuffers(index: number) {
   const [buffers, setBuffers] = useState<CalculatedData[]>([]);
@@ -154,7 +155,8 @@ function handleSatellitePositionUpdate(
       ) {
         return satelliteWithCartesian;
       }
-      const isSatelliteSlow = satelliteWithCartesian.velocity < 0.5;
+      const isSatelliteSlow =
+        satelliteWithCartesian.velocity < SATELLITE_SLOW_THRESHOLD;
       const interpolatedGeoCoordinates = interpolateGeoCoordinates(
         satelliteWithCartesian,
         endBuffer.satellitePositions[i],

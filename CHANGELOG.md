@@ -1,3 +1,17 @@
+## [1.12.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.12.0-develop.1...v1.12.0-develop.2) (2024-07-27)
+
+
+### Features
+
+* add resolution option for satellite path ([54bc605](https://gitlab.com/dev6645326/react-flight-tracker/commit/54bc60589f816939a2fa74f6ef5c9f74424844cf))
+
+## [1.12.0-develop.1](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.11.0...v1.12.0-develop.1) (2024-07-26)
+
+
+### Features
+
+* use prod satellite url for production ([86fd3a4](https://gitlab.com/dev6645326/react-flight-tracker/commit/86fd3a4f2b231e04b9888db63f5bb0abeb0564c0))
+
 ## [1.11.0](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.10.0...v1.11.0) (2024-07-26)
 
 

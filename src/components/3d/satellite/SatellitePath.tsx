@@ -4,19 +4,24 @@ import { DateTime } from "luxon";
 import { Line } from "@react-three/drei";
 import { Vector3 } from "three";
 import { useRecoilValue } from "recoil";
-import { miscellaneousOptionsState } from "../../../atoms.ts";
+import {
+  graphicOptionsState,
+  miscellaneousOptionsState,
+} from "../../../atoms.ts";
 import { EARTH_RADIUS, reductionFactor } from "../../../constants.ts";
 import { V1GeoPoint } from "satellite-api-react-flight-tracker-axios";
 import { toDegrees } from "../../../astronomy-utils.tsx";
 
 export default function SatellitePath(props: { noradId: string | undefined }) {
+  const satellitePathResolution =
+    useRecoilValue(graphicOptionsState).satellitePathResolution;
   const { data: satellitePath } = useQuery({
     queryKey: ["satellite-path", props.noradId],
     queryFn: () =>
       satelliteApi.satelliteServiceGetSatellitePath(
         props.noradId || "",
         DateTime.now().toUTC().toISO(),
-        50,
+        satellitePathResolution,
       ),
     refetchInterval: 100000,
     enabled: props.noradId !== undefined,

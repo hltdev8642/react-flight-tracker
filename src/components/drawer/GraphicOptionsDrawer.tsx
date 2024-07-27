@@ -19,6 +19,7 @@ import {
 } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import SettingsIcon from "@mui/icons-material/Settings";
+import Slider from "@mui/material/Slider";
 
 export function GraphicOptionsDrawer() {
   const [graphicOptionsS, setGraphicOptions] =
@@ -190,6 +191,22 @@ export function GraphicOptionsDrawer() {
                 })
               }
               inputProps={{ "aria-label": "controlled" }}
+            />
+          </ListItem>
+          <ListItem sx={{ pl: 4 }}>
+            <ListItemText primary="Satellite Path Resolution" />
+            <Slider
+              value={graphicOptionsS.satellitePathResolution}
+              onChange={(_: Event, value: number | number[]) =>
+                setGraphicOptions({
+                  ...graphicOptionsS,
+                  satellitePathResolution: value as number,
+                })
+              }
+              min={1}
+              max={500}
+              step={50}
+              valueLabelDisplay="auto"
             />
           </ListItem>
         </List>
