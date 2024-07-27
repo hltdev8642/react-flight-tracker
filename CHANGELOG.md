@@ -1,3 +1,10 @@
+## [1.12.0-develop.3](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.12.0-develop.2...v1.12.0-develop.3) (2024-07-27)
+
+
+### Bug Fixes
+
+* downgrade threejs version for IOS? ([6c8553b](https://gitlab.com/dev6645326/react-flight-tracker/commit/6c8553b0d48b0cae9465446aa27cf66a5486fe49))
+
 ## [1.12.0-develop.2](https://gitlab.com/dev6645326/react-flight-tracker/compare/v1.12.0-develop.1...v1.12.0-develop.2) (2024-07-27)
 
 
