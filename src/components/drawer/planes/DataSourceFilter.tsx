@@ -1,5 +1,4 @@
-import { useRecoilState } from "recoil";
-import { liveFlightsOptionsState } from "../../../atoms.ts";
+// Removed unused imports
 import { useEffect, useState } from "react";
 import {
   Avatar,
@@ -17,9 +16,7 @@ import FAA from "../../../assets/FAA_LOGO.png";
 import ADSB from "../../../assets/ADSB.png";
 
 export function DataSourceFilter(props: { disabled: boolean }) {
-  const [liveFlightsOptions, setLiveFlightsOptions] = useRecoilState(
-    liveFlightsOptionsState,
-  );
+  // const [liveFlightsOptions, setLiveFlightsOptions] = useRecoilState(liveFlightsOptionsState);
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
@@ -47,80 +44,40 @@ export function DataSourceFilter(props: { disabled: boolean }) {
               <Avatar src={FAA} sx={{ width: 24, height: 24 }} />
             </ListItemIcon>
             <ListItemText primary="FAA" />
-            <Checkbox
-              checked={liveFlightsOptions.FAA}
-              onChange={(e) =>
-                setLiveFlightsOptions({
-                  ...liveFlightsOptions,
-                  FAA: e?.target?.checked,
-                })
-              }
-              inputProps={{ "aria-label": "controlled" }}
-            />
+            {/* FAA not supported in ADSB.lol, keep for UI only if needed */}
+            <Checkbox checked={false} disabled inputProps={{ "aria-label": "controlled" }} />
           </ListItem>
           <ListItem sx={{ pl: 4 }}>
             <ListItemIcon>
               <Avatar src={ADSB} sx={{ width: 24, height: 24 }} />
             </ListItemIcon>
             <ListItemText primary="ADS-B" />
-            <Checkbox
-              checked={liveFlightsOptions.ADSB}
-              onChange={(e) =>
-                setLiveFlightsOptions({
-                  ...liveFlightsOptions,
-                  ADSB: e?.target?.checked,
-                })
-              }
-              inputProps={{ "aria-label": "controlled" }}
-            />
+            {/* ADSB is always true for ADSB.lol */}
+            <Checkbox checked disabled inputProps={{ "aria-label": "controlled" }} />
           </ListItem>
           <ListItem sx={{ pl: 4 }}>
             <ListItemIcon>
               <Avatar sx={{ width: 24, height: 24 }} />
             </ListItemIcon>
             <ListItemText primary="FLARM" />
-            <Checkbox
-              checked={liveFlightsOptions.FLARM}
-              onChange={(e) =>
-                setLiveFlightsOptions({
-                  ...liveFlightsOptions,
-                  FLARM: e?.target?.checked,
-                })
-              }
-              inputProps={{ "aria-label": "controlled" }}
-            />
+            {/* FLARM not supported in ADSB.lol */}
+            <Checkbox checked={false} disabled inputProps={{ "aria-label": "controlled" }} />
           </ListItem>
           <ListItem sx={{ pl: 4 }}>
             <ListItemIcon>
               <Avatar sx={{ width: 24, height: 24 }} />
             </ListItemIcon>
             <ListItemText primary="MLAT" />
-            <Checkbox
-              checked={liveFlightsOptions.MLAT}
-              onChange={(e) =>
-                setLiveFlightsOptions({
-                  ...liveFlightsOptions,
-                  MLAT: e?.target?.checked,
-                })
-              }
-              inputProps={{ "aria-label": "controlled" }}
-            />
+            {/* MLAT not supported in ADSB.lol */}
+            <Checkbox checked={false} disabled inputProps={{ "aria-label": "controlled" }} />
           </ListItem>
           <ListItem sx={{ pl: 4 }}>
             <ListItemIcon>
               <Avatar sx={{ width: 24, height: 24 }} />
             </ListItemIcon>
             <ListItemText primary="satellite" />
-            <Checkbox
-              checked={liveFlightsOptions.satellite}
-              onChange={(e) =>
-                setLiveFlightsOptions({
-                  ...liveFlightsOptions,
-                  satellite: e?.target?.checked,
-                })
-              }
-              inputProps={{ "aria-label": "controlled" }}
-            />
+            {/* Satellite not supported in ADSB.lol */}
+            <Checkbox checked={false} disabled inputProps={{ "aria-label": "controlled" }} />
           </ListItem>
         </List>
       </Collapse>

@@ -1,9 +1,5 @@
 import { atom } from "recoil";
-import { AircraftData } from "flightradar24-client-ts/lib/types";
-import {
-  defaultRadarOptions,
-  RadarOptions,
-} from "flightradar24-client-ts/lib/config";
+import type { ADSBLolAircraft } from "./utils";
 import { getGPUTier } from "detect-gpu";
 import {
   calculateMoonPosition,
@@ -12,15 +8,22 @@ import {
 import { syncEffect } from "recoil-sync";
 import { array, bool, Checker, number, object, string } from "@recoiljs/refine";
 
-export const selectedFlightState = atom<AircraftData | undefined>({
+export const selectedFlightState = atom<ADSBLolAircraft | undefined>({
   key: "selectedFlight",
   default: undefined,
 });
 
-export const liveFlightsOptionsState = atom<RadarOptions>({
+export interface LiveFlightsOptions {
+  bounds?: string;
+  filters?: Record<string, any>;
+  estimatedPositions?: boolean;
+}
+
+export const liveFlightsOptionsState = atom<LiveFlightsOptions>({
   key: "liveFlightsOptions",
   default: {
-    ...defaultRadarOptions,
+    bounds: undefined,
+    filters: {},
     estimatedPositions: false,
   },
 });

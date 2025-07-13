@@ -1,6 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { Html } from "@react-three/drei";
-import AircraftDetails from "./AircraftDetails";
 import { useEffect, useRef, useState } from "react";
 import {
   InstancedMesh,
@@ -34,7 +32,7 @@ export default function Flights() {
         ? fetchAircraftNearLocation(location.latitude, location.longitude)
         : Promise.resolve({ now: Date.now(), total: 0, aircraft: [] }),
     refetchIntervalInBackground: true,
-    refetchInterval: 30000,
+    refetchInterval: 20000,
     enabled: true,
   });
   // ADSB.lol API returns aircraft under 'ac' property
@@ -50,7 +48,6 @@ export default function Flights() {
   );
   // Debug: log filtered aircraft data
   // console.log('Filtered ADSB.lol aircraft data:', data);
-
   const [selectedFlight, setSelectedFlight] =
     useRecoilState(selectedFlightState);
 
@@ -94,46 +91,39 @@ export default function Flights() {
     }
   }, [data, selectedFlight, setSelectedFlight]);
 
-    return (
-      <group
-        onPointerMissed={() => setSelectedFlight(undefined)}
+  return (
+    <>
+      <instancedMesh
+        ref={instancedMeshRef}
+        args={[undefined, undefined, data?.length || 0]}
+        onClick={(e) => {
+          // Debug: log click event and instanceId
+          // console.log('Plane clicked:', e.instanceId);
+          const indexOfPlane = Number(e.instanceId);
+          // console.log(data[indexOfPlane]);
+          const acArray = data[indexOfPlane];
+          if (acArray) {
+            alert(
+              `Flight: ${acArray.flight || "N/A"}\n` +
+              `Hex: ${acArray.hex}\n` +
+              `Altitude: ${acArray.alt_geom} ft\n` +
+              `Lat: ${acArray.lat}\n` +
+              `Lon: ${acArray.lon}\n` +
+              `Track: ${acArray.track || "N/A"}`
+            );
+          }
+        }}
       >
-        <instancedMesh
-          ref={instancedMeshRef}
-          args={[undefined, undefined, data?.length || 0]}
-          onClick={(e) => {
-            const acArray = data[Number(e.instanceId)];
-            // Only set if different plane is clicked
-            if (!selectedFlight || selectedFlight.hex !== acArray.hex) {
-              setSelectedFlight(acArray);
-            }
-          }}
-        >
-          <planeGeometry args={[1, 1, 1, 1]} />
-          <meshStandardMaterial
-            map={planeTexture}
-            transparent={true}
-            opacity={0.8}
-            emissiveMap={planeTexture}
-            emissive={"white"}
-            emissiveIntensity={4}
-          />
-        </instancedMesh>
-        {selectedFlight && data.some(f => f.hex === selectedFlight.hex) && (() => {
-          // Find the selected aircraft's index and position
-          const idx = data.findIndex(f => f.hex === selectedFlight.hex);
-          if (idx === -1) return null;
-          const cartesian = convertToCartesian(
-            selectedFlight.lat,
-            selectedFlight.lon,
-            EARTH_RADIUS + (selectedFlight.alt_geom || 0) * reductionFactor * altitudeFactor,
-          );
-          return (
-            <Html position={[cartesian.x, cartesian.y, cartesian.z]} center style={{ pointerEvents: "none", zIndex: 10 }}>
-              <AircraftDetails aircraft={selectedFlight} />
-            </Html>
-          );
-        })()}
-      </group>
-    );
+        <planeGeometry args={[1, 1, 1, 1]} />
+        <meshStandardMaterial
+          map={planeTexture}
+          transparent={true}
+          opacity={0.8}
+          emissiveMap={planeTexture}
+          emissive={"white"}
+          emissiveIntensity={4}
+        />
+      </instancedMesh>
+    </>
+  );
 }

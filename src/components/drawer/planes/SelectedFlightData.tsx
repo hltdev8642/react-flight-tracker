@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { flightRadarApi } from "../../../utils.ts";
+
 import { selectedFlightState } from "../../../atoms.ts";
 import { useRecoilValue } from "recoil";
 import {
@@ -17,9 +17,10 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 export function SelectedFlightData(props: { disabled: boolean }) {
   const selectedFlight = useRecoilValue(selectedFlightState);
   const { data } = useQuery({
-    queryKey: ["flight", selectedFlight?.id],
-    queryFn: () => flightRadarApi.fetchFlight(selectedFlight?.id || ""),
-    enabled: !!selectedFlight,
+    queryKey: ["adsb-flight", selectedFlight?.hex],
+  // No need to fetch by hex; use selectedFlight directly
+  queryFn: () => selectedFlight,
+    enabled: !!selectedFlight?.hex,
   });
   const [open, setOpen] = useState(false);
   const handleClick = () => {

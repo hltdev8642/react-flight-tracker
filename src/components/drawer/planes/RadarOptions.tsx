@@ -1,5 +1,4 @@
-import { useRecoilState } from "recoil";
-import { liveFlightsOptionsState } from "../../../atoms.ts";
+// Removed unused imports
 import { useEffect, useState } from "react";
 import {
   Checkbox,
@@ -14,9 +13,7 @@ import RadarIcon from "@mui/icons-material/Radar";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 export function RadarOptions(props: { disabled: boolean }) {
-  const [liveFlightsOptions, setLiveFlightsOptions] = useRecoilState(
-    liveFlightsOptionsState,
-  );
+  // const [liveFlightsOptions, setLiveFlightsOptions] = useRecoilState(liveFlightsOptionsState);
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
@@ -41,69 +38,29 @@ export function RadarOptions(props: { disabled: boolean }) {
         <List component="div" disablePadding>
           <ListItem sx={{ pl: 4 }}>
             <ListItemText primary="Gliders" />
-            <Checkbox
-              checked={liveFlightsOptions.gliders}
-              onChange={(e) =>
-                setLiveFlightsOptions({
-                  ...liveFlightsOptions,
-                  gliders: e?.target?.checked,
-                })
-              }
-              inputProps={{ "aria-label": "controlled" }}
-            />
+            {/* Gliders not supported in ADSB.lol */}
+            <Checkbox checked={false} disabled inputProps={{ "aria-label": "controlled" }} />
           </ListItem>
           <ListItem sx={{ pl: 4 }}>
             <ListItemText primary="inAir" />
-            <Checkbox
-              checked={liveFlightsOptions.inAir}
-              onChange={(e) =>
-                setLiveFlightsOptions({
-                  ...liveFlightsOptions,
-                  inAir: e?.target?.checked,
-                })
-              }
-              inputProps={{ "aria-label": "controlled" }}
-            />
+            {/* inAir not supported in ADSB.lol */}
+            <Checkbox checked={false} disabled inputProps={{ "aria-label": "controlled" }} />
           </ListItem>
           <ListItem sx={{ pl: 4 }}>
             <ListItemText primary="onGround" />
-            <Checkbox
-              checked={liveFlightsOptions.onGround}
-              onChange={(e) =>
-                setLiveFlightsOptions({
-                  ...liveFlightsOptions,
-                  onGround: e?.target?.checked,
-                })
-              }
-              inputProps={{ "aria-label": "controlled" }}
-            />
+            {/* onGround not supported in ADSB.lol */}
+            <Checkbox checked={false} disabled inputProps={{ "aria-label": "controlled" }} />
           </ListItem>
 
           <ListItem sx={{ pl: 4 }}>
             <ListItemText primary="Inactive" />
-            <Checkbox
-              checked={liveFlightsOptions.inactive}
-              onChange={(e) =>
-                setLiveFlightsOptions({
-                  ...liveFlightsOptions,
-                  inactive: e?.target?.checked,
-                })
-              }
-              inputProps={{ "aria-label": "controlled" }}
-            />
+            {/* Inactive not supported in ADSB.lol */}
+            <Checkbox checked={false} disabled inputProps={{ "aria-label": "controlled" }} />
           </ListItem>
           <ListItem sx={{ pl: 4 }}>
             <ListItemText primary="Estimated Positions" />
-            <Checkbox
-              checked={liveFlightsOptions.estimatedPositions}
-              onChange={(e) =>
-                setLiveFlightsOptions({
-                  ...liveFlightsOptions,
-                  estimatedPositions: e?.target?.checked,
-                })
-              }
-              inputProps={{ "aria-label": "controlled" }}
-            />
+            {/* Estimated positions not supported in ADSB.lol */}
+            <Checkbox checked={false} disabled inputProps={{ "aria-label": "controlled" }} />
           </ListItem>
         </List>
       </Collapse>

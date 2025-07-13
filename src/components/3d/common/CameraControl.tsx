@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import { CameraControls } from "@react-three/drei";
+import CameraControlsImpl from "camera-controls";
+const { ACTION } = CameraControlsImpl;
 import {
   ASTRONOMICAL_UNIT,
   EARTH_RADIUS,
@@ -23,137 +25,35 @@ export default function CameraControl() {
   const moonPosition = useRecoilValue(moonPositionState);
   const sunPosition = useRecoilValue(sunPositionState);
   const [, setIsAnimationRunning] = useRecoilState(isAnimationRunningState);
-  useEffect(() => {
-    if (cameraControlsRef.current) {
-      void cameraControlsRef.current.dolly(500 - EARTH_RADIUS * 2, true).then();
-    }
-  }, [cameraControlsRef]);
 
-  useEffect(
-    () => {
-      setIsAnimationRunning(true);
-      if (cameraControlsRef.current) {
-        switch (cameraTarget) {
-          case "moon": {
-            const cartesian = convertToCartesian(
-              toDegrees(moonPosition.geoLatitude),
-              toDegrees(moonPosition.geoLongitude),
-              moonPosition.r * EARTH_RADIUS,
-            );
-            void cameraControlsRef.current
-              .setTarget(cartesian.x, cartesian.y, cartesian.z, true)
-              .then(() => {
-                void cameraControlsRef.current
-                  .dolly(
-                    cameraControlsRef.current.distance - MOON_RADIUS * 2,
-                    true,
-                  )
-                  .then(() => {
-                    setIsAnimationRunning(false);
-                  });
-              });
-            break;
-          }
-          case "earth": {
-            void cameraControlsRef.current.setTarget(0, 0, 0, true).then(() => {
-              void cameraControlsRef.current
-                .dolly(
-                  cameraControlsRef.current.distance - EARTH_RADIUS * 2,
-                  true,
-                )
-                .then(() => {
-                  setIsAnimationRunning(false);
-                });
-            });
-
-            break;
-          }
-          case "sun": {
-            const cartesian = convertToCartesian(
-              toDegrees(sunPosition.geoLatitude),
-              toDegrees(sunPosition.geoLongitude),
-              sunPosition.r * ASTRONOMICAL_UNIT * reductionFactor,
-            );
-            void cameraControlsRef.current
-              .setTarget(cartesian.x, cartesian.y, cartesian.z, true)
-              .then(() => {
-                void cameraControlsRef.current
-                  .dolly(
-                    cameraControlsRef.current.distance - SUN_RADIUS * 3,
-                    true,
-                  )
-                  .then(() => {
-                    setIsAnimationRunning(false);
-                  });
-              });
-
-            break;
-          }
-        }
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [cameraTarget],
-  );
-
-  useEffect(
-    () => {
-      if (cameraControlsRef.current) {
-        switch (cameraTarget) {
-          case "moon": {
-            const cartesian = convertToCartesian(
-              toDegrees(moonPosition.geoLatitude),
-              toDegrees(moonPosition.geoLongitude),
-              moonPosition.r * EARTH_RADIUS,
-            );
-            void cameraControlsRef.current.setTarget(
-              cartesian.x,
-              cartesian.y,
-              cartesian.z,
-              true,
-            );
-            break;
-          }
-          case "earth": {
-            void cameraControlsRef.current.setTarget(0, 0, 0, true);
-
-            break;
-          }
-          case "sun": {
-            const cartesian = convertToCartesian(
-              toDegrees(sunPosition.geoLatitude),
-              toDegrees(sunPosition.geoLongitude),
-              sunPosition.r * ASTRONOMICAL_UNIT * reductionFactor,
-            );
-            void cameraControlsRef.current.setTarget(
-              cartesian.x,
-              cartesian.y,
-              cartesian.z,
-              true,
-            );
-
-            break;
-          }
-        }
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [
-      moonPosition.dec,
-      moonPosition.r,
-      moonPosition.ra,
-      sunPosition.dec,
-      sunPosition.r,
-      sunPosition.ra,
-    ],
-  );
   return (
     <CameraControls
-      minDistance={EARTH_RADIUS + 0.2}
       ref={cameraControlsRef}
-      distance={500}
-      truckSpeed={0}
       makeDefault={true}
+      minDistance={EARTH_RADIUS/1.25} // allow even closer zoom
+      maxDistance={500}
+      distance={500}
+      minPolarAngle={0}
+      maxPolarAngle={Math.PI}
+      azimuthRotateSpeed={.12} // slightly faster rotation
+      polarRotateSpeed={.12}
+      dollySpeed={0.2} // smooth zoom
+      truckSpeed={2.0} // enable smooth vertical and horizontal panning
+      verticalDragToForward={false} // drag up/down to pan vertically
+      smoothTime={0.15} // smooth camera movement
+      dampingFactor={0.15} // smooth stop
+      // Enable all mouse buttons: left=rotate, middle=zoom, right=pan
+      mouseButtons={{
+        left: ACTION.ROTATE,
+        middle: ACTION.TRUCK, // middle mouse pans
+        right: ACTION.TRUCK,
+        wheel: ACTION.DOLLY,
+      }}
+      touches={{
+        one: ACTION.TOUCH_ROTATE,
+        two: ACTION.TOUCH_DOLLY,
+        three: ACTION.TOUCH_TRUCK,
+      }}
     />
   );
 }

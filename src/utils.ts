@@ -1,4 +1,5 @@
-import { FlightRadarApi } from "flightradar24-client-ts";
+import { fetchAircraftNearLocation, getCurrentPosition } from "./adsbLolApi";
+import type { ADSBLolAircraft, ADSBLolResponse, ADSBLolQuery } from "./adsbLolApi";
 import { toDegrees, toRadians } from "./astronomy-utils.tsx";
 import {
   Configuration,
@@ -80,9 +81,7 @@ export function listInterpolatedGeoCoordinates(
   return coordinates;
 }
 
-const flightRadarApi = new FlightRadarApi({
-  corsProxy: "https://cors-proxy.appadooapoorva.workers.dev/",
-});
+
 
 const satelliteApi = new SatelliteServiceApi(
   new Configuration({
@@ -90,4 +89,5 @@ const satelliteApi = new SatelliteServiceApi(
   }),
 );
 
-export { flightRadarApi, satelliteApi };
+export { fetchAircraftNearLocation, getCurrentPosition, satelliteApi };
+export type { ADSBLolAircraft, ADSBLolResponse, ADSBLolQuery };

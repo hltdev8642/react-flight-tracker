@@ -13,28 +13,19 @@ import {
 } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { useQuery } from "@tanstack/react-query";
-import { flightRadarApi } from "../../../utils.ts";
-import { AirlineDetail } from "flightradar24-client-ts/lib/types";
-import { AirportData } from "flightradar24-client-ts/lib/airportTypes";
+// import { useQuery } from "@tanstack/react-query";
+
 
 export function AdvancedFilters(props: { disabled: boolean }) {
   const [liveFlightsOptions, setLiveFlightsOptions] = useRecoilState(
     liveFlightsOptionsState,
   );
   const [open, setOpen] = useState(false);
-  const { data: airlines, isLoading: isAirlinesLoading } = useQuery({
-    queryKey: ["airlines"],
-    queryFn: () => flightRadarApi.fetchAirlines(),
-    cacheTime: 1000 * 60 * 60,
-    staleTime: 1000 * 60 * 60,
-  });
-  const { data: airports, isLoading: isAirportsLoading } = useQuery({
-    queryKey: ["airports"],
-    queryFn: () => flightRadarApi.fetchAirports(),
-    cacheTime: 1000 * 60 * 60,
-    staleTime: 1000 * 60 * 60,
-  });
+  // ADSB.lol does not provide airline/airport lists. Remove these queries or replace with static options if needed.
+  const airlines: any[] = [];
+  const isAirlinesLoading = false;
+  const airports: any[] = [];
+  const isAirportsLoading = false;
   const handleClick = () => {
     setOpen(!open);
   };
@@ -61,8 +52,8 @@ export function AdvancedFilters(props: { disabled: boolean }) {
               multiple
               id="tags-standard"
               loading={isAirlinesLoading}
-              options={airlines || ([] as AirlineDetail[])}
-              getOptionLabel={(option) => `${option.Name} (${option.ICAO})`}
+              options={airlines}
+              getOptionLabel={(option) => option.Name || ""}
               fullWidth
               title="Airlines"
               onChange={(_, value) => {
@@ -88,10 +79,8 @@ export function AdvancedFilters(props: { disabled: boolean }) {
               multiple
               id="tags-standard"
               loading={isAirportsLoading}
-              options={airports || ([] as AirportData[])}
-              getOptionLabel={(option) =>
-                `${option.name} (${option.icao}/${option.iata})` || ""
-              }
+              options={airports}
+              getOptionLabel={(option) => option.name || ""}
               fullWidth
               title="Airports"
               onChange={(_, value) => {
